@@ -11,4 +11,5 @@ dependencies:
   - python=3.8.5
   - tqdm=4.56.0
   - pip:
+    - pycryptodome==3.9.9
     - simple-crypt==4.1.7
