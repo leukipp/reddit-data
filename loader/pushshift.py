@@ -79,7 +79,7 @@ class Pushshift(object):
                 # request data
                 try:
                     url = self.url.format(file_type, self.subreddit, str(self.end_run[file_type]), str(self.last_run[file_type]))
-                    result = requests.get(url).json()  # , headers={'User-Agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'})
+                    result = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}).json()
                 except json.decoder.JSONDecodeError as e:
                     print(f'...request error {repr(e)}, retry')
                     time.sleep(1)
