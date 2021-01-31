@@ -1,1 +1,16 @@
-{}
+{
+    "subreddit": "wallstreetbets",
+    "pushshift": {
+        "end_run": 1609459200,
+        "data": {
+            "submission": "submissions_metadata.csv",
+            "comment": "comments_metadata.csv"
+        }
+    },
+    "reddit": {
+        "data": {
+            "submission": "submissions.csv",
+            "comment": "comments.csv"
+        }
+    }
+}
