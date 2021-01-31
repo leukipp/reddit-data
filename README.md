@@ -1,10 +1,12 @@
 # Anaconda
+
 ## Create
 ```
 conda create -n wsbyolo python=3.8
 conda install -c conda-forge pandas
 conda install -c conda-forge altair
 conda install -c conda-forge praw
+conda install -c adam simple-crypt
 ```
 
 ## Export
