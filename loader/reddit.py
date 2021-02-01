@@ -84,14 +84,16 @@ class Reddit(object):
             if file_type == 'submission':
 
                 # add t3_ prefix for submission fullnames
-                ids = ('t3_' + df_metadata[file_type]).tolist()[:200]
+                ids = ('t3_' + df_metadata[file_type]).tolist()
 
                 # fetch data
                 data = data + self.fetch(file_type, ids)
 
-        # export submissions
+        # export data
         df = pd.DataFrame(data=data, columns=columns).drop_duplicates('id', keep='last')
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
+
+        # exported data
         print(f'\nexported {df.shape[0]} {file_type}s')
 
     def fetch(self, file_type, ids):

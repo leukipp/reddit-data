@@ -126,7 +126,7 @@ class Pushshift(object):
                 # wait for next request
                 time.sleep(0.35)
 
-            # saved all
+            # saved data
             print(f'saved {count} {file_type}s')
 
         # update last and end run
