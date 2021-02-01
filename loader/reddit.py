@@ -10,7 +10,6 @@ import pandas as pd
 
 from tqdm import tqdm
 from datetime import datetime
-from praw.models import MoreComments
 
 
 class Reddit(object):
@@ -33,6 +32,7 @@ class Reddit(object):
 
     def read_config(self):
         try:
+            # read config
             print('\ndecrypting reddit config')
             with open(self.reddit_config) as f:
                 config = json.load(f)
@@ -46,6 +46,7 @@ class Reddit(object):
         client_id = input('enter client_id: ').strip()
         client_secret = getpass.getpass('enter client_secret: ').strip()
 
+        # write config
         print('\nencrypting reddit config')
         with open(self.reddit_config, 'w') as f:
             config = {
@@ -58,41 +59,42 @@ class Reddit(object):
         folder = os.path.join('data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
-        # https://www.reddit.com/comments/l9gvva/.json
-
         # download reddit data by metadata
-        metadata = {os.path.basename(x).split('_')[0]: pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*_metadata.csv'))}
+        metadata = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*.csv'))}
         for file_type, file_path in self.data.items():
             self.download(metadata, file_type, os.path.join(folder, file_path))
 
     def download(self, metadata, file_type, file_path):
-        df_metadata = metadata[f'{file_type}s'].drop_duplicates(file_type, keep='last')
+        columns = [
+            'id', 'author', 'created', 'retrieved', 'edited',
+            'gilded', 'pinned', 'archived', 'locked',
+            'removed', 'deleted',
+            'is_self', 'is_video', 'is_original_content',
+            'title', 'link_flair_text', 'upvote_ratio', 'score',
+            'total_awards_received', 'num_comments', 'num_crossposts',
+            'selftext', 'thumbnail', 'shortlink'
+        ]
 
-        # process only submissions for now
-        if file_type == 'submission':
+        # load data
+        data = []
+        for key in metadata:
+            df_metadata = metadata[key].drop_duplicates(file_type, keep='last')
 
-            # add t3_ prefix for submission fullnames
-            ids = ('t3_' + df_metadata[file_type]).tolist()[:200]
+            # process only submissions for now
+            if file_type == 'submission':
 
-            # data
-            data = self.fetch(ids, file_type)
+                # add t3_ prefix for submission fullnames
+                ids = ('t3_' + df_metadata[file_type]).tolist()[:200]
 
-            # columns
-            columns = [
-                'id', 'author', 'created', 'retrieved', 'edited',
-                'gilded', 'pinned', 'archived', 'locked',
-                'removed', 'deleted',
-                'is_self', 'is_video', 'is_original_content',
-                'title', 'link_flair_text', 'upvote_ratio', 'score',
-                'total_awards_received', 'num_comments', 'num_crossposts',
-                'selftext', 'thumbnail', 'shortlink'
-            ]
+                # fetch data
+                data = data + self.fetch(file_type, ids)
 
-            # export submissions
-            df = pd.DataFrame(data=data, columns=columns)
-            df.to_hdf(file_path, key='df', mode='w', complevel=9)
+        # export submissions
+        df = pd.DataFrame(data=data, columns=columns).drop_duplicates('id', keep='last')
+        df.to_hdf(file_path, key='df', mode='w', complevel=9)
+        print(f'\nexported {df.shape[0]} {file_type}s')
 
-    def fetch(self, ids, file_type):
+    def fetch(self, file_type, ids):
         data = []
 
         # chunk ids into lists with size 100

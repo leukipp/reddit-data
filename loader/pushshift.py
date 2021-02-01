@@ -2,7 +2,6 @@ import os
 import csv
 import json
 import time
-import tqdm
 import requests
 
 from datetime import datetime
@@ -13,6 +12,8 @@ class Pushshift(object):
         self.global_config = global_config
         self.pushshift_config = pushshift_config
 
+        now = int(datetime.utcnow().timestamp())
+
         # load global config
         with open(global_config) as f:
             config = json.load(f)
@@ -21,8 +22,6 @@ class Pushshift(object):
 
             self.last_run = {}
             self.end_run = {}
-
-            now = int(datetime.utcnow().timestamp())
             for file_type in self.data.keys():
                 self.last_run[file_type] = now
                 self.end_run[file_type] = config['pushshift']['end_run']
@@ -37,6 +36,7 @@ class Pushshift(object):
 
     def read_config(self):
         try:
+            # read config
             print('\nloading pushshift config')
             with open(self.pushshift_config) as f:
                 return json.load(f)
@@ -44,6 +44,7 @@ class Pushshift(object):
             return {}
 
     def write_config(self):
+        # write config
         with open(self.pushshift_config, 'w') as f:
             config = {
                 'last_run': self.last_run,
@@ -55,7 +56,7 @@ class Pushshift(object):
         folder = os.path.join('data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
-        # download pushshift metadata from reddit
+        # download pushshift metadata
         for file_type, file_path in self.data.items():
             self.download(file_type, os.path.join(folder, file_path))
 
@@ -120,7 +121,7 @@ class Pushshift(object):
                     self.write_config()
 
                     # saved rows
-                    print(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}')
+                    print(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}\n')
 
                 # wait for next request
                 time.sleep(0.35)
@@ -148,4 +149,5 @@ class Pushshift(object):
         except json.decoder.JSONDecodeError as e:
             print(f'...request error {repr(e)}, retry')
             time.sleep(1)
-            return []
+
+        return []
