@@ -3,12 +3,18 @@
     "pushshift": {
         "end_run": 1609459200,
         "data": {
-            "submission": "submissions_metadata.csv"
+            "submission": "submissions_pushshift.csv"
+        }
+    },
+    "crawler": {
+        "end_run": 1612084255,
+        "data": {
+            "submission": "submissions_crawler.csv"
         }
     },
     "reddit": {
         "data": {
-            "submission": "submissions.h5"
+            "submission": "submissions_reddit.h5"
         }
     }
 }
