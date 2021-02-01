@@ -9,8 +9,8 @@
     },
     "reddit": {
         "data": {
-            "submission": "submissions.csv",
-            "comment": "comments.csv"
+            "submission": "submissions.h5",
+            "comment": "comments.h5"
         }
     }
 }
