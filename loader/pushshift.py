@@ -37,7 +37,7 @@ class Pushshift(object):
 
     def read_config(self):
         try:
-            print('\nloading pushshift config...')
+            print('\nloading pushshift config')
             with open(self.pushshift_config) as f:
                 return json.load(f)
         except:
@@ -60,8 +60,13 @@ class Pushshift(object):
             self.download(file_type, os.path.join(folder, file_path))
 
     def download(self, file_type, file_path):
-        now = int(datetime.utcnow().timestamp())
+        count = 0
         exists = os.path.exists(file_path)
+        now = int(datetime.utcnow().timestamp())
+
+        # set last run to now
+        if self.last_run[file_type] == self.end_run[file_type]:
+            self.last_run[file_type] = now
 
         print(f'\ndownload {file_type}s before {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}\n')
         with open(file_path, 'a+', newline='') as f:
@@ -70,70 +75,77 @@ class Pushshift(object):
             # write csv header
             if not exists:
                 writer.writerow({
-                    'submission': ['submission', 'author', 'created', 'retrieved', 'removed'],
-                    'comment': ['submission', 'comment', 'author', 'created', 'retrieved', 'removed']
+                    'submission': ['submission', 'author', 'created', 'retrieved'],
+                    'comment': ['submission', 'comment', 'author', 'created', 'retrieved']
                 }[file_type])
 
-            count = 0
             while True:
-                # request data
-                try:
-                    url = self.url.format(file_type, self.subreddit, str(self.end_run[file_type]), str(self.last_run[file_type]))
-                    result = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}).json()
-                except json.decoder.JSONDecodeError as e:
-                    print(f'...request error {repr(e)}, retry')
-                    time.sleep(1)
-                    continue
+                url = self.url.format(file_type, self.subreddit, str(self.end_run[file_type]), str(self.last_run[file_type]))
+                result = self.fetch(url)
 
-                # validate result
-                if 'data' not in result or not len(result['data']):
+                # terminate
+                if result == None:
                     break
 
                 # build csv
                 rows = []
-                for data in result['data']:
+                for data in result:
                     self.last_run[file_type] = data['created_utc'] - 1
 
                     # build row
                     try:
-                        if file_type == 'submission' and 'selftext' in data and data['is_self']:
+                        if file_type == 'submission' and 'selftext' in data:
                             rows.append([
                                 data['id'],
                                 data['author'],
                                 data['created_utc'],
-                                data['retrieved_on'],
-                                int(str(data['selftext']) == '[removed]')])
+                                data['retrieved_on']])
                         elif file_type == 'comment' and 'body' in data:
                             rows.append([
                                 str(data['parent_id']).partition('_')[2],
                                 data['id'],
                                 data['author'],
                                 data['created_utc'],
-                                data['retrieved_on'],
-                                int(str(data['body']) == '[removed]')])
+                                data['retrieved_on']])
                     except Exception as e:
                         print(f'...error {repr(e)}')
 
                     count += 1
 
-                # update csv
-                writer.writerows(rows)
+                if len(rows):
+                    # update csv
+                    writer.writerows(rows)
 
-                # update config
-                self.write_config()
+                    # update config
+                    self.write_config()
+
+                    # saved rows
+                    print(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}')
 
                 # wait for next request
                 time.sleep(0.35)
-
-                # saved rows
-                print(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}')
 
             # saved all
             print(f'saved {count} {file_type}s')
 
         # update last and end run
         self.last_run[file_type] = now
-        self.end_run[file_type] = now
+        if count > 0:
+            self.end_run[file_type] = now
 
         # update config
         self.write_config()
+
+    def fetch(self, url):
+        try:
+            # request data
+            result = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}).json()
+
+            # validate result
+            if 'data' not in result or not len(result['data']):
+                return None
+            return result['data']
+        except json.decoder.JSONDecodeError as e:
+            print(f'...request error {repr(e)}, retry')
+            time.sleep(1)
+            return []
