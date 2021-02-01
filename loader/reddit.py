@@ -102,7 +102,7 @@ class Reddit(object):
 
                 # export submissions
                 df = pd.DataFrame(data=data, columns=columns)
-                df.to_hdf(os.path.join(folder, file_path), key='df', mode='w')
+                df.to_hdf(os.path.join(folder, file_path), key='df', mode='w', complevel=7)
 
         # TODO
         return
