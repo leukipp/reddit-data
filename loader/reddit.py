@@ -60,77 +60,59 @@ class Reddit(object):
 
         # https://www.reddit.com/comments/l9gvva/.json
 
+        # download reddit data by metadata
         metadata = {os.path.basename(x).split('_')[0]: pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*_metadata.csv'))}
         for file_type, file_path in self.data.items():
-            df_metadata = metadata[f'{file_type}s'].drop_duplicates(file_type, keep='last')
+            self.download(metadata, file_type, os.path.join(folder, file_path))
+
+    def download(self, metadata, file_type, file_path):
+        df_metadata = metadata[f'{file_type}s'].drop_duplicates(file_type, keep='last')
+
+        # process only submissions for now
+        if file_type == 'submission':
+
+            # add t3_ prefix for submission fullnames
+            ids = ('t3_' + df_metadata[file_type]).tolist()[:200]
+
+            # data
+            data = self.fetch(ids, file_type)
+
+            # columns
+            columns = [
+                'id', 'author', 'created', 'retrieved', 'edited',
+                'gilded', 'pinned', 'archived', 'locked',
+                'removed', 'deleted',
+                'is_self', 'is_video', 'is_original_content',
+                'title', 'link_flair_text', 'upvote_ratio', 'score',
+                'total_awards_received', 'num_comments', 'num_crossposts',
+                'selftext', 'thumbnail', 'shortlink'
+            ]
+
+            # export submissions
+            df = pd.DataFrame(data=data, columns=columns)
+            df.to_hdf(file_path, key='df', mode='w', complevel=9)
+
+    def fetch(self, ids, file_type):
+        data = []
+
+        # chunk ids into lists with size 100
+        print(f'\ndownload {len(ids)} {file_type}s\n')
+        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc='fetching', unit_scale=100):
+            now = datetime.utcnow().timestamp()
 
             # process only submissions for now
             if file_type == 'submission':
+                submissions = self.client.info(fullnames=fullnames)
 
-                # add t3_ prefix for submission fullnames
-                ids = ('t3_' + df_metadata[file_type]).tolist()
+                # submission data
+                data = data + [[
+                    str(s.id), str(s.author), int(s.created_utc), int(now), int(s.edited),
+                    int(s.gilded), int(s.pinned), int(s.archived), int(s.locked),
+                    int(s.selftext == '[removed]' or s.removed_by_category != None), int(s.selftext == '[deleted]'),
+                    int(s.is_self), int(s.is_video), int(s.is_original_content),
+                    str(s.title), str(s.link_flair_text), float(s.upvote_ratio), int(s.score),
+                    int(s.total_awards_received), int(s.num_comments), int(s.num_crossposts),
+                    str(s.selftext), str(s.thumbnail), str(s.shortlink)
+                ] for s in submissions]
 
-                # columns
-                columns = [
-                    'id', 'author', 'created', 'retrieved', 'edited',
-                    'gilded', 'pinned', 'archived', 'locked',
-                    'removed', 'deleted',
-                    'is_self', 'is_video', 'is_original_content',
-                    'title', 'link_flair_text', 'upvote_ratio', 'score',
-                    'total_awards_received', 'num_comments', 'num_crossposts',
-                    'selftext', 'thumbnail', 'shortlink'
-                ]
-
-                # chunk submission ids into lists with size 100
-                data = []
-                for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc='fetching', unit_scale=100):
-                    now = datetime.utcnow().timestamp()
-
-                    # load submissions
-                    submissions = self.client.info(fullnames=fullnames)
-
-                    # submission data
-                    data = data + [[
-                        str(s.id), str(s.author), int(s.created_utc), int(now), int(s.edited),
-                        int(s.gilded), int(s.pinned), int(s.archived), int(s.locked),
-                        int(s.selftext == '[removed]' or s.removed_by_category != None), int(s.selftext == '[deleted]'),
-                        int(s.is_self), int(s.is_video), int(s.is_original_content),
-                        str(s.title), str(s.link_flair_text), float(s.upvote_ratio), int(s.score),
-                        int(s.total_awards_received), int(s.num_comments), int(s.num_crossposts),
-                        str(s.selftext), str(s.thumbnail), str(s.shortlink)
-                    ] for s in submissions]
-
-                # export submissions
-                df = pd.DataFrame(data=data, columns=columns)
-                df.to_hdf(os.path.join(folder, file_path), key='df', mode='w', complevel=7)
-
-        # TODO
-        return
-
-        # init subreddit
-        subreddit = self.client.subreddit(self.subreddit)
-        posts = subreddit.new(limit=10)
-
-        # check posts
-        for post in posts:
-            # TODO
-
-            # check comments
-            for comment in post.comments:
-
-                # ignore more comments instance
-                if isinstance(comment, MoreComments):
-                    continue
-
-                # TODO
-                # parent_id, subreddit, total_awards_received, author, author_premium, controversiality, depth, gilded, permalink,
-                # created_utc, score, archived, body, id, num_reports, is_submitter, is_self
-
-                # check replies
-                for reply in comment.replies:
-
-                    # ignore more comments instance
-                    if isinstance(reply, MoreComments):
-                        continue
-
-                    # TODO
+        return data
