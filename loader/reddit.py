@@ -78,7 +78,8 @@ class Reddit(Loader):
 
     def download(self, metadata, file_type, file_path):
         columns = [
-            'id', 'author', 'created', 'retrieved', 'edited',
+            'id', 'author',
+            'created', 'retrieved', 'edited',
             'gilded', 'pinned', 'archived', 'locked',
             'removed', 'deleted',
             'is_self', 'is_video', 'is_original_content',
@@ -87,25 +88,42 @@ class Reddit(Loader):
             'selftext', 'thumbnail', 'shortlink'
         ]
 
-        # load data
-        data = []
-        for key in metadata:
-            df_metadata = metadata[key].sort_values(by=['created', 'retrieved'])
-            df_metadata = df_metadata.drop_duplicates(file_type, keep='last').reset_index(drop=True)
+        # import data
+        df = pd.read_hdf(file_path)
 
-            # process only submissions for now
+        # load metadata
+        for file_path_metadata in metadata:
+            df_metadata = metadata[file_path_metadata].sort_values(by=['created', 'retrieved'])
+            df_metadata = df_metadata.drop_duplicates(file_type, keep='last').set_index(file_type)
+
+            # validate metadata
+            if df_metadata.empty:
+                return
+
+            # update last 8 hours
+            df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
+            last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
+            update_time = last_time - (60 * 60 * 8)
+            df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
+
+            print(f'\nupdate {file_path_metadata} data after {datetime.fromtimestamp(update_time)}')
+
+            # process submissions
             if file_type == 'submission':
+                ids = list('t3_' + df_metadata_update.index)
 
-                # add t3_ prefix for submission fullnames
-                ids = ('t3_' + df_metadata[file_type]).tolist()
+                # fetch and update submission data
+                df_update = pd.DataFrame(self.fetch(file_type, ids), columns=columns).set_index('id')
+                df = df.combine_first(df_update)
+                df.update(df_update)
 
-                # fetch data
-                data = data + self.fetch(file_type, ids)
+                # updated data
+                print(f'\nupdated {df_update.shape[0]} {file_type}s')
 
         # export data
-        df = pd.DataFrame(data=data, columns=columns).sort_values(by=['created', 'retrieved'])
-        df = df.drop_duplicates('id', keep='last').reset_index(drop=True)
+        df = df.sort_values(by=['created', 'retrieved'])
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
+        df.tail(100).to_html(f'{file_path}.html')
 
         # exported data
         print(f'\nexported {df.shape[0]} {file_type}s')
@@ -118,13 +136,14 @@ class Reddit(Loader):
         for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc='fetching', unit_scale=100):
             now = datetime.utcnow().timestamp()
 
-            # process only submissions for now
+            # process submissions
             if file_type == 'submission':
                 submissions = self.client.info(fullnames=fullnames)
 
                 # submission data
                 data = data + [[
-                    str(s.id), str(s.author), int(s.created_utc), int(now), int(s.edited),
+                    str(s.id), str(s.author if s.author else '[deleted]'),
+                    datetime.fromtimestamp(int(s.created_utc)), datetime.fromtimestamp(int(now)), datetime.fromtimestamp(int(s.edited)),
                     int(s.gilded), int(s.pinned), int(s.archived), int(s.locked),
                     int(s.selftext == '[removed]' or s.removed_by_category != None), int(s.selftext == '[deleted]'),
                     int(s.is_self), int(s.is_video), int(s.is_original_content),
