@@ -6,6 +6,7 @@ import getpass
 import simplecrypt
 
 import glob as gb
+import numpy as np
 import pandas as pd
 
 from tqdm import tqdm
@@ -91,9 +92,9 @@ class Reddit(Loader):
         ]
 
         # import data
-        df = pd.DataFrame(columns=columns)
+        df = pd.DataFrame(columns=columns).set_index('id')
         if os.path.exists(file_path):
-            df = pd.read_hdf(file_path)
+            df = pd.read_hdf(file_path)  # .drop(['id'], axis=1).reindex(columns=columns[1:])
 
         # load metadata
         for file_path_metadata in metadata:
@@ -107,7 +108,7 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 8)
+            update_time = last_time - (60 * 60 * 0)
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')
@@ -117,12 +118,17 @@ class Reddit(Loader):
                 ids = list('t3_' + df_metadata_update.index)
 
                 # fetch and update submission data
-                df_update = pd.DataFrame(self.fetch(file_type, ids), columns=columns).set_index('id')
+                data = self.fetch(file_type, ids)
+                df_update = pd.DataFrame(data=data, columns=columns).set_index('id')
                 df = df.combine_first(df_update)
                 df.update(df_update)
 
                 # updated data
                 self.log(f'updated {df_update.shape[0]} {file_type}s')
+
+        # convert float's to int's (pandas/issues/7509)
+        num_columns = [x for x in df.select_dtypes(include='float64').columns if x not in ['upvote_ratio']]
+        df[num_columns] = df[num_columns].apply(np.int64)
 
         # export data
         df = df.sort_values(by=['created', 'retrieved'])
