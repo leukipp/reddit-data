@@ -4,7 +4,7 @@ import json
 import time
 import requests
 
-from datetime import datetime
+from datetime import datetime, timezone
 
 from common.loader import Loader
 
@@ -17,7 +17,7 @@ class Pushshift(Loader):
         self.global_config = global_config
         self.pushshift_config = pushshift_config
 
-        now = int(datetime.utcnow().timestamp())
+        now = int(datetime.now(timezone.utc).timestamp())
 
         # load global config
         with open(global_config) as f:
@@ -74,7 +74,7 @@ class Pushshift(Loader):
     def download(self, file_type, file_path):
         count = 0
         exists = os.path.exists(file_path)
-        now = int(datetime.utcnow().timestamp())
+        now = int(datetime.now(timezone.utc).timestamp())
 
         # set last run to now
         if self.last_run[file_type] == self.end_run[file_type]:

@@ -10,7 +10,7 @@ import glob as gb
 import pandas as pd
 
 from tqdm import tqdm
-from datetime import datetime
+from datetime import datetime, timezone
 
 from common.loader import Loader
 
@@ -103,7 +103,7 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 8)
+            update_time = last_time - (60 * 60 * 0)  # TODO
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             print(f'\nupdate {file_path_metadata} data after {datetime.fromtimestamp(update_time)}')
@@ -134,7 +134,7 @@ class Reddit(Loader):
         # chunk ids into lists with size 100
         print(f'\ndownload {len(ids)} {file_type}s\n')
         for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc='fetching', unit_scale=100):
-            now = datetime.utcnow().timestamp()
+            now = datetime.now(timezone.utc).timestamp()
 
             # process submissions
             if file_type == 'submission':
@@ -143,7 +143,7 @@ class Reddit(Loader):
                 # submission data
                 data = data + [[
                     str(s.id), str(s.author if s.author else '[deleted]'),
-                    datetime.fromtimestamp(int(s.created_utc)), datetime.fromtimestamp(int(now)), datetime.fromtimestamp(int(s.edited)),
+                    datetime.utcfromtimestamp(int(s.created_utc)), datetime.utcfromtimestamp(int(now)), datetime.utcfromtimestamp(int(s.edited)),
                     int(s.gilded), int(s.pinned), int(s.archived), int(s.locked),
                     int(s.selftext == '[removed]' or s.removed_by_category != None), int(s.selftext == '[deleted]'),
                     int(s.is_self), int(s.is_video), int(s.is_original_content),

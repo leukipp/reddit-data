@@ -5,7 +5,7 @@ import time
 import requests
 
 from lxml import html
-from datetime import datetime
+from datetime import datetime, timezone
 
 from common.loader import Loader
 
@@ -18,7 +18,7 @@ class Crawler(Loader):
         self.global_config = global_config
         self.crawler_config = crawler_config
 
-        now = int(datetime.utcnow().timestamp())
+        now = int(datetime.now(timezone.utc).timestamp())
 
         # load global config
         with open(global_config) as f:
@@ -70,7 +70,7 @@ class Crawler(Loader):
 
     def download(self, file_type, file_path):
         exists = os.path.exists(file_path)
-        now = int(datetime.utcnow().timestamp())
+        now = int(datetime.now(timezone.utc).timestamp())
 
         print(f'\ndownload {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}\n')
         with open(file_path, 'a+', newline='') as f:
@@ -110,7 +110,7 @@ class Crawler(Loader):
 
     def fetch(self, url, file_type, data=[]):
         try:
-            now = int(datetime.utcnow().timestamp())
+            now = int(datetime.now(timezone.utc).timestamp())
 
             # terminate
             created = [x[2] for x in data]
