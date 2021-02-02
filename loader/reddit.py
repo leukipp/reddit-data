@@ -133,7 +133,7 @@ class Reddit(Loader):
 
         # chunk ids into lists with size 100
         self.log(f'download {len(ids)} {file_type}s')
-        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=f'{self._name}: fetching', unit_scale=100):
+        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=f'{self._name.rjust(10)}: fetching', unit_scale=100):
             now = datetime.now(timezone.utc).timestamp()
 
             # process submissions

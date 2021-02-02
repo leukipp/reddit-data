@@ -10,7 +10,7 @@ class Loader(Thread):
         self._stopevent = Event()
 
     def log(self, msg):
-        print(f'{self._name}: {msg}')
+        print(f'{self._name.rjust(10)}: {msg}')
 
     def running(self):
         return self._runevent.is_set()
