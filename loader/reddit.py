@@ -94,7 +94,7 @@ class Reddit(Loader):
         # import data
         df = pd.DataFrame(columns=columns).set_index('id')
         if os.path.exists(file_path):
-            df = pd.read_hdf(file_path)  # .drop(['id'], axis=1).reindex(columns=columns[1:])
+            df = pd.read_hdf(file_path)
 
         # load metadata
         for file_path_metadata in metadata:
@@ -126,7 +126,7 @@ class Reddit(Loader):
                 # updated data
                 self.log(f'updated {df_update.shape[0]} {file_type}s')
 
-        # convert float's to int's (pandas/issues/7509)
+        # convert float to int (pandas/issues/7509)
         num_columns = [x for x in df.select_dtypes(include='float64').columns if x not in ['upvote_ratio']]
         df[num_columns] = df[num_columns].apply(np.int64)
 
