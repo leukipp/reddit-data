@@ -90,7 +90,8 @@ class Reddit(Loader):
         # load data
         data = []
         for key in metadata:
-            df_metadata = metadata[key].drop_duplicates(file_type, keep='last')
+            df_metadata = metadata[key].sort_values(by=['created', 'retrieved'])
+            df_metadata = df_metadata.drop_duplicates(file_type, keep='last').reset_index(drop=True)
 
             # process only submissions for now
             if file_type == 'submission':
@@ -102,7 +103,8 @@ class Reddit(Loader):
                 data = data + self.fetch(file_type, ids)
 
         # export data
-        df = pd.DataFrame(data=data, columns=columns).drop_duplicates('id', keep='last')
+        df = pd.DataFrame(data=data, columns=columns).sort_values(by=['created', 'retrieved'])
+        df = df.drop_duplicates('id', keep='last').reset_index(drop=True)
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
 
         # exported data
