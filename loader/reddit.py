@@ -1,6 +1,7 @@
 import os
 import praw
 import json
+import time
 import base64
 import getpass
 import simplecrypt
@@ -11,9 +12,14 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime
 
+from common.loader import Loader
 
-class Reddit(object):
+
+class Reddit(Loader):
     def __init__(self, global_config, reddit_config):
+        Loader.__init__(self, name='Reddit')
+
+        self.run_periode = 60
         self.global_config = global_config
         self.reddit_config = reddit_config
 
@@ -56,13 +62,19 @@ class Reddit(object):
             json.dump(config, f, indent=4, sort_keys=True)
 
     def run(self):
+        self._runevent.set()
+
         folder = os.path.join('data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download reddit data by metadata
-        metadata = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*.csv'))}
-        for file_type, file_path in self.data.items():
-            self.download(metadata, file_type, os.path.join(folder, file_path))
+        while not self.stopped():
+            metadata = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*.csv'))}
+            for file_type, file_path in self.data.items():
+                self.download(metadata, file_type, os.path.join(folder, file_path))
+            time.sleep(self.run_periode)
+
+        self._runevent.clear()
 
     def download(self, metadata, file_type, file_path):
         columns = [
@@ -120,3 +132,16 @@ class Reddit(object):
                 ] for s in submissions]
 
         return data
+
+    def stop(self, timeout=None):
+        self._stopevent.set()
+        while self.running():
+            time.sleep(0.1)
+
+        if self.isAlive():
+            self.join(timeout)
+
+
+if __name__ == '__main__':
+    reddit = Reddit(global_config=os.path.join('config', 'config.json'), reddit_config=os.path.join('config', '.reddit.json'))
+    reddit.start()

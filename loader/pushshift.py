@@ -6,9 +6,14 @@ import requests
 
 from datetime import datetime
 
+from common.loader import Loader
 
-class Pushshift(object):
+
+class Pushshift(Loader):
     def __init__(self, global_config, pushshift_config):
+        Loader.__init__(self, name='Pushshift')
+
+        self.run_periode = 60
         self.global_config = global_config
         self.pushshift_config = pushshift_config
 
@@ -53,12 +58,18 @@ class Pushshift(object):
             json.dump(config, f, indent=4, sort_keys=True)
 
     def run(self):
+        self._runevent.set()
+
         folder = os.path.join('data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download pushshift metadata
-        for file_type, file_path in self.data.items():
-            self.download(file_type, os.path.join(folder, file_path))
+        while not self.stopped():
+            for file_type, file_path in self.data.items():
+                self.download(file_type, os.path.join(folder, file_path))
+            time.sleep(self.run_periode)
+
+        self._runevent.clear()
 
     def download(self, file_type, file_path):
         count = 0
@@ -151,3 +162,16 @@ class Pushshift(object):
             time.sleep(1)
 
         return []
+
+    def stop(self, timeout=None):
+        self._stopevent.set()
+        while self.running():
+            time.sleep(0.1)
+
+        if self.isAlive():
+            self.join(timeout)
+
+
+if __name__ == '__main__':
+    pushshift = Pushshift(global_config=os.path.join('config', 'config.json'), pushshift_config=os.path.join('config', '.pushshift.json'))
+    pushshift.start()

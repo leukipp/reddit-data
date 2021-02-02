@@ -7,9 +7,14 @@ import requests
 from lxml import html
 from datetime import datetime
 
+from common.loader import Loader
 
-class Crawler(object):
+
+class Crawler(Loader):
     def __init__(self, global_config, crawler_config):
+        Loader.__init__(self, name='Crawler')
+
+        self.run_periode = 10
         self.global_config = global_config
         self.crawler_config = crawler_config
 
@@ -50,12 +55,18 @@ class Crawler(object):
             json.dump(config, f, indent=4, sort_keys=True)
 
     def run(self):
+        self._runevent.set()
+
         folder = os.path.join('data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download crawler metadata
-        for file_type, file_path in self.data.items():
-            self.download(file_type, os.path.join(folder, file_path))
+        while not self.stopped():
+            for file_type, file_path in self.data.items():
+                self.download(file_type, os.path.join(folder, file_path))
+            time.sleep(self.run_periode)
+
+        self._runevent.clear()
 
     def download(self, file_type, file_path):
         exists = os.path.exists(file_path)
@@ -135,3 +146,16 @@ class Crawler(object):
             time.sleep(1)
 
         return [x for x in data if x[2] > self.last_run[file_type]]
+
+    def stop(self, timeout=None):
+        self._stopevent.set()
+        while self.running():
+            time.sleep(0.1)
+
+        if self.isAlive():
+            self.join(timeout)
+
+
+if __name__ == '__main__':
+    crawler = Crawler(global_config=os.path.join('config', 'config.json'), crawler_config=os.path.join('config', '.crawler.json'))
+    crawler.start()
