@@ -1,12 +1,12 @@
 import os
 import csv
 import json
-import time
 import requests
 
 from lxml import html
 from datetime import datetime, timezone
 
+from common.sleep import Sleep
 from common.loader import Loader
 
 
@@ -43,6 +43,8 @@ class Crawler(Loader):
             self.log('loading crawler config')
             with open(self.crawler_config) as f:
                 return json.load(f)
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except:
             return {}
 
@@ -64,7 +66,7 @@ class Crawler(Loader):
         while not self.stopped():
             for file_type, file_path in self.data.items():
                 self.download(file_type, os.path.join(folder, file_path))
-            time.sleep(self.run_periode)
+            self._time.sleep(self.run_periode)
 
         self._runevent.clear()
 
@@ -135,22 +137,26 @@ class Crawler(Loader):
             self.log(f'fetched {len(data)} {file_type}s after {datetime.fromtimestamp(created[-1]).strftime("%Y-%m-%d %H:%M:%S")}')
 
             # wait for next request
-            time.sleep(0.35)
+            Sleep(0.35)
 
             # parse next url
             url_next = content.xpath('.//a[contains(@rel,"next") and @href]/@href')
             if len(url_next):
                 return self.fetch(url_next[0], file_type, data)
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
-            time.sleep(1)
+            Sleep(1)
 
         return [x for x in data if x[2] > self.last_run[file_type]]
 
     def stop(self, timeout=None):
         self._stopevent.set()
+        self._time.wake()
+
         while self.running():
-            time.sleep(0.1)
+            Sleep(0.1)
 
         if self.isAlive():
             self.join(timeout)

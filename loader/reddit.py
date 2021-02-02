@@ -1,7 +1,6 @@
 import os
 import praw
 import json
-import time
 import base64
 import getpass
 import simplecrypt
@@ -12,6 +11,7 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime, timezone
 
+from common.sleep import Sleep
 from common.loader import Loader
 
 
@@ -44,6 +44,8 @@ class Reddit(Loader):
                 config = json.load(f)
                 config['client_secret'] = simplecrypt.decrypt(self.reddit_config, base64.b64decode(config['client_secret'])).decode('utf8')
                 return config
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except:
             return {}
 
@@ -67,12 +69,12 @@ class Reddit(Loader):
         folder = os.path.join('data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
-        # download reddit data by metadata
+        # download reddit data
         while not self.stopped():
             metadata = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*.csv'))}
             for file_type, file_path in self.data.items():
                 self.download(metadata, file_type, os.path.join(folder, file_path))
-            time.sleep(self.run_periode)
+            self._time.sleep(self.run_periode)
 
         self._runevent.clear()
 
@@ -133,7 +135,7 @@ class Reddit(Loader):
 
         # chunk ids into lists with size 100
         self.log(f'download {len(ids)} {file_type}s')
-        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=f'{self._name.rjust(10)}: fetching', unit_scale=100):
+        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=f'{self._name.ljust(9)} | fetching', unit_scale=100):
             now = datetime.now(timezone.utc).timestamp()
 
             # process submissions
@@ -156,8 +158,10 @@ class Reddit(Loader):
 
     def stop(self, timeout=None):
         self._stopevent.set()
+        self._time.wake()
+
         while self.running():
-            time.sleep(0.1)
+            Sleep(0.1)
 
         if self.isAlive():
             self.join(timeout)

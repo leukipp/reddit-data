@@ -1,11 +1,11 @@
 import os
 import csv
 import json
-import time
 import requests
 
 from datetime import datetime, timezone
 
+from common.sleep import Sleep
 from common.loader import Loader
 
 
@@ -45,6 +45,8 @@ class Pushshift(Loader):
             self.log('loading pushshift config')
             with open(self.pushshift_config) as f:
                 return json.load(f)
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except:
             return {}
 
@@ -67,7 +69,7 @@ class Pushshift(Loader):
         while not self.stopped():
             for file_type, file_path in self.data.items():
                 self.download(file_type, os.path.join(folder, file_path))
-            time.sleep(self.run_periode)
+            self._time.sleep(self.run_periode)
 
         self._runevent.clear()
 
@@ -119,6 +121,8 @@ class Pushshift(Loader):
                                 data['author'],
                                 data['created_utc'],
                                 data['retrieved_on']])
+                    except KeyboardInterrupt:
+                        raise KeyboardInterrupt
                     except Exception as e:
                         self.log(f'...error {repr(e)}')
 
@@ -135,7 +139,7 @@ class Pushshift(Loader):
                     self.log(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}')
 
                 # wait for next request
-                time.sleep(0.35)
+                Sleep(0.35)
 
             # saved data
             self.log(f'saved {count} {file_type}s')
@@ -157,16 +161,20 @@ class Pushshift(Loader):
             if 'data' not in result or not len(result['data']):
                 return None
             return result['data']
+        except KeyboardInterrupt:
+            raise KeyboardInterrupt
         except json.decoder.JSONDecodeError as e:
             self.log(f'...request error {repr(e)}, retry')
-            time.sleep(1)
+            Sleep(1)
 
         return []
 
     def stop(self, timeout=None):
         self._stopevent.set()
+        self._time.wake()
+
         while self.running():
-            time.sleep(0.1)
+            Sleep(0.1)
 
         if self.isAlive():
             self.join(timeout)
