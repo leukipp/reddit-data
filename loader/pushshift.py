@@ -42,7 +42,7 @@ class Pushshift(Loader):
     def read_config(self):
         try:
             # read config
-            print('\nloading pushshift config')
+            self.log('loading pushshift config')
             with open(self.pushshift_config) as f:
                 return json.load(f)
         except:
@@ -80,7 +80,7 @@ class Pushshift(Loader):
         if self.last_run[file_type] == self.end_run[file_type]:
             self.last_run[file_type] = now
 
-        print(f'\ndownload {file_type}s before {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}\n')
+        self.log(f'download {file_type}s before {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}')
         with open(file_path, 'a+', newline='') as f:
             writer = csv.writer(f, delimiter=';')
 
@@ -120,7 +120,7 @@ class Pushshift(Loader):
                                 data['created_utc'],
                                 data['retrieved_on']])
                     except Exception as e:
-                        print(f'...error {repr(e)}')
+                        self.log(f'...error {repr(e)}')
 
                     count += 1
 
@@ -132,13 +132,13 @@ class Pushshift(Loader):
                     self.write_config()
 
                     # saved rows
-                    print(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}\n')
+                    self.log(f'saved {count} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}')
 
                 # wait for next request
                 time.sleep(0.35)
 
             # saved data
-            print(f'saved {count} {file_type}s')
+            self.log(f'saved {count} {file_type}s')
 
         # update last and end run
         self.last_run[file_type] = now
@@ -158,7 +158,7 @@ class Pushshift(Loader):
                 return None
             return result['data']
         except json.decoder.JSONDecodeError as e:
-            print(f'...request error {repr(e)}, retry')
+            self.log(f'...request error {repr(e)}, retry')
             time.sleep(1)
 
         return []

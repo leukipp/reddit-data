@@ -18,17 +18,14 @@ def main():
     args = argp.parse_args()
 
     # pushshift
-    print('\n-----------------------------------------------------------------------------------------------------')
     pushshift = Pushshift(global_config=args.global_config, pushshift_config=args.pushshift_config)
     pushshift.start()
 
     # crawler
-    print('\n-----------------------------------------------------------------------------------------------------')
     crawler = Crawler(global_config=args.global_config, crawler_config=args.crawler_config)
     crawler.start()
 
     # reddit
-    print('\n-----------------------------------------------------------------------------------------------------')
     reddit = Reddit(global_config=args.global_config, reddit_config=args.reddit_config)
     reddit.start()
 
@@ -36,7 +33,7 @@ def main():
         try:
             time.sleep(1)
         except KeyboardInterrupt:
-            if Prompt(f'stop?').yes():
+            if Prompt(f'stop?').yes():  # TODO proper stop logic
                 pushshift.stop()
                 crawler.stop()
                 reddit.stop()
@@ -47,6 +44,6 @@ if __name__ == '__main__':
     try:
         main()
     except KeyboardInterrupt:
-        print(f'\n...aborted')
+        print(f'...aborted')
     except Exception as e:
         print(f'...error {repr(e)}')

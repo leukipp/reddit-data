@@ -40,7 +40,7 @@ class Crawler(Loader):
     def read_config(self):
         try:
             # read config
-            print('\nloading crawler config')
+            self.log('loading crawler config')
             with open(self.crawler_config) as f:
                 return json.load(f)
         except:
@@ -72,7 +72,7 @@ class Crawler(Loader):
         exists = os.path.exists(file_path)
         now = int(datetime.now(timezone.utc).timestamp())
 
-        print(f'\ndownload {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}\n')
+        self.log(f'download {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}')
         with open(file_path, 'a+', newline='') as f:
             writer = csv.writer(f, delimiter=';')
 
@@ -106,7 +106,7 @@ class Crawler(Loader):
             self.write_config()
 
             # saved data
-            print(f'saved {len(data)} {file_type}s')
+            self.log(f'saved {len(data)} {file_type}s')
 
     def fetch(self, url, file_type, data=[]):
         try:
@@ -132,7 +132,7 @@ class Crawler(Loader):
 
             # fetched data
             created = [x[2] for x in data]
-            print(f'fetched {len(data)} {file_type}s after {datetime.fromtimestamp(created[-1]).strftime("%Y-%m-%d %H:%M:%S")}\n')
+            self.log(f'fetched {len(data)} {file_type}s after {datetime.fromtimestamp(created[-1]).strftime("%Y-%m-%d %H:%M:%S")}')
 
             # wait for next request
             time.sleep(0.35)
@@ -142,7 +142,7 @@ class Crawler(Loader):
             if len(url_next):
                 return self.fetch(url_next[0], file_type, data)
         except Exception as e:
-            print(f'...request error {repr(e)}, retry')
+            self.log(f'...request error {repr(e)}, retry')
             time.sleep(1)
 
         return [x for x in data if x[2] > self.last_run[file_type]]

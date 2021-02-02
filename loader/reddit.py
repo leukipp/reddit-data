@@ -39,7 +39,7 @@ class Reddit(Loader):
     def read_config(self):
         try:
             # read config
-            print('\ndecrypting reddit config')
+            self.log('decrypting reddit config')
             with open(self.reddit_config) as f:
                 config = json.load(f)
                 config['client_secret'] = simplecrypt.decrypt(self.reddit_config, base64.b64decode(config['client_secret'])).decode('utf8')
@@ -48,12 +48,12 @@ class Reddit(Loader):
             return {}
 
     def write_config(self):
-        print('\nupdate reddit config')
+        self.log('update reddit config')
         client_id = input('enter client_id: ').strip()
         client_secret = getpass.getpass('enter client_secret: ').strip()
 
         # write config
-        print('\nencrypting reddit config')
+        self.log('encrypting reddit config')
         with open(self.reddit_config, 'w') as f:
             config = {
                 'client_id': client_id,
@@ -103,10 +103,10 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 0)  # TODO
+            update_time = last_time - (60 * 60 * 0)
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
-            print(f'\nupdate {file_path_metadata} data after {datetime.fromtimestamp(update_time)}')
+            self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')
 
             # process submissions
             if file_type == 'submission':
@@ -118,22 +118,22 @@ class Reddit(Loader):
                 df.update(df_update)
 
                 # updated data
-                print(f'\nupdated {df_update.shape[0]} {file_type}s')
+                self.log(f'updated {df_update.shape[0]} {file_type}s')
 
         # export data
         df = df.sort_values(by=['created', 'retrieved'])
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
-        df.tail(100).to_html(f'{file_path}.html')
+        df.tail(5).to_html(f'{file_path}.html')
 
         # exported data
-        print(f'\nexported {df.shape[0]} {file_type}s')
+        self.log(f'exported {df.shape[0]} {file_type}s')
 
     def fetch(self, file_type, ids):
         data = []
 
         # chunk ids into lists with size 100
-        print(f'\ndownload {len(ids)} {file_type}s\n')
-        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc='fetching', unit_scale=100):
+        self.log(f'download {len(ids)} {file_type}s')
+        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=f'{self._name}: fetching', unit_scale=100):
             now = datetime.now(timezone.utc).timestamp()
 
             # process submissions

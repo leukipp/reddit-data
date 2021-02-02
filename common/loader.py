@@ -5,9 +5,12 @@ class Loader(Thread):
     def __init__(self, name):
         Thread.__init__(self, name=name)
 
-        # thread run and stop events
+        self._name = name
         self._runevent = Event()
         self._stopevent = Event()
+
+    def log(self, msg):
+        print(f'{self._name}: {msg}')
 
     def running(self):
         return self._runevent.is_set()
