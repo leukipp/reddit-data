@@ -6,6 +6,8 @@ dependencies:
   - altair=4.1.0
   - autopep8=1.5.4
   - lxml=4.6.2
+  - matplotlib=3.3.2
+  - numpy=1.19.2
   - pandas=1.2.1
   - pip=20.3.3
   - praw=7.0.0
@@ -15,3 +17,4 @@ dependencies:
   - pip:
     - pycryptodome==3.9.9
     - simple-crypt==4.1.7
+    - streamlit==0.75.0
