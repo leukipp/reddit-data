@@ -125,7 +125,7 @@ class Reddit(Loader):
         # export data
         df = df.sort_values(by=['created', 'retrieved'])
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
-        df.tail(5).to_html(f'{file_path}.html')
+        df.tail(100).to_html(f'{file_path}.html')
 
         # exported data
         self.log(f'exported {df.shape[0]} {file_type}s')
