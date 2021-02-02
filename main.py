@@ -48,6 +48,6 @@ if __name__ == '__main__':
     try:
         main(argp.parse_args())
     except KeyboardInterrupt as e:
-        print(f'...abort')
+        print(f'...aborted')
     except Exception as e:
         print(f'...error {repr(e)}')
