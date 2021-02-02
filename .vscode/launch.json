@@ -2,11 +2,21 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Main",
+            "name": "Data",
             "type": "python",
             "request": "launch",
-            "program": "main.py",
+            "program": "data.py",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Analyze",
+            "type": "python",
+            "request": "launch",
+            "module": "streamlit.cli",
+            "args": [
+                "run",
+                "analyze.py"
+            ]
         }
     ]
 }
