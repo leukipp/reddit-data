@@ -10,7 +10,6 @@ from loader.pushshift import Pushshift
 
 
 def main(args):
-
     threads = []
 
     try:
