@@ -91,7 +91,9 @@ class Reddit(Loader):
         ]
 
         # import data
-        df = pd.read_hdf(file_path)
+        df = pd.DataFrame(columns=columns)
+        if os.path.exists(file_path):
+            df = pd.read_hdf(file_path)
 
         # load metadata
         for file_path_metadata in metadata:
