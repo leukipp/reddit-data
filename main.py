@@ -1,5 +1,8 @@
 import os
+import time
 import argparse
+
+from common.prompt import Prompt
 
 from loader.reddit import Reddit
 from loader.crawler import Crawler
@@ -17,17 +20,27 @@ def main():
     # pushshift
     print('\n-----------------------------------------------------------------------------------------------------')
     pushshift = Pushshift(global_config=args.global_config, pushshift_config=args.pushshift_config)
-    pushshift.run()
+    pushshift.start()
 
     # crawler
     print('\n-----------------------------------------------------------------------------------------------------')
     crawler = Crawler(global_config=args.global_config, crawler_config=args.crawler_config)
-    crawler.run()
+    crawler.start()
 
     # reddit
     print('\n-----------------------------------------------------------------------------------------------------')
     reddit = Reddit(global_config=args.global_config, reddit_config=args.reddit_config)
-    reddit.run()
+    reddit.start()
+
+    while True:
+        try:
+            time.sleep(1)
+        except KeyboardInterrupt:
+            if Prompt(f'stop?').yes():
+                pushshift.stop()
+                crawler.stop()
+                reddit.stop()
+                return
 
 
 if __name__ == '__main__':
