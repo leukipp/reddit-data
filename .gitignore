@@ -1,9 +1,5 @@
 __pycache__
 *.py[cod]
+config/*/
 data/private/*
 data/public/*
-pushshift.json
-crawler.json
-reddit.json
-kaggle.json
-debug.py
