@@ -6,7 +6,11 @@
             "type": "python",
             "request": "launch",
             "program": "data.py",
-            "console": "integratedTerminal"
+            "console": "integratedTerminal",
+            "args": [
+                "--global-config",
+                "config/wallstreetbets.json"
+            ]
         },
         {
             "name": "Visualize",
