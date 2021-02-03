@@ -6,6 +6,7 @@ import json
 import base64
 import shutil
 import getpass
+import argparse
 
 import glob as gb
 import numpy as np
@@ -82,8 +83,15 @@ class Reddit(Loader):
 
         # download reddit data
         while not self.stopped():
-            crawler = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*crawler.csv'))}
-            pushshift = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*pushshift.csv'))}
+            columns = ['submission', 'author', 'created', 'retrieved']
+            try:
+                crawler = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*crawler.csv'))}
+            except pd.errors.EmptyDataError:
+                crawler = {os.path.basename(x): pd.DataFrame(columns=columns) for x in gb.glob(os.path.join(folder, '*crawler.csv'))}
+            try:
+                pushshift = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*pushshift.csv'))}
+            except pd.errors.EmptyDataError:
+                pushshift = {os.path.basename(x): pd.DataFrame(columns=columns) for x in gb.glob(os.path.join(folder, '*pushshift.csv'))}
             for file_type, file_path in self.data.items():
                 self.download({**crawler, **pushshift}, file_type, os.path.join(folder, file_path))
             self.log(f'sleep for {self.periode} seconds')
@@ -154,12 +162,12 @@ class Reddit(Loader):
         self.log(f'exported {df.shape[0]} {file_type}s')
 
         # copy to public folder
-        private = os.path.join(self.root, 'data', 'private')
-        public = os.path.join(self.root, 'data', 'public')
+        private = os.path.join(self.root, 'data', 'private', self.subreddit)
+        public = os.path.join(self.root, 'data', 'public', self.subreddit)
         shutil.copytree(private, public, dirs_exist_ok=True, ignore=shutil.ignore_patterns('*crawler.csv', '*pushshift.csv'))
 
         # published data
-        self.kaggle.dataset_create_version(public, version_notes='update data', dir_mode='zip')
+        # self.kaggle.dataset_create_version(public, version_notes='update data', dir_mode='zip')
         self.log(f'published {df.shape[0]} {file_type}s')
 
     def fetch(self, file_type, ids):
@@ -200,5 +208,14 @@ class Reddit(Loader):
 
 
 if __name__ == '__main__':
-    reddit = Reddit(root=root, global_config=os.path.join('config', 'global.json'), reddit_config=os.path.join('config', 'reddit.json'))
+    argp = argparse.ArgumentParser()
+    argp.add_argument('--global-config',  type=str, required=True, help='file path of global config file [PATH]')
+    args = argp.parse_args()
+
+    # load config
+    with open(os.path.join(root, args.global_config)) as f:
+        config = json.load(f)
+
+    # start reddit
+    reddit = Reddit(root=root, global_config=args.global_config, reddit_config=os.path.join('config', config['subreddit'], 'reddit.json'))
     reddit.start()

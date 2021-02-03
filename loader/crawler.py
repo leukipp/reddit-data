@@ -3,6 +3,7 @@ import sys
 import csv
 import json
 import requests
+import argparse
 
 from lxml import html
 from datetime import datetime, timezone
@@ -169,5 +170,14 @@ class Crawler(Loader):
 
 
 if __name__ == '__main__':
-    crawler = Crawler(root=root, global_config=os.path.join('config', 'global.json'), crawler_config=os.path.join('config', 'crawler.json'))
+    argp = argparse.ArgumentParser()
+    argp.add_argument('--global-config',  type=str, required=True, help='file path of global config file [PATH]')
+    args = argp.parse_args()
+
+    # load config
+    with open(os.path.join(root, args.global_config)) as f:
+        config = json.load(f)
+
+    # start crawler
+    crawler = Crawler(root=root, global_config=args.global_config, crawler_config=os.path.join('config', config['subreddit'], 'crawler.json'))
     crawler.start()

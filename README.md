@@ -61,3 +61,17 @@ kaggle datasets version -p data/public -r zip -m "update data"
 ```
 kaggle datasets status leukipp/reddityolo
 ```
+
+# Run
+
+## Full
+```
+python data.py --global-config config/wallstreetbets.json
+```
+
+## Single
+```
+python loader/pushshift.py --global-config config/wallstreetbets.json
+python loader/crawler.py --global-config config/wallstreetbets.json
+python loader/reddit.py --global-config config/wallstreetbets.json
+```

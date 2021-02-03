@@ -1,4 +1,5 @@
 import os
+import json
 import argparse
 
 from common.sleep import Sleep
@@ -13,18 +14,21 @@ def main(args):
     threads = []
 
     try:
+        # load config
         root = os.path.abspath(os.path.dirname(__file__))
+        with open(os.path.join(root, args.global_config)) as f:
+            config = json.load(f)
 
         # pushshift
-        pushshift = Pushshift(root=root, global_config=args.global_config, pushshift_config=args.pushshift_config)
+        pushshift = Pushshift(root=root, global_config=args.global_config, pushshift_config=os.path.join('config', config['subreddit'], 'pushshift.json'))
         threads.append(pushshift)
 
         # crawler
-        crawler = Crawler(root=root, global_config=args.global_config, crawler_config=args.crawler_config)
+        crawler = Crawler(root=root, global_config=args.global_config, crawler_config=os.path.join('config', config['subreddit'], 'crawler.json'))
         threads.append(crawler)
 
         # reddit
-        reddit = Reddit(root=root, global_config=args.global_config, reddit_config=args.reddit_config)
+        reddit = Reddit(root=root, global_config=args.global_config, reddit_config=os.path.join('config', config['subreddit'], 'reddit.json'))
         threads.append(reddit)
 
         # start threads
@@ -41,14 +45,12 @@ def main(args):
 
 
 if __name__ == '__main__':
-    argp = argparse.ArgumentParser(description='wsbyolo')
-    argp.add_argument('--global-config', default=os.path.join('config', 'global.json'), type=str, help='file path of global config file [PATH]')
-    argp.add_argument('--pushshift-config', default=os.path.join('config', 'pushshift.json'), type=str, help='file path of private pushshift config file [PATH]')
-    argp.add_argument('--crawler-config', default=os.path.join('config', 'crawler.json'), type=str, help='file path of private crawler config file [PATH]')
-    argp.add_argument('--reddit-config', default=os.path.join('config', 'reddit.json'), type=str, help='file path of private reddit config file [PATH]')
+    argp = argparse.ArgumentParser()
+    argp.add_argument('--global-config',  type=str, required=True, help='file path of global config file [PATH]')
+    args = argp.parse_args()
 
     try:
-        main(argp.parse_args())
+        main(args)
     except KeyboardInterrupt as e:
         print(f'...aborted')
     except Exception as e:
