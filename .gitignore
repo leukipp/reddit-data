@@ -1,5 +1,7 @@
 __pycache__
 *.py[cod]
+data/private/*
+data/public/*
 pushshift.json
 crawler.json
 reddit.json
