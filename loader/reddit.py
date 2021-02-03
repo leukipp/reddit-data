@@ -20,7 +20,7 @@ class Reddit(Loader):
     def __init__(self, global_config, reddit_config):
         Loader.__init__(self, name='Reddit')
 
-        self.run_periode = 60
+        self.run_periode = 60 * 5
         self.global_config = global_config
         self.reddit_config = reddit_config
 
@@ -108,7 +108,7 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 0)
+            update_time = last_time - (60 * 60 * 8)
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')

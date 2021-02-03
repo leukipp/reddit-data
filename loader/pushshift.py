@@ -13,7 +13,7 @@ class Pushshift(Loader):
     def __init__(self, global_config, pushshift_config):
         Loader.__init__(self, name='Pushshift')
 
-        self.run_periode = 60
+        self.run_periode = 60 * 5
         self.global_config = global_config
         self.pushshift_config = pushshift_config
 
