@@ -73,8 +73,13 @@ class Crawler(Loader):
         while not self.stopped():
             for file_type, file_path in self.data.items():
                 self.download(file_type, os.path.join(folder, file_path))
-            self.log(f'sleep for {self.periode} seconds')
-            self._time.sleep(self.periode)
+
+            # periodic run
+            if self.background():
+                self.log(f'sleep for {self.periode} seconds')
+                self._time.sleep(self.periode)
+            else:
+                break
 
         self._runevent.clear()
 
@@ -172,13 +177,17 @@ class Crawler(Loader):
 
 if __name__ == '__main__':
     argp = argparse.ArgumentParser()
-    argp.add_argument('--global-config',  type=str, required=True, help='file path of global config file [PATH]')
+    argp.add_argument('--config', type=str, required=True, help='file path of global config file')
+    argp.add_argument('--background', action='store_true', help='run loaders periodic in background')
     args = argp.parse_args()
 
     # load config
-    with open(os.path.join(root, args.global_config)) as f:
+    with open(os.path.join(root, args.config)) as f:
         config = json.load(f)
 
     # start crawler
-    crawler = Crawler(root=root, global_config=args.global_config, crawler_config=os.path.join('config', config['subreddit'], 'crawler.json'))
-    crawler.start()
+    crawler = Crawler(root=root, global_config=args.config, crawler_config=os.path.join('config', config['subreddit'], 'crawler.json'))
+    if args.background:
+        crawler.start()
+    else:
+        crawler.run()

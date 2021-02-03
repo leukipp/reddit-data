@@ -66,12 +66,12 @@ kaggle datasets status leukipp/reddityolo
 
 ## Full
 ```
-python data.py --global-config config/wallstreetbets.json
+python data.py --config config/wallstreetbets.json
 ```
 
 ## Single
 ```
-python loader/pushshift.py --global-config config/wallstreetbets.json
-python loader/crawler.py --global-config config/wallstreetbets.json
-python loader/reddit.py --global-config config/wallstreetbets.json
+python loader/pushshift.py --config config/wallstreetbets.json
+python loader/crawler.py --config config/wallstreetbets.json
+python loader/reddit.py --config config/wallstreetbets.json
 ```

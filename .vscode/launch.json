@@ -8,7 +8,8 @@
             "program": "data.py",
             "console": "integratedTerminal",
             "args": [
-                "--global-config",
+                "--background",
+                "--config",
                 "config/wallstreetbets.json"
             ]
         },

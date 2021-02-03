@@ -84,19 +84,25 @@ class Reddit(Loader):
 
         # download reddit data
         while not self.stopped():
-            columns = ['submission', 'author', 'created', 'retrieved']
             try:
                 crawler = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*crawler.csv'))}
             except pd.errors.EmptyDataError:
+                columns = ['submission', 'author', 'created', 'retrieved']
                 crawler = {os.path.basename(x): pd.DataFrame(columns=columns) for x in gb.glob(os.path.join(folder, '*crawler.csv'))}
             try:
                 pushshift = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*pushshift.csv'))}
             except pd.errors.EmptyDataError:
+                columns = ['submission', 'author', 'created', 'retrieved']
                 pushshift = {os.path.basename(x): pd.DataFrame(columns=columns) for x in gb.glob(os.path.join(folder, '*pushshift.csv'))}
             for file_type, file_path in self.data.items():
                 self.download({**crawler, **pushshift}, file_type, os.path.join(folder, file_path))
-            self.log(f'sleep for {self.periode} seconds')
-            self._time.sleep(self.periode)
+
+            # periodic run
+            if self.background():
+                self.log(f'sleep for {self.periode} seconds')
+                self._time.sleep(self.periode)
+            else:
+                break
 
         self._runevent.clear()
 
@@ -129,7 +135,7 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 8)  # TODO 8h
+            update_time = last_time - (60 * 60 * 8)
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')
@@ -210,13 +216,17 @@ class Reddit(Loader):
 
 if __name__ == '__main__':
     argp = argparse.ArgumentParser()
-    argp.add_argument('--global-config',  type=str, required=True, help='file path of global config file [PATH]')
+    argp.add_argument('--config', type=str, required=True, help='file path of global config file')
+    argp.add_argument('--background', action='store_true', help='run loaders periodic in background')
     args = argp.parse_args()
 
     # load config
-    with open(os.path.join(root, args.global_config)) as f:
+    with open(os.path.join(root, args.config)) as f:
         config = json.load(f)
 
     # start reddit
-    reddit = Reddit(root=root, global_config=args.global_config, reddit_config=os.path.join('config', config['subreddit'], 'reddit.json'))
-    reddit.start()
+    reddit = Reddit(root=root, global_config=args.config, reddit_config=os.path.join('config', config['subreddit'], 'reddit.json'))
+    if args.background:
+        reddit.start()
+    else:
+        reddit.run()

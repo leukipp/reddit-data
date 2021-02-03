@@ -15,6 +15,9 @@ class Loader(Thread):
     def log(self, msg):
         print(f'{self._name.ljust(9)} | {msg}')
 
+    def background(self):
+        return self.isAlive()
+
     def running(self):
         return self._runevent.is_set()
 
