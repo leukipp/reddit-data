@@ -6,7 +6,7 @@ services:
     build:
       context: "."
     container_name: data
-    command: python data.py
+    command: python data.py --publish 7200
     env_file:
       - .env
     deploy:
@@ -28,6 +28,6 @@ services:
     deploy:
       resources:
         reservations:
-          cpus: "1.0"
-          memory: "4G"
+          cpus: "2.0"
+          memory: "8G"
     restart: always
