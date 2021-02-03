@@ -9,13 +9,15 @@
             "console": "integratedTerminal"
         },
         {
-            "name": "Analyze",
+            "name": "Visualize",
             "type": "python",
             "request": "launch",
             "module": "streamlit.cli",
             "args": [
                 "run",
-                "analyze.py"
+                "visualize.py",
+                "--server.port",
+                "8080"
             ]
         }
     ]
