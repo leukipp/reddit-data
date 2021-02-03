@@ -1,7 +1,7 @@
-
 # %% IMPORT
 import os
 import json
+import tempfile
 import warnings
 
 import numpy as np
@@ -10,10 +10,17 @@ import pandas as pd
 import altair as alt
 import streamlit as st
 
+from kaggle.api.kaggle_api_extended import KaggleApi
+
 
 # %% FUNCTIONS
 @st.cache
-def load(path): return pd.read_hdf(path)
+def download_dataset(dataset, file_name):
+    kaggle = KaggleApi()
+    kaggle.authenticate()
+    path = tempfile.mkdtemp()
+    kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
+    return pd.read_hdf(os.path.join(path, file_name))
 
 
 # %% SETTINGS
@@ -24,6 +31,8 @@ pd.set_option('display.max_rows', 20)
 # %% CONFIG
 with open(os.path.join('config', 'global.json')) as f:
     config = json.load(f)
+with open(os.path.join('data', 'public', 'dataset-metadata.json')) as f:
+    config['kaggle'] = json.load(f)
 title = f'Reddit - r/{config["subreddit"]}'
 st.set_page_config(layout='wide', initial_sidebar_state='expanded', page_title=title)
 
@@ -37,7 +46,7 @@ st.markdown('TODO')
 # %% LOAD DATA
 st.sidebar.title('Data')
 
-df = load(os.path.join('data', config['subreddit'], config['reddit']['data']['submission']))
+df = download_dataset(config['kaggle']['id'], file_name=config['reddit']['data']['submission'])
 created_min = df.iloc[0]['created'].replace(hour=0, minute=0, second=0).to_pydatetime()
 created_max = df.iloc[-1]['created'].replace(hour=0, minute=0, second=0).to_pydatetime()
 
