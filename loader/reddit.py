@@ -14,7 +14,6 @@ import pandas as pd
 
 from tqdm import tqdm
 from datetime import datetime, timezone
-from kaggle.api.kaggle_api_extended import KaggleApi
 
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
 sys.path.insert(0, root)  # nopep8
@@ -46,10 +45,6 @@ class Reddit(Loader):
 
         # reddit client
         self.reddit = praw.Reddit(**{**config, **{'user_agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}})
-
-        # kaggle client
-        self.kaggle = KaggleApi()
-        self.kaggle.authenticate()
 
     def read_config(self):
         try:
@@ -172,10 +167,6 @@ class Reddit(Loader):
         private = os.path.join(self.root, 'data', 'private', self.subreddit)
         public = os.path.join(self.root, 'data', 'public', self.subreddit)
         shutil.copytree(private, public, dirs_exist_ok=True, ignore=shutil.ignore_patterns('*crawler.csv', '*pushshift.csv'))
-
-        # published data
-        # self.kaggle.dataset_create_version(public, version_notes='update data', dir_mode='zip')
-        self.log(f'published {df.shape[0]} {file_type}s')
 
     def fetch(self, file_type, ids):
         data = []

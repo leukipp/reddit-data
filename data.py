@@ -5,11 +5,13 @@ import argparse
 import glob as gb
 
 from common.sleep import Sleep
-from common.prompt import Prompt
+from common.timer import Timer
 
 from loader.reddit import Reddit
 from loader.crawler import Crawler
 from loader.pushshift import Pushshift
+
+from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 def main(args):
@@ -51,9 +53,14 @@ def main(args):
 
 if __name__ == '__main__':
     argp = argparse.ArgumentParser()
-    argp.add_argument('--config', type=str, required=False, help='file path of global config file')
+    argp.add_argument('--config', type=str,  help='file path of global config file')
+    argp.add_argument('--publish', type=int, help='publish datasets every x seconds')
     argp.add_argument('--background', action='store_true', help='run loaders periodic in background')
     args = argp.parse_args()
+
+    # kaggle client
+    kaggle = KaggleApi()
+    kaggle.authenticate()
 
     try:
         if args.config:
@@ -61,10 +68,19 @@ if __name__ == '__main__':
             main(args)
         else:
             # multi run
+            timer = Timer()
             while not args.background:
-                for config in sorted(gb.glob(os.path.join('config', '*.json'))):
+                for config in sorted(gb.glob(os.path.join('config', '*.json')))[:2]:
                     args.config = config
                     main(args)
+
+                # publish data
+                seconds = timer.stop(run=False) / 1000
+                if args.publish and seconds > args.publish:
+                    kaggle.dataset_create_version(os.path.join('data', 'public'), version_notes='update data', dir_mode='zip')
+                    print('\n---------- PUBLISHED ----------\n')
+                    timer.reset()
+
     except KeyboardInterrupt as e:
         print(f'...aborted')
     except Exception as e:
