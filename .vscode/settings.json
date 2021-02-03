@@ -1,5 +1,8 @@
 {
     "files.exclude": {
         "**/__pycache__": true
+    },
+    "terminal.integrated.env.linux": {
+        "KAGGLE_CONFIG_DIR": "${workspaceFolder}/config"
     }
 }
