@@ -1,7 +1,8 @@
 __pycache__
 *.py[cod]
-.pushshift.json
-.crawler.json
-.reddit.json
+pushshift.json
+crawler.json
+reddit.json
+kaggle.json
 debug.py
 backup
