@@ -65,7 +65,7 @@ df_filtered = df[(df['created'] >= created[0]) & (df['created'] <= created[1])]
 
 # filter flags
 flags = ['pinned', 'archived', 'locked', 'removed', 'deleted', 'is_self', 'is_video', 'is_original_content']
-exclude = st.sidebar.multiselect('Exclude', flags, default=[])
+exclude = st.sidebar.multiselect('Exclude', flags, default=['removed', 'deleted'])
 for e in exclude:
     df_filtered = df_filtered[df_filtered[e] == 0]
 
@@ -100,11 +100,10 @@ else:
 # %% ANALYZE COUNT
 st.title('Count')
 
-highlight = st.selectbox('Highlight', flags, index=3)
-maxbins = st.slider('Maxbins', value=(created_max - created_min).days, min_value=1, max_value=100)
+highlight = st.selectbox('Highlight', flags, index=5)
 
 chart = alt.Chart(df_sampled).mark_bar().encode(
-    alt.X('created:T', bin=alt.Bin(maxbins=maxbins), axis=alt.Axis(format='%Y-%b-%d', labelOverlap=False, labelAngle=-90)),
+    alt.X('utcyearmonthdate(created):T', bin=True, axis=alt.Axis(format='%Y-%b-%d',  labelAngle=-90)),
     alt.Y('count()'),
     alt.Color(f'{highlight}:N')
 ).properties(
