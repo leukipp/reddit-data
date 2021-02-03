@@ -58,6 +58,7 @@ class Pushshift(Loader):
 
     def write_config(self):
         # write config
+        os.makedirs(os.path.dirname(self.pushshift_config), exist_ok=True)
         with open(self.pushshift_config, 'w') as f:
             config = {
                 'last_run': self.last_run,

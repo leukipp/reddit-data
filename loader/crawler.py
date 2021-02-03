@@ -56,6 +56,7 @@ class Crawler(Loader):
 
     def write_config(self):
         # write config
+        os.makedirs(os.path.dirname(self.crawler_config), exist_ok=True)
         with open(self.crawler_config, 'w') as f:
             config = {
                 'last_run': self.last_run

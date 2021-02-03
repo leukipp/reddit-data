@@ -68,6 +68,7 @@ class Reddit(Loader):
         client_secret = getpass.getpass(f'{self._name.ljust(9)} | enter client_secret: ').strip()
 
         # write config
+        os.makedirs(os.path.dirname(self.reddit_config), exist_ok=True)
         with open(self.reddit_config, 'w') as f:
             config = {
                 'client_id': client_id,
