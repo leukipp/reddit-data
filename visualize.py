@@ -22,7 +22,7 @@ pd.set_option('display.max_rows', 20)
 
 
 # %% CONFIG
-with open(os.path.join('config', 'config.json')) as f:
+with open(os.path.join('config', 'global.json')) as f:
     config = json.load(f)
 title = f'Reddit - r/{config["subreddit"]}'
 st.set_page_config(layout='wide', initial_sidebar_state='expanded', page_title=title)

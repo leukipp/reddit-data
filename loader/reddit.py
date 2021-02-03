@@ -1,10 +1,11 @@
 import os
 import sys
+import csv
 import praw
 import json
 import base64
+import shutil
 import getpass
-import simplecrypt
 
 import glob as gb
 import numpy as np
@@ -12,6 +13,7 @@ import pandas as pd
 
 from tqdm import tqdm
 from datetime import datetime, timezone
+from kaggle.api.kaggle_api_extended import KaggleApi
 
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
 sys.path.insert(0, root)  # nopep8
@@ -40,16 +42,20 @@ class Reddit(Loader):
         while not config:
             self.write_config()
             config = self.read_config()
-        self.client = praw.Reddit(**{**config, **{'user_agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}})
+
+        # reddit client
+        self.reddit = praw.Reddit(**{**config, **{'user_agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}})
+
+        # kaggle client
+        self.kaggle = KaggleApi()
+        self.kaggle.authenticate()
 
     def read_config(self):
         try:
             # read config
-            self.log('decrypting reddit config')
+            self.log('loading reddit config')
             with open(self.reddit_config) as f:
-                config = json.load(f)
-                config['client_secret'] = simplecrypt.decrypt(self.reddit_config, base64.b64decode(config['client_secret'])).decode('utf8')
-                return config
+                return json.load(f)
         except KeyboardInterrupt:
             raise KeyboardInterrupt
         except:
@@ -61,25 +67,25 @@ class Reddit(Loader):
         client_secret = getpass.getpass(f'{self._name.ljust(9)} | enter client_secret: ').strip()
 
         # write config
-        self.log('encrypting reddit config')
         with open(self.reddit_config, 'w') as f:
             config = {
                 'client_id': client_id,
-                'client_secret': base64.b64encode(simplecrypt.encrypt(self.reddit_config, client_secret)).decode('utf-8')
+                'client_secret': client_secret
             }
             json.dump(config, f, indent=4, sort_keys=True)
 
     def run(self):
         self._runevent.set()
 
-        folder = os.path.join(self.root, 'data', self.subreddit)
+        folder = os.path.join(self.root, 'data', 'private', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download reddit data
         while not self.stopped():
-            metadata = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*.csv'))}
+            crawler = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*crawler.csv'))}
+            pushshift = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*pushshift.csv'))}
             for file_type, file_path in self.data.items():
-                self.download(metadata, file_type, os.path.join(folder, file_path))
+                self.download({**crawler, **pushshift}, file_type, os.path.join(folder, file_path))
             self.log(f'sleep for {self.periode} seconds')
             self._time.sleep(self.periode)
 
@@ -114,7 +120,7 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 0)  # TODO 8h
+            update_time = last_time - (60 * 60 * 8)  # TODO 8h
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')
@@ -139,10 +145,22 @@ class Reddit(Loader):
         # export data
         df = df.sort_values(by=['created', 'retrieved'])
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
-        df.to_html(f'{file_path}.html', max_rows=100, notebook=True, show_dimensions=True)
+        df.to_csv(file_path.replace('.h5', '.csv'),
+                  quoting=csv.QUOTE_NONNUMERIC, escapechar='\\',
+                  doublequote=True, header=True, index=True,
+                  sep=',', encoding='utf-8')
 
         # exported data
         self.log(f'exported {df.shape[0]} {file_type}s')
+
+        # copy to public folder
+        private = os.path.join(self.root, 'data', 'private')
+        public = os.path.join(self.root, 'data', 'public')
+        shutil.copytree(private, public, dirs_exist_ok=True, ignore=shutil.ignore_patterns('*crawler.csv', '*pushshift.csv'))
+
+        # published data
+        self.kaggle.dataset_create_version(public, version_notes='update data', dir_mode='zip')
+        self.log(f'published {df.shape[0]} {file_type}s')
 
     def fetch(self, file_type, ids):
         data = []
@@ -154,7 +172,7 @@ class Reddit(Loader):
 
             # process submissions
             if file_type == 'submission':
-                submissions = self.client.info(fullnames=fullnames)
+                submissions = self.reddit.info(fullnames=fullnames)
 
                 # submission data
                 data = data + [[
@@ -182,5 +200,5 @@ class Reddit(Loader):
 
 
 if __name__ == '__main__':
-    reddit = Reddit(root=root, global_config=os.path.join('config', 'config.json'), reddit_config=os.path.join('config', '.reddit.json'))
+    reddit = Reddit(root=root, global_config=os.path.join('config', 'global.json'), reddit_config=os.path.join('config', 'reddit.json'))
     reddit.start()

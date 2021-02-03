@@ -67,7 +67,7 @@ class Pushshift(Loader):
     def run(self):
         self._runevent.set()
 
-        folder = os.path.join(self.root, 'data', self.subreddit)
+        folder = os.path.join(self.root, 'data', 'private', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download pushshift metadata
@@ -187,5 +187,5 @@ class Pushshift(Loader):
 
 
 if __name__ == '__main__':
-    pushshift = Pushshift(root=root, global_config=os.path.join('config', 'config.json'), pushshift_config=os.path.join('config', '.pushshift.json'))
+    pushshift = Pushshift(root=root, global_config=os.path.join('config', 'global.json'), pushshift_config=os.path.join('config', 'pushshift.json'))
     pushshift.start()

@@ -64,7 +64,7 @@ class Crawler(Loader):
     def run(self):
         self._runevent.set()
 
-        folder = os.path.join(self.root, 'data', self.subreddit)
+        folder = os.path.join(self.root, 'data', 'private', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download crawler metadata
@@ -169,5 +169,5 @@ class Crawler(Loader):
 
 
 if __name__ == '__main__':
-    crawler = Crawler(root=root, global_config=os.path.join('config', 'config.json'), crawler_config=os.path.join('config', '.crawler.json'))
+    crawler = Crawler(root=root, global_config=os.path.join('config', 'global.json'), crawler_config=os.path.join('config', 'crawler.json'))
     crawler.start()

@@ -1,7 +1,7 @@
 {
     "subreddit": "wallstreetbets",
     "pushshift": {
-        "periode": 300,
+        "periode": 1800,
         "end_run": 1609459200,
         "data": {
             "submission": "submissions_pushshift.csv"
@@ -15,7 +15,7 @@
         }
     },
     "reddit": {
-        "periode": 120,
+        "periode": 3600,
         "data": {
             "submission": "submissions_reddit.h5"
         }

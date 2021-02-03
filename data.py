@@ -42,10 +42,10 @@ def main(args):
 
 if __name__ == '__main__':
     argp = argparse.ArgumentParser(description='wsbyolo')
-    argp.add_argument('--global-config', default=os.path.join('config', 'config.json'), type=str, help='file path of global config file [PATH]')
-    argp.add_argument('--pushshift-config', default=os.path.join('config', '.pushshift.json'), type=str, help='file path of private pushshift config file [PATH]')
-    argp.add_argument('--crawler-config', default=os.path.join('config', '.crawler.json'), type=str, help='file path of private crawler config file [PATH]')
-    argp.add_argument('--reddit-config', default=os.path.join('config', '.reddit.json'), type=str, help='file path of private reddit config file [PATH]')
+    argp.add_argument('--global-config', default=os.path.join('config', 'global.json'), type=str, help='file path of global config file [PATH]')
+    argp.add_argument('--pushshift-config', default=os.path.join('config', 'pushshift.json'), type=str, help='file path of private pushshift config file [PATH]')
+    argp.add_argument('--crawler-config', default=os.path.join('config', 'crawler.json'), type=str, help='file path of private crawler config file [PATH]')
+    argp.add_argument('--reddit-config', default=os.path.join('config', 'reddit.json'), type=str, help='file path of private reddit config file [PATH]')
 
     try:
         main(argp.parse_args())
