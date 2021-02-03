@@ -1,0 +1,14 @@
+{
+  "id": "leukipp/reddityolo",
+  "title": "reddityolo",
+  "subtitle": "Subtitle for reddityolo TODO",
+  "description": "Description for reddityolo TODO",
+  "licenses": [
+    {
+      "name": "CC0-1.0"
+    }
+  ],
+  "keywords": [
+    "Exploratory Data Analysis"
+  ]
+}
