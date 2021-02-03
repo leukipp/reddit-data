@@ -29,7 +29,10 @@ st.markdown('TODO')
 
 
 # %% LOAD DATA
+st.sidebar.title('Data')
+
 df = pd.read_hdf(os.path.join('data', config['subreddit'], config['reddit']['data']['submission']))
+sample = st.sidebar.slider('Sample', value=10000, min_value=100, max_value=df.shape[0], key='Sample_1')
 
 
 # %% VISUALIZE DATA
@@ -47,6 +50,18 @@ else:
     st.dataframe(df.select_dtypes(include=dt).tail(20), height=600)
 
 
-# %% ANALYZE TODO
-st.title('TODO')
-st.sidebar.title('TODO')
+# %% ANALYZE COUNT
+st.title('Count')
+
+labels = ['pinned', 'archived', 'locked', 'removed', 'deleted', 'is_self', 'is_video', 'is_original_content']
+highlight = st.selectbox('Highlight', labels, index=3, key='Highlight_1')
+maxbins = st.slider('Maxbins', value=25, min_value=10, max_value=40, key='Maxbins_1')
+
+chart = alt.Chart(df.sample(frac=1, random_state=42).head(sample)).mark_bar().encode(
+    alt.X('created:T', bin=alt.Bin(maxbins=maxbins), axis=alt.Axis(format='%Y-%b-%d', labelOverlap=False, labelAngle=-90)),
+    alt.Y('count()'),
+    alt.Color(f'{highlight}:N')
+).properties(
+    height=500
+).interactive()
+st.altair_chart(chart, use_container_width=True)
