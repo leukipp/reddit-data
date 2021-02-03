@@ -13,16 +13,18 @@ def main(args):
     threads = []
 
     try:
+        root = os.path.abspath(os.path.dirname(__file__))
+
         # pushshift
-        pushshift = Pushshift(global_config=args.global_config, pushshift_config=args.pushshift_config)
+        pushshift = Pushshift(root=root, global_config=args.global_config, pushshift_config=args.pushshift_config)
         threads.append(pushshift)
 
         # crawler
-        crawler = Crawler(global_config=args.global_config, crawler_config=args.crawler_config)
+        crawler = Crawler(root=root, global_config=args.global_config, crawler_config=args.crawler_config)
         threads.append(crawler)
 
         # reddit
-        reddit = Reddit(global_config=args.global_config, reddit_config=args.reddit_config)
+        reddit = Reddit(root=root, global_config=args.global_config, reddit_config=args.reddit_config)
         threads.append(reddit)
 
         # start threads

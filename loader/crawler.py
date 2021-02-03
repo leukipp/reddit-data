@@ -1,4 +1,5 @@
 import os
+import sys
 import csv
 import json
 import requests
@@ -6,17 +7,22 @@ import requests
 from lxml import html
 from datetime import datetime, timezone
 
+root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
+sys.path.insert(0, root)  # nopep8
+
 from common.sleep import Sleep
 from common.loader import Loader
 
 
 class Crawler(Loader):
-    def __init__(self, global_config, crawler_config):
+    def __init__(self, root, global_config, crawler_config):
         Loader.__init__(self, name='Crawler')
 
-        self.run_periode = 10
-        self.global_config = global_config
-        self.crawler_config = crawler_config
+        self.run_periode = 10  # TODO use config
+
+        self.root = root
+        self.global_config = os.path.join(self.root, global_config)
+        self.crawler_config = os.path.join(self.root, crawler_config)
 
         now = int(datetime.now(timezone.utc).timestamp())
 
@@ -59,7 +65,7 @@ class Crawler(Loader):
     def run(self):
         self._runevent.set()
 
-        folder = os.path.join('data', self.subreddit)
+        folder = os.path.join(self.root, 'data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download crawler metadata
@@ -163,5 +169,5 @@ class Crawler(Loader):
 
 
 if __name__ == '__main__':
-    crawler = Crawler(global_config=os.path.join('config', 'config.json'), crawler_config=os.path.join('config', '.crawler.json'))
+    crawler = Crawler(root=root, global_config=os.path.join('config', 'config.json'), crawler_config=os.path.join('config', '.crawler.json'))
     crawler.start()

@@ -1,21 +1,27 @@
 import os
+import sys
 import csv
 import json
 import requests
 
 from datetime import datetime, timezone
 
+root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..'))  # nopep8
+
 from common.sleep import Sleep
 from common.loader import Loader
 
 
 class Pushshift(Loader):
-    def __init__(self, global_config, pushshift_config):
+    def __init__(self, root, global_config, pushshift_config):
         Loader.__init__(self, name='Pushshift')
 
-        self.run_periode = 60 * 5
-        self.global_config = global_config
-        self.pushshift_config = pushshift_config
+        self.run_periode = 60 * 5  # TODO use config
+
+        self.root = root
+        self.global_config = os.path.join(self.root, global_config)
+        self.pushshift_config = os.path.join(self.root, pushshift_config)
 
         now = int(datetime.now(timezone.utc).timestamp())
 
@@ -62,7 +68,7 @@ class Pushshift(Loader):
     def run(self):
         self._runevent.set()
 
-        folder = os.path.join('data', self.subreddit)
+        folder = os.path.join(self.root, 'data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download pushshift metadata
@@ -181,5 +187,5 @@ class Pushshift(Loader):
 
 
 if __name__ == '__main__':
-    pushshift = Pushshift(global_config=os.path.join('config', 'config.json'), pushshift_config=os.path.join('config', '.pushshift.json'))
+    pushshift = Pushshift(root=root, global_config=os.path.join('config', 'config.json'), pushshift_config=os.path.join('config', '.pushshift.json'))
     pushshift.start()

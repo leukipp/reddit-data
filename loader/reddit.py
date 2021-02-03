@@ -1,4 +1,5 @@
 import os
+import sys
 import praw
 import json
 import base64
@@ -12,17 +13,22 @@ import pandas as pd
 from tqdm import tqdm
 from datetime import datetime, timezone
 
+root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
+sys.path.insert(0, root)  # nopep8
+
 from common.sleep import Sleep
 from common.loader import Loader
 
 
 class Reddit(Loader):
-    def __init__(self, global_config, reddit_config):
+    def __init__(self, root, global_config, reddit_config):
         Loader.__init__(self, name='Reddit')
 
-        self.run_periode = 60 * 5
-        self.global_config = global_config
-        self.reddit_config = reddit_config
+        self.run_periode = 60 * 5  # TODO use config
+
+        self.root = root
+        self.global_config = os.path.join(self.root, global_config)
+        self.reddit_config = os.path.join(self.root, reddit_config)
 
         # load global config
         with open(global_config) as f:
@@ -52,8 +58,8 @@ class Reddit(Loader):
 
     def write_config(self):
         self.log('update reddit config')
-        client_id = input('enter client_id: ').strip()
-        client_secret = getpass.getpass('enter client_secret: ').strip()
+        client_id = input(f'{self._name.ljust(9)} | enter client_id: ').strip()
+        client_secret = getpass.getpass(f'{self._name.ljust(9)} | enter client_secret: ').strip()
 
         # write config
         self.log('encrypting reddit config')
@@ -67,7 +73,7 @@ class Reddit(Loader):
     def run(self):
         self._runevent.set()
 
-        folder = os.path.join('data', self.subreddit)
+        folder = os.path.join(self.root, 'data', self.subreddit)
         os.makedirs(folder, exist_ok=True)
 
         # download reddit data
@@ -108,7 +114,7 @@ class Reddit(Loader):
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 8)
+            update_time = last_time - (60 * 60 * 0)  # TODO 8h
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')
@@ -133,7 +139,7 @@ class Reddit(Loader):
         # export data
         df = df.sort_values(by=['created', 'retrieved'])
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
-        df.tail(100).to_html(f'{file_path}.html')
+        df.to_html(f'{file_path}.html', max_rows=100, notebook=True, show_dimensions=True)
 
         # exported data
         self.log(f'exported {df.shape[0]} {file_type}s')
@@ -176,5 +182,5 @@ class Reddit(Loader):
 
 
 if __name__ == '__main__':
-    reddit = Reddit(global_config=os.path.join('config', 'config.json'), reddit_config=os.path.join('config', '.reddit.json'))
+    reddit = Reddit(root=root, global_config=os.path.join('config', 'config.json'), reddit_config=os.path.join('config', '.reddit.json'))
     reddit.start()
