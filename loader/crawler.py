@@ -25,7 +25,7 @@ class Crawler(Loader):
         now = int(datetime.now(timezone.utc).timestamp())
 
         # load global config
-        with open(global_config) as f:
+        with open(self.global_config) as f:
             config = json.load(f)
             self.subreddit = config['subreddit']
             self.data = config['crawler']['data']

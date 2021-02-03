@@ -29,7 +29,7 @@ class Reddit(Loader):
         self.reddit_config = os.path.join(self.root, reddit_config)
 
         # load global config
-        with open(global_config) as f:
+        with open(self.global_config) as f:
             config = json.load(f)
             self.subreddit = config['subreddit']
             self.data = config['reddit']['data']
