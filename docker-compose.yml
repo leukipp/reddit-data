@@ -1,0 +1,33 @@
+version: "3"
+
+services:
+
+  data:
+    build:
+      context: "."
+    container_name: data
+    command: python data.py
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          cpus: "1.0"
+          memory: "4G"
+    restart: always
+
+  visualize:
+    build:
+      context: "."
+    container_name: visualize
+    command: streamlit run visualize.py --server.port 8080
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    deploy:
+      resources:
+        reservations:
+          cpus: "1.0"
+          memory: "4G"
+    restart: always
