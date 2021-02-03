@@ -9,7 +9,7 @@
     },
     "crawler": {
         "periode": 20,
-        "end_run": 1612084255,
+        "end_run": 1612084122,
         "data": {
             "submission": "submissions_crawler.csv"
         }
