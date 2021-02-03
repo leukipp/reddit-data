@@ -70,7 +70,7 @@ if __name__ == '__main__':
             # multi run
             timer = Timer()
             while not args.background:
-                for config in sorted(gb.glob(os.path.join('config', '*.json')))[:2]:
+                for config in sorted(gb.glob(os.path.join('config', '*.json'))):
                     args.config = config
                     main(args)
 
