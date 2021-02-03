@@ -24,8 +24,6 @@ class Reddit(Loader):
     def __init__(self, root, global_config, reddit_config):
         Loader.__init__(self, name='Reddit')
 
-        self.run_periode = 60 * 5  # TODO use config
-
         self.root = root
         self.global_config = os.path.join(self.root, global_config)
         self.reddit_config = os.path.join(self.root, reddit_config)
@@ -35,6 +33,7 @@ class Reddit(Loader):
             config = json.load(f)
             self.subreddit = config['subreddit']
             self.data = config['reddit']['data']
+            self.periode = config['reddit']['periode']
 
         # load private config
         config = self.read_config()
@@ -81,7 +80,8 @@ class Reddit(Loader):
             metadata = {os.path.basename(x): pd.read_csv(x, delimiter=';') for x in gb.glob(os.path.join(folder, '*.csv'))}
             for file_type, file_path in self.data.items():
                 self.download(metadata, file_type, os.path.join(folder, file_path))
-            self._time.sleep(self.run_periode)
+            self.log(f'sleep for {self.periode} seconds')
+            self._time.sleep(self.periode)
 
         self._runevent.clear()
 

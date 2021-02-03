@@ -18,8 +18,6 @@ class Crawler(Loader):
     def __init__(self, root, global_config, crawler_config):
         Loader.__init__(self, name='Crawler')
 
-        self.run_periode = 10  # TODO use config
-
         self.root = root
         self.global_config = os.path.join(self.root, global_config)
         self.crawler_config = os.path.join(self.root, crawler_config)
@@ -31,6 +29,7 @@ class Crawler(Loader):
             config = json.load(f)
             self.subreddit = config['subreddit']
             self.data = config['crawler']['data']
+            self.periode = config['crawler']['periode']
 
             self.last_run = {}
             for file_type in self.data.keys():
@@ -72,7 +71,8 @@ class Crawler(Loader):
         while not self.stopped():
             for file_type, file_path in self.data.items():
                 self.download(file_type, os.path.join(folder, file_path))
-            self._time.sleep(self.run_periode)
+            self.log(f'sleep for {self.periode} seconds')
+            self._time.sleep(self.periode)
 
         self._runevent.clear()
 

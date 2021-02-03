@@ -17,8 +17,6 @@ class Pushshift(Loader):
     def __init__(self, root, global_config, pushshift_config):
         Loader.__init__(self, name='Pushshift')
 
-        self.run_periode = 60 * 5  # TODO use config
-
         self.root = root
         self.global_config = os.path.join(self.root, global_config)
         self.pushshift_config = os.path.join(self.root, pushshift_config)
@@ -30,6 +28,7 @@ class Pushshift(Loader):
             config = json.load(f)
             self.subreddit = config['subreddit']
             self.data = config['pushshift']['data']
+            self.periode = config['pushshift']['periode']
 
             self.last_run = {}
             self.end_run = {}
@@ -75,7 +74,8 @@ class Pushshift(Loader):
         while not self.stopped():
             for file_type, file_path in self.data.items():
                 self.download(file_type, os.path.join(folder, file_path))
-            self._time.sleep(self.run_periode)
+            self.log(f'sleep for {self.periode} seconds')
+            self._time.sleep(self.periode)
 
         self._runevent.clear()
 
