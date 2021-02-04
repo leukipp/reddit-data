@@ -6,12 +6,11 @@ import glob as gb
 
 from common.sleep import Sleep
 from common.timer import Timer
+from common.kaggle import Kaggle
 
 from loader.reddit import Reddit
 from loader.crawler import Crawler
 from loader.pushshift import Pushshift
-
-from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 def main(args):
@@ -59,8 +58,7 @@ if __name__ == '__main__':
     args = argp.parse_args()
 
     # kaggle client
-    kaggle = KaggleApi()
-    kaggle.authenticate()
+    kaggle = Kaggle()
 
     try:
         if args.config:
@@ -77,7 +75,7 @@ if __name__ == '__main__':
                 # publish data
                 seconds = timer.stop(run=False) / 1000
                 if args.publish and seconds > args.publish:
-                    kaggle.dataset_create_version(os.path.join('data', 'public'), version_notes='update data', dir_mode='zip')
+                    kaggle.upload(path=os.path.join('data', 'public'))
                     print('\n---------- PUBLISHED ----------\n')
                     timer.reset()
 

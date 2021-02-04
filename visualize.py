@@ -11,19 +11,13 @@ import pandas as pd
 import altair as alt
 import streamlit as st
 
-from kaggle.api.kaggle_api_extended import KaggleApi
+from common.kaggle import Kaggle
 
 
 # %% FUNCTIONS
 @st.cache(ttl=60*60)
 def download_dataset(dataset):
-    if 'VSCODE_WORKSPACE' in os.environ:
-        return os.path.join(os.environ['VSCODE_WORKSPACE'], 'data', 'public')
-    kaggle = KaggleApi()
-    kaggle.authenticate()
-    path = tempfile.mkdtemp()
-    kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
-    return path
+    return Kaggle().download(dataset)
 
 
 @st.cache(ttl=60*60)
@@ -33,7 +27,7 @@ def read_dataset(path, file_name):
 
 # %% CONFIG
 dataset = None
-with open(os.path.join('data', 'public', 'dataset-metadata.json')) as f:
+with open(os.path.join('data', 'public', 'datapackage.json')) as f:
     dataset = json.load(f)['id']
 
 subreddits = []
@@ -50,13 +44,13 @@ st.sidebar.header('Dataset')
 subreddit = st.sidebar.selectbox('Subreddit', subreddits, index=11)
 
 # download dataset
-df = read_dataset(download_dataset(dataset), file_name=os.path.join(subreddit, 'submissions_reddit.h5'))
+df = read_dataset(download_dataset(dataset), file_name=os.path.join(subreddit, f'submissions_{subreddit}.h5'))
 
 st.sidebar.header('Filter')
 
 # filter created
-created_min = df.iloc[0]['created'].replace(hour=0, minute=0, second=0).to_pydatetime()
-created_max = df.iloc[-1]['created'].replace(hour=0, minute=0, second=0).to_pydatetime()
+created_min = df['created'].min().replace(hour=0, minute=0, second=0).to_pydatetime()
+created_max = df['created'].max().replace(hour=0, minute=0, second=0).to_pydatetime()
 created = st.sidebar.slider('Created', value=[created_min, created_max], min_value=created_min, max_value=created_max, format='Y-MM-DD')
 df_filtered = df[(df['created'] >= created[0]) & (df['created'] <= created[1])]
 
