@@ -71,11 +71,6 @@ docker-compose build && docker-compose push
 docker compose up -p reddit
 ```
 
-## Stop
-```
-docker compose down -p reddit
-``` 
-
 ## Restart
 ```
 az container restart --resource-group docker-rg --name reddit
@@ -88,6 +83,11 @@ az container show --resource-group docker-rg --name reddit --query instanceView.
 az container show --resource-group docker-rg --name reddit --query ipAddress.fqdn
 az container show --resource-group docker-rg --name reddit --query ipAddress.ip
 ```
+
+## Stop
+```
+docker compose down -p reddit
+``` 
 
 ## Cleanup
 ```
