@@ -74,9 +74,9 @@ class Kaggle(object):
             summary[description] = df.shape[0]
 
         # read markdown
-        md = open(os.path.join(root, 'datapackage.md')).read()
+        md = open(os.path.join(root.replace('public', 'private'), 'datapackage.md')).read()
         md_description = [f'- {x[0]}' for x in sorted(summary.items(), key=lambda x: x[1], reverse=True)]
-        md_data = [f'- `{x["name"]}` (`{x["type"]}`): {x["description"]}' for x in fields]
+        md_data = [f'- `{x["name"]}` (*{x["type"]}*): {x["description"]}' for x in fields]
         md_date = datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')
 
         # read metadata
