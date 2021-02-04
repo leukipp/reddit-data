@@ -44,7 +44,7 @@ st.sidebar.header('Dataset')
 subreddit = st.sidebar.selectbox('Subreddit', subreddits, index=11)
 
 # download dataset
-df = read_dataset(download_dataset(dataset), file_name=os.path.join(subreddit, f'submissions_{subreddit}.h5'))
+df = read_dataset(download_dataset(dataset), file_name=os.path.join(subreddit, f'submissions_reddit.h5'))
 
 st.sidebar.header('Filter')
 
