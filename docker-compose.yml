@@ -8,7 +8,7 @@ services:
     domainname: reddit
     image: reddit.azurecr.io/data
     container_name: data
-    command: python data.py --publish 3600
+    command: python data.py --publish 7200
     env_file:
       - .env
     deploy:
