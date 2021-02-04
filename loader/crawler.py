@@ -133,7 +133,7 @@ class Crawler(Loader):
                 return [x for x in data if x[2] > self.last_run[file_type]]
 
             # request data
-            response = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}).content
+            response = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/RedditFinanceData:v0.0.1 (by /u/leukipp)'}).content
             content = html.fromstring(response)
 
             # parse submissions

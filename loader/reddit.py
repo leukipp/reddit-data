@@ -44,7 +44,7 @@ class Reddit(Loader):
             config = self.read_config()
 
         # reddit client
-        self.reddit = praw.Reddit(**{**config, **{'user_agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}})
+        self.reddit = praw.Reddit(**{**config, **{'user_agent': 'python:https://github.com/leukipp/RedditFinanceData:v0.0.1 (by /u/leukipp)'}})
 
     def read_config(self):
         try:

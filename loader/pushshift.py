@@ -168,7 +168,7 @@ class Pushshift(Loader):
     def fetch(self, url):
         try:
             # request data
-            result = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/TODO:v0.0.1 (by /u/leukipp)'}).json()
+            result = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/RedditFinanceData:v0.0.1 (by /u/leukipp)'}).json()
 
             # validate result
             if 'data' not in result or not len(result['data']):
