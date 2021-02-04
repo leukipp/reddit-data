@@ -165,17 +165,9 @@ class Reddit(Loader):
         private = os.path.join(self.root, 'data', 'private', self.subreddit)
         public = os.path.join(self.root, 'data', 'public', self.subreddit)
 
-        # empty public folder
-        for path in gb.glob(os.path.join(public, '*.*')):
-            os.remove(path)
-
         # copy to public folder
         ignore = shutil.ignore_patterns('*crawler.csv', '*pushshift.csv')
         shutil.copytree(private, public, dirs_exist_ok=True, ignore=ignore)
-
-        # rename public folder datasets
-        for path in gb.glob(os.path.join(public, '*_reddit.*')):
-            os.rename(path, path.replace('_reddit', f'_{self.subreddit}'))
 
         # exported data
         self.log(f'exported {df.shape[0]} {file_type}s')
