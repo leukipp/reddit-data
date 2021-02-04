@@ -66,7 +66,7 @@ kaggle datasets version -p data/public -r zip -m "update data"
 
 ## Status
 ```
-kaggle datasets status leukipp/reddit
+kaggle datasets status leukipp/reddit-finance-data
 ```
 
 # Run
