@@ -5,29 +5,32 @@ services:
   data:
     build:
       context: "."
+    domainname: reddit
+    image: reddit.azurecr.io/data
     container_name: data
-    command: python data.py --publish 7200
+    command: python data.py --publish 3600
     env_file:
       - .env
     deploy:
       resources:
         reservations:
-          cpus: "1.0"
+          cpus: "1"
           memory: "4G"
     restart: always
 
   visualize:
     build:
       context: "."
+    image: reddit.azurecr.io/visualize
     container_name: visualize
-    command: streamlit run visualize.py --server.port 8080
+    command: streamlit run visualize.py --server.port 80
     ports:
-      - "8080:8080"
+      - "80:80"
     env_file:
       - .env
     deploy:
       resources:
         reservations:
-          cpus: "2.0"
-          memory: "8G"
+          cpus: "1"
+          memory: "4G"
     restart: always

@@ -1,5 +1,6 @@
-__pycache__
-*.py[cod]
+.git
 .vscode
 .gitignore
-README.md
+*.py[cod]
+__pycache__
+data/public/*/*

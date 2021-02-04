@@ -1,5 +1,6 @@
-__pycache__
+.git
 *.py[cod]
-config/*/
-data/private/*/
-data/public/*/
+__pycache__
+config/*/*
+data/private/*/*
+data/public/*/*

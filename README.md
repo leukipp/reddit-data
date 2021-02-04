@@ -51,6 +51,55 @@ docker-compose build
 docker-compose up --build
 ```
 
+# Azure
+
+## Create
+```
+az acr create --resource-group docker-rg --name reddit --sku Basic
+docker context create aci aci
+```
+
+## Login
+```
+docker login reddit.azurecr.io -u reddit -p pz...Vv
+docker context use aci
+```
+
+## Deploy
+``` 
+docker-compose build && docker-compose push
+docker compose up -p reddit
+```
+
+## Stop
+```
+docker compose down -p reddit
+``` 
+
+## Restart
+```
+az container restart --resource-group docker-rg --name reddit
+docker ps
+```
+
+## Status
+```
+az container show --resource-group docker-rg --name reddit --query instanceView.state
+az container show --resource-group docker-rg --name reddit --query ipAddress.fqdn
+az container show --resource-group docker-rg --name reddit --query ipAddress.ip
+```
+
+## Cleanup
+```
+az acr run --registry reddit --cmd "acr purge --filter 'data:.*' --ago 1h --untagged" /dev/null
+az acr run --registry reddit --cmd "acr purge --filter 'visualize:.*' --ago 1h --untagged" /dev/null
+```
+
+## Delete
+```
+az container delete --resource-group docker-rg --name reddit
+```
+
 # Kaggle
 
 ## Config
