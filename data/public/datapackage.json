@@ -1,0 +1,3548 @@
+{
+    "id": "leukipp/reddit-finance-data",
+    "title": "Reddit - Finance Posts (r/wallstreetbets, r/st...)",
+    "subtitle": "r/wallstreetbets, r/stocks, r/pennystocks, r/investing, r/stockmarket, r/robi...",
+    "description": "# Description\nReddit - Finance/Investment/Stock related posts.\n\n### Subreddits:\n- [r/wallstreetbets](https://reddit.com/r/wallstreetbets): #354888 (2021-01-01 00:02:06 - 2021-02-04 14:47:12)\n- [r/stocks](https://reddit.com/r/stocks): #17478 (2021-01-01 00:05:17 - 2021-02-04 14:40:03)\n- [r/pennystocks](https://reddit.com/r/pennystocks): #11077 (2021-01-01 00:13:41 - 2021-02-04 14:48:50)\n- [r/investing](https://reddit.com/r/investing): #7577 (2021-01-01 00:18:40 - 2021-02-04 14:33:27)\n- [r/stockmarket](https://reddit.com/r/stockmarket): #7150 (2021-01-01 02:42:42 - 2021-02-04 14:32:43)\n- [r/robinhood](https://reddit.com/r/robinhood): #5201 (2021-01-01 00:22:48 - 2021-02-04 11:00:06)\n- [r/options](https://reddit.com/r/options): #3783 (2021-01-01 01:39:43 - 2021-02-04 14:47:56)\n- [r/personalfinance](https://reddit.com/r/personalfinance): #1340 (2021-02-01 16:27:04 - 2021-02-04 14:44:21)\n- [r/forex](https://reddit.com/r/forex): #1322 (2021-01-01 00:07:45 - 2021-02-04 14:21:09)\n- [r/financialindependence](https://reddit.com/r/financialindependence): #856 (2021-01-01 00:26:15 - 2021-02-04 14:34:47)\n- [r/finance](https://reddit.com/r/finance): #675 (2021-01-01 02:33:23 - 2021-02-04 14:53:17)\n- [r/securityanalysis](https://reddit.com/r/securityanalysis): #411 (2021-01-01 12:21:09 - 2021-02-04 13:42:50)\n\n# Data\nSee [collection methodology](/leukipp/reddit-finance-data/metadata), all times in UTC.\n\n### Columns:\n- `author` (`string`): desc\n- `created` (`datetime`): desc\n- `retrieved` (`datetime`): desc\n- `edited` (`datetime`): desc\n- `pinned` (`integer`): desc\n- `archived` (`integer`): desc\n- `locked` (`integer`): desc\n- `removed` (`integer`): desc\n- `deleted` (`integer`): desc\n- `is_self` (`integer`): desc\n- `is_video` (`integer`): desc\n- `is_original_content` (`integer`): desc\n- `title` (`string`): desc\n- `link_flair_text` (`string`): desc\n- `upvote_ratio` (`number`): desc\n- `score` (`integer`): desc\n- `gilded` (`integer`): desc\n- `total_awards_received` (`integer`): desc\n- `num_comments` (`integer`): desc\n- `num_crossposts` (`integer`): desc\n- `selftext` (`string`): desc\n- `thumbnail` (`string`): desc\n- `shortlink` (`string`): desc\n\n# Usage\n- TODO\n\n# Legal\n- *Provided \"as is\" without guarantee of completeness*\n- *Photo by Lorenzo from Pexels*\n\n---\n\n**Last update: 2021-02-04 16:08:54**",
+    "resources": [
+        {
+            "name": "submissions_reddit.csv",
+            "path": "finance/submissions_reddit.csv",
+            "description": "[r/finance](https://reddit.com/r/finance): #675 (2021-01-01 02:33:23 - 2021-02-04 14:53:17)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "finance/submissions_reddit.h5",
+            "description": "[r/finance](https://reddit.com/r/finance): #675 (2021-01-01 02:33:23 - 2021-02-04 14:53:17)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "financialindependence/submissions_reddit.csv",
+            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #856 (2021-01-01 00:26:15 - 2021-02-04 14:34:47)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "financialindependence/submissions_reddit.h5",
+            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #856 (2021-01-01 00:26:15 - 2021-02-04 14:34:47)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "forex/submissions_reddit.csv",
+            "description": "[r/forex](https://reddit.com/r/forex): #1322 (2021-01-01 00:07:45 - 2021-02-04 14:21:09)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "forex/submissions_reddit.h5",
+            "description": "[r/forex](https://reddit.com/r/forex): #1322 (2021-01-01 00:07:45 - 2021-02-04 14:21:09)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "investing/submissions_reddit.csv",
+            "description": "[r/investing](https://reddit.com/r/investing): #7577 (2021-01-01 00:18:40 - 2021-02-04 14:33:27)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "investing/submissions_reddit.h5",
+            "description": "[r/investing](https://reddit.com/r/investing): #7577 (2021-01-01 00:18:40 - 2021-02-04 14:33:27)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "options/submissions_reddit.csv",
+            "description": "[r/options](https://reddit.com/r/options): #3783 (2021-01-01 01:39:43 - 2021-02-04 14:47:56)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "options/submissions_reddit.h5",
+            "description": "[r/options](https://reddit.com/r/options): #3783 (2021-01-01 01:39:43 - 2021-02-04 14:47:56)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "pennystocks/submissions_reddit.csv",
+            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #11077 (2021-01-01 00:13:41 - 2021-02-04 14:48:50)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "pennystocks/submissions_reddit.h5",
+            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #11077 (2021-01-01 00:13:41 - 2021-02-04 14:48:50)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "personalfinance/submissions_reddit.csv",
+            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #1340 (2021-02-01 16:27:04 - 2021-02-04 14:44:21)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "personalfinance/submissions_reddit.h5",
+            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #1340 (2021-02-01 16:27:04 - 2021-02-04 14:44:21)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "robinhood/submissions_reddit.csv",
+            "description": "[r/robinhood](https://reddit.com/r/robinhood): #5201 (2021-01-01 00:22:48 - 2021-02-04 11:00:06)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "robinhood/submissions_reddit.h5",
+            "description": "[r/robinhood](https://reddit.com/r/robinhood): #5201 (2021-01-01 00:22:48 - 2021-02-04 11:00:06)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "securityanalysis/submissions_reddit.csv",
+            "description": "[r/securityanalysis](https://reddit.com/r/securityanalysis): #411 (2021-01-01 12:21:09 - 2021-02-04 13:42:50)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "securityanalysis/submissions_reddit.h5",
+            "description": "[r/securityanalysis](https://reddit.com/r/securityanalysis): #411 (2021-01-01 12:21:09 - 2021-02-04 13:42:50)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "stockmarket/submissions_reddit.csv",
+            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #7150 (2021-01-01 02:42:42 - 2021-02-04 14:32:43)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "stockmarket/submissions_reddit.h5",
+            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #7150 (2021-01-01 02:42:42 - 2021-02-04 14:32:43)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "stocks/submissions_reddit.csv",
+            "description": "[r/stocks](https://reddit.com/r/stocks): #17478 (2021-01-01 00:05:17 - 2021-02-04 14:40:03)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "stocks/submissions_reddit.h5",
+            "description": "[r/stocks](https://reddit.com/r/stocks): #17478 (2021-01-01 00:05:17 - 2021-02-04 14:40:03)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "wallstreetbets/submissions_reddit.csv",
+            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #354888 (2021-01-01 00:02:06 - 2021-02-04 14:47:12)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "wallstreetbets/submissions_reddit.h5",
+            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #354888 (2021-01-01 00:02:06 - 2021-02-04 14:47:12)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "author",
+                        "title": "title: author",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "title: created",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "title: retrieved",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "title: edited",
+                        "description": "desc",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "title: pinned",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "title: archived",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "title: locked",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "title: removed",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "title: deleted",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "title: is_self",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "title: is_video",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "title: is_original_content",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title: title",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "title: link_flair_text",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "title: upvote_ratio",
+                        "description": "desc",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "title: score",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "title: gilded",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "title: total_awards_received",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "title: num_comments",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "title: num_crossposts",
+                        "description": "desc",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "title: selftext",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "title: thumbnail",
+                        "description": "desc",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "title: shortlink",
+                        "description": "desc",
+                        "type": "string"
+                    }
+                ]
+            }
+        }
+    ],
+    "licenses": [
+        {
+            "name": "Reddit API Terms"
+        }
+    ],
+    "keywords": [
+        "finance",
+        "investing",
+        "online communities",
+        "time series analysis",
+        "exploratory data analysis"
+    ]
+}
