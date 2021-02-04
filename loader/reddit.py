@@ -105,11 +105,11 @@ class Reddit(Loader):
         columns = [
             'id', 'author',
             'created', 'retrieved', 'edited',
-            'gilded', 'pinned', 'archived', 'locked',
+            'pinned', 'archived', 'locked',
             'removed', 'deleted',
             'is_self', 'is_video', 'is_original_content',
             'title', 'link_flair_text', 'upvote_ratio', 'score',
-            'total_awards_received', 'num_comments', 'num_crossposts',
+            'gilded', 'total_awards_received', 'num_comments', 'num_crossposts',
             'selftext', 'thumbnail', 'shortlink'
         ]
 
@@ -117,6 +117,7 @@ class Reddit(Loader):
         df = pd.DataFrame(columns=columns).set_index('id')
         if os.path.exists(file_path):
             df = pd.read_hdf(file_path)
+        df = df[df.columns.reindex(columns[1:])[0]]
 
         # load metadata
         for file_path_metadata in metadata:
@@ -184,11 +185,11 @@ class Reddit(Loader):
                 data = data + [[
                     str(s.id), str(s.author if s.author else '[deleted]'),
                     datetime.utcfromtimestamp(int(s.created_utc)), datetime.utcfromtimestamp(int(now)), datetime.utcfromtimestamp(int(s.edited)),
-                    int(s.gilded), int(s.pinned), int(s.archived), int(s.locked),
+                    int(s.pinned), int(s.archived), int(s.locked),
                     int(s.selftext == '[removed]' or s.removed_by_category != None), int(s.selftext == '[deleted]'),
                     int(s.is_self), int(s.is_video), int(s.is_original_content),
                     str(s.title), str(s.link_flair_text), float(s.upvote_ratio), int(s.score),
-                    int(s.total_awards_received), int(s.num_comments), int(s.num_crossposts),
+                    int(s.gilded), int(s.total_awards_received), int(s.num_comments), int(s.num_crossposts),
                     str(s.selftext), str(s.thumbnail), str(s.shortlink)
                 ] for s in submissions]
 
