@@ -153,7 +153,7 @@ class Reddit(Loader):
         num_columns = [x for x in df.select_dtypes(include='float64').columns if x not in ['upvote_ratio']]
         df[num_columns] = df[num_columns].apply(np.int64)
 
-        # export data
+        # export private data
         df = df.sort_values(by=['created', 'retrieved'])
         df.to_hdf(file_path, key='df', mode='w', complevel=9)
         df.to_csv(file_path.replace('.h5', '.csv'),
@@ -161,13 +161,24 @@ class Reddit(Loader):
                   doublequote=True, header=True, index=True,
                   sep=',', encoding='utf-8')
 
-        # exported data
-        self.log(f'exported {df.shape[0]} {file_type}s')
-
-        # copy to public folder
+        # export public data
         private = os.path.join(self.root, 'data', 'private', self.subreddit)
         public = os.path.join(self.root, 'data', 'public', self.subreddit)
-        shutil.copytree(private, public, dirs_exist_ok=True, ignore=shutil.ignore_patterns('*crawler.csv', '*pushshift.csv'))
+
+        # empty public folder
+        for path in gb.glob(os.path.join(public, '*.*')):
+            os.remove(path)
+
+        # copy to public folder
+        ignore = shutil.ignore_patterns('*crawler.csv', '*pushshift.csv')
+        shutil.copytree(private, public, dirs_exist_ok=True, ignore=ignore)
+
+        # rename public folder datasets
+        for path in gb.glob(os.path.join(public, '*_reddit.*')):
+            os.rename(path, path.replace('_reddit', f'_{self.subreddit}'))
+
+        # exported data
+        self.log(f'exported {df.shape[0]} {file_type}s')
 
     def fetch(self, file_type, ids):
         data = []
