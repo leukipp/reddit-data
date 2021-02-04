@@ -1,14 +1,17 @@
 {
-  "id": "leukipp/reddityolo",
-  "title": "reddityolo",
-  "subtitle": "Subtitle for reddityolo TODO",
-  "description": "Description for reddityolo TODO",
+  "id": "leukipp/reddit-finance-data",
+  "title": "Reddit - Finance Posts (r/wallstreetbets, r/stocks, r/pennystocks, r/investing, r/stockmarket, r/robinhood, r/options, r/forex, r/personalfinance, r/financialindependence, r/finance, r/securityanalysis)",
+  "subtitle": "Reddit - Finance Posts (r/wallstreetbets, r/stocks, r/pennystocks, r/investing, r/stockmarket, r/robinhood, r/options, r/forex, r/personalfinance, r/financialindependence, r/finance, r/securityanalysis)",
+  "description": "Reddit - Finance Posts (r/wallstreetbets, r/stocks, r/pennystocks, r/investing, r/stockmarket, r/robinhood, r/options, r/forex, r/personalfinance, r/financialindependence, r/finance, r/securityanalysis)",
   "licenses": [
     {
-      "name": "CC0-1.0"
+      "name": "Reddit API Terms"
     }
   ],
   "keywords": [
-    "Exploratory Data Analysis"
+    "finance",
+    "online communities",
+    "time series analysis",
+    "exploratory data analysis"
   ]
 }

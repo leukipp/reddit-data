@@ -1,4 +1,4 @@
-name: reddit_yolo
+name: reddit
 channels:
   - defaults
   - conda-forge
@@ -7,7 +7,6 @@ dependencies:
   - autopep8=1.5.4
   - lxml=4.6.2
   - matplotlib=3.3.2
-  - numpy=1.19.2
   - pandas=1.2.1
   - pip=20.3.3
   - praw=7.0.0

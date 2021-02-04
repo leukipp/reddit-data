@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Data",
+            "name": "data",
             "type": "python",
             "request": "launch",
             "program": "data.py",
@@ -14,7 +14,7 @@
             ]
         },
         {
-            "name": "Visualize",
+            "name": "visualize",
             "type": "python",
             "request": "launch",
             "module": "streamlit.cli",

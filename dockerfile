@@ -14,7 +14,7 @@ RUN apt-get update && \
     find /opt/conda/ -follow -type f -name '*.pyc' -delete && \
     find /opt/conda/ -follow -type f -name '*.js.map' -delete
 
-ENV PATH /opt/conda/envs/reddit_yolo/bin:$PATH
-RUN /bin/bash -c "source activate reddit_yolo"
+ENV PATH /opt/conda/envs/reddit/bin:$PATH
+RUN /bin/bash -c "source activate reddit"
 
 COPY ./ /
