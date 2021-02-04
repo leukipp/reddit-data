@@ -126,7 +126,7 @@ class Reddit(Loader):
 
             # validate metadata
             if df_metadata.empty:
-                return
+                continue
 
             # update last 8 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
@@ -151,6 +151,8 @@ class Reddit(Loader):
 
         # convert float to int (pandas/issues/7509)
         num_columns = [x for x in df.select_dtypes(include='float64').columns if x not in ['upvote_ratio']]
+        if not num_columns:
+            return
         df[num_columns] = df[num_columns].apply(np.int64)
 
         # export private data
