@@ -3,6 +3,7 @@
         "**/__pycache__": true
     },
     "terminal.integrated.env.linux": {
+        "VSCODE_WORKSPACE": "${workspaceFolder}",
         "KAGGLE_CONFIG_DIR": "${workspaceFolder}/config/.kaggle/"
     }
 }

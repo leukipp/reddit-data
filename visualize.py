@@ -15,8 +15,10 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 # %% FUNCTIONS
-@st.cache(ttl=60 * 60)
+@st.cache(ttl=60*60)
 def download_dataset(dataset):
+    if 'VSCODE_WORKSPACE' in os.environ:
+        return os.path.join(os.environ['VSCODE_WORKSPACE'], 'data', 'public')
     kaggle = KaggleApi()
     kaggle.authenticate()
     path = tempfile.mkdtemp()
@@ -24,14 +26,9 @@ def download_dataset(dataset):
     return path
 
 
-@st.cache(ttl=60 * 60)
+@st.cache(ttl=60*60)
 def read_dataset(path, file_name):
     return pd.read_hdf(os.path.join(path, file_name))
-
-
-# %% SETTINGS
-warnings.filterwarnings('ignore')
-pd.set_option('display.max_rows', 20)
 
 
 # %% CONFIG
@@ -91,10 +88,12 @@ dt = st.multiselect('Types', dt_keys, default=dt_keys)
 if not dt:
     st.warning('Select datatypes to analyze.')
 else:
-    st.dataframe(df.select_dtypes(include=dt).dtypes, height=600)
+    df_dtypes = df_filtered.select_dtypes(include=dt)
+    df_dtypes_size = len(df.select_dtypes(include=dt).dtypes) / 2
 
-    st.write('Data')
-    st.dataframe(df_filtered.select_dtypes(include=dt).tail(20), height=600)
+    col_left, col_right = st.beta_columns((1, 3))
+    col_left.dataframe(df.select_dtypes(include=dt).dtypes, height=600)
+    col_right.dataframe(df_dtypes.head(int(np.floor(df_dtypes_size))).append(df_dtypes.tail(int(np.ceil(df_dtypes_size)))), height=600)
 
 
 # %% ANALYZE COUNT
