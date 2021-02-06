@@ -82,6 +82,8 @@ docker ps
 az container show --resource-group docker-rg --name reddit --query instanceView.state
 az container show --resource-group docker-rg --name reddit --query ipAddress.fqdn
 az container show --resource-group docker-rg --name reddit --query ipAddress.ip
+docker logs reddit_data
+docker logs reddit_visualize
 ```
 
 ## Stop
@@ -98,6 +100,20 @@ az acr run --registry reddit --cmd "acr purge --filter 'visualize:.*' --ago 1h -
 ## Delete
 ```
 az container delete --resource-group docker-rg --name reddit
+```
+
+# Transfer
+
+## Upload
+```
+cd /data
+tar -czvf archive.tgz `find  private/ | egrep ".*\.csv|.*\.h5"`
+curl -F "file=@archive.tgz" https://file.io/?expires=1w
+```
+
+## Download
+```
+wget https://file.io/aQ...DJ
 ```
 
 # Kaggle
@@ -120,9 +136,24 @@ kaggle datasets status leukipp/reddit-finance-data
 
 # Run
 
+# Env
+```
+export $(xargs < .env)
+```
+
 ## Full
 ```
 python data.py --config config/wallstreetbets.json
+```
+
+# Disable
+```
+touch .disabled
+```
+
+# Enable
+```
+rm .disabled
 ```
 
 ## Single
