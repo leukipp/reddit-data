@@ -1,4 +1,5 @@
 .git
+.disabled
 *.py[cod]
 __pycache__
 config/*/*
