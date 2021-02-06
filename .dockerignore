@@ -1,8 +1,0 @@
-.git
-.vscode
-.disabled
-.gitignore
-*.py[cod]
-__pycache__
-data/public/*/*
-docs/*
