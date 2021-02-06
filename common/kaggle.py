@@ -95,8 +95,8 @@ class Kaggle(object):
         # return update message
         return 'update data'
 
-    def download(self, dataset):
-        if 'VSCODE_WORKSPACE' in os.environ:
+    def download(self, dataset, local=False):
+        if local and 'VSCODE_WORKSPACE' in os.environ:
             return os.path.join(os.environ['VSCODE_WORKSPACE'], 'data', 'public')
         path = tempfile.mkdtemp()
         self.kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
