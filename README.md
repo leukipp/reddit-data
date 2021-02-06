@@ -50,4 +50,4 @@ rm .disabled
 ```
 
 ## License
-[MIT](/blob/master/LICENSE.md)
+[MIT](https://github.com/leukipp/RedditFinanceData/blob/master/LICENSE.md)
