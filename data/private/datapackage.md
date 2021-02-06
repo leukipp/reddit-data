@@ -7,9 +7,9 @@ See [collection methodology](/leukipp/reddit-finance-data/metadata), all times i
 {1}
 
 # Usage
-See [getting started](/leukipp/reddit-finance-data-getting-started), same data in *csv* and *h5* files:
-- `.csv`: Load using `pandas` or any other framework.
-- `.h5`: Load using `pandas >= 1.2.1` and `python >= 3.8.5`.
+See [getting started](/leukipp/reddit-finance-data-getting-started), data available in *csv* and *hdf* format:
+- `submissions_reddit.csv`: Load using `pandas` or any other framework.
+- `submissions_reddit.h5`: Load using `pandas >= 1.2.1` and `python >= 3.8.5`.
 
 # Legal
 - *Provided "as is" without guarantee of completeness.*
