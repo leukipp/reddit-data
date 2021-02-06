@@ -14,29 +14,30 @@ class Kaggle(object):
         self.kaggle = KaggleApi()
         self.kaggle.authenticate()
         self.descriptions = {
-            'author': 'desc',
-            'created': 'desc',
-            'retrieved': 'desc',
-            'edited': 'desc',
-            'pinned': 'desc',
-            'archived': 'desc',
-            'locked': 'desc',
-            'removed': 'desc',
-            'deleted': 'desc',
-            'is_self': 'desc',
-            'is_video': 'desc',
-            'is_original_content': 'desc',
-            'title': 'desc',
-            'link_flair_text': 'desc',
-            'upvote_ratio': 'desc',
-            'score': 'desc',
-            'gilded': 'desc',
-            'total_awards_received': 'desc',
-            'num_comments': 'desc',
-            'num_crossposts': 'desc',
-            'selftext': 'desc',
-            'thumbnail': 'desc',
-            'shortlink': 'desc'
+            'id': 'The id of the submission',
+            'author': 'The redditors username',
+            'created': 'Time the submission was created',
+            'retrieved': 'Time the submission was retrieved',
+            'edited': 'Time the submission was modified',
+            'pinned': 'Whether or not the submission is pinned',
+            'archived': 'Whether or not the submission is archived',
+            'locked': 'Whether or not the submission is locked',
+            'removed': 'Whether or not the submission is mod removed',
+            'deleted': 'Whether or not the submission is user deleted',
+            'is_self': 'Whether or not the submission is a text',
+            'is_video': 'Whether or not the submission is a video',
+            'is_original_content': 'Whether or not the submission has been set as original content',
+            'title': 'The title of the submission',
+            'link_flair_text': 'The submission link flair’s text content',
+            'upvote_ratio': 'The percentage of upvotes from all votes on the submission',
+            'score': 'The number of upvotes for the submission',
+            'gilded': 'The number of gilded awards on the submission',
+            'total_awards_received': 'The number of awards on the submission',
+            'num_comments': 'The number of comments on the submission',
+            'num_crossposts': 'The number of crossposts on the submission',
+            'selftext': 'The submission selftext on text posts',
+            'thumbnail': 'The submission thumbnail on image posts',
+            'shortlink': 'The submission short url'
         }
         self.types = {
             'object': 'string',
@@ -48,8 +49,9 @@ class Kaggle(object):
     def _update(self, root):
         summary = {}
         resources = []
+
         for f in sorted(gb.glob(os.path.join(root, '**', '*.*'))):
-            df = pd.read_hdf(f.replace('.csv', '.h5'))
+            df = pd.read_hdf(f.replace('.csv', '.h5')).reset_index()
             name = os.path.basename(f)
             path = os.path.join(*(f.split(os.path.sep)[2:]))
             link = f'r/{os.path.dirname(path)}'
@@ -57,7 +59,7 @@ class Kaggle(object):
 
             fields = [{
                 'name': f'{column}',
-                'title': f'title: {column}',
+                'title': f'{column}',
                 'description': self.descriptions[column],
                 'type': self.types[df.dtypes.astype(str)[column]]
             } for column in df.columns]
