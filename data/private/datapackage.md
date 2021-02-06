@@ -17,4 +17,4 @@ See [getting started](/leukipp/reddit-finance-data-getting-started), same data i
 
 ---
 
-**Last update: {2} UTC**
+**Last update: {2} UTC.**
