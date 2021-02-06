@@ -2,12 +2,12 @@
     "id": "leukipp/reddit-finance-data",
     "title": "Reddit - Finance Posts (r/wallstreetbets, r/st...)",
     "subtitle": "r/wallstreetbets, r/stocks, r/pennystocks, r/investing, r/stockmarket, r/robi...",
-    "description": "# Description\nReddit submissions from Finance/Investment/Stock related posts:\n- [r/wallstreetbets](https://reddit.com/r/wallstreetbets): #366060 (2021-01-01 00:02:06 - 2021-02-06 07:21:55)\n- [r/stocks](https://reddit.com/r/stocks): #18089 (2021-01-01 00:05:17 - 2021-02-06 07:19:34)\n- [r/pennystocks](https://reddit.com/r/pennystocks): #11482 (2021-01-01 00:13:41 - 2021-02-06 07:21:27)\n- [r/investing](https://reddit.com/r/investing): #7740 (2021-01-01 00:18:40 - 2021-02-06 06:48:42)\n- [r/stockmarket](https://reddit.com/r/stockmarket): #7598 (2021-01-01 02:42:42 - 2021-02-06 07:02:50)\n- [r/robinhood](https://reddit.com/r/robinhood): #5203 (2021-01-01 00:22:48 - 2021-02-06 00:58:38)\n- [r/personalfinance](https://reddit.com/r/personalfinance): #4620 (2021-01-24 19:30:31 - 2021-02-06 07:01:50)\n- [r/options](https://reddit.com/r/options): #4088 (2021-01-01 01:39:43 - 2021-02-06 06:49:31)\n- [r/forex](https://reddit.com/r/forex): #1443 (2021-01-01 00:07:45 - 2021-02-06 07:16:40)\n- [r/financialindependence](https://reddit.com/r/financialindependence): #884 (2021-01-01 00:26:15 - 2021-02-06 06:47:30)\n- [r/finance](https://reddit.com/r/finance): #693 (2021-01-01 02:33:23 - 2021-02-06 05:20:48)\n- [r/securityanalysis](https://reddit.com/r/securityanalysis): #423 (2021-01-01 12:21:09 - 2021-02-05 20:11:54)\n\n# Data\nSee [collection methodology](/leukipp/reddit-finance-data/metadata), all times in UTC:\n- `author` (*string*): desc\n- `created` (*datetime*): desc\n- `retrieved` (*datetime*): desc\n- `edited` (*datetime*): desc\n- `pinned` (*integer*): desc\n- `archived` (*integer*): desc\n- `locked` (*integer*): desc\n- `removed` (*integer*): desc\n- `deleted` (*integer*): desc\n- `is_self` (*integer*): desc\n- `is_video` (*integer*): desc\n- `is_original_content` (*integer*): desc\n- `title` (*string*): desc\n- `link_flair_text` (*string*): desc\n- `upvote_ratio` (*number*): desc\n- `score` (*integer*): desc\n- `gilded` (*integer*): desc\n- `total_awards_received` (*integer*): desc\n- `num_comments` (*integer*): desc\n- `num_crossposts` (*integer*): desc\n- `selftext` (*string*): desc\n- `thumbnail` (*string*): desc\n- `shortlink` (*string*): desc\n\n# Usage\n- Python 3.8\n- TODO\n\n# Legal\n- *Provided \"as is\" without guarantee of completeness.*\n- *Photo by Lorenzo from Pexels.*\n\n---\n\n**Last update: 2021-02-06 07:23:34 UTC**",
+    "description": "# Description\nReddit submissions from Finance/Investment/Stock related posts:\n- [r/wallstreetbets](https://reddit.com/r/wallstreetbets): #366192 (2021-01-01 00:02:06 - 2021-02-06 10:24:36)\n- [r/stocks](https://reddit.com/r/stocks): #18107 (2021-01-01 00:05:17 - 2021-02-06 10:18:43)\n- [r/pennystocks](https://reddit.com/r/pennystocks): #11492 (2021-01-01 00:13:41 - 2021-02-06 10:22:41)\n- [r/investing](https://reddit.com/r/investing): #7749 (2021-01-01 00:18:40 - 2021-02-06 10:02:40)\n- [r/stockmarket](https://reddit.com/r/stockmarket): #7611 (2021-01-01 02:42:42 - 2021-02-06 10:06:41)\n- [r/robinhood](https://reddit.com/r/robinhood): #5203 (2021-01-01 00:22:48 - 2021-02-06 00:58:38)\n- [r/personalfinance](https://reddit.com/r/personalfinance): #4638 (2021-01-24 19:30:31 - 2021-02-06 10:02:24)\n- [r/options](https://reddit.com/r/options): #4094 (2021-01-01 01:39:43 - 2021-02-06 09:52:48)\n- [r/forex](https://reddit.com/r/forex): #1447 (2021-01-01 00:07:45 - 2021-02-06 10:11:11)\n- [r/financialindependence](https://reddit.com/r/financialindependence): #887 (2021-01-01 00:26:15 - 2021-02-06 10:00:15)\n- [r/finance](https://reddit.com/r/finance): #695 (2021-01-01 02:33:23 - 2021-02-06 10:07:00)\n- [r/securityanalysis](https://reddit.com/r/securityanalysis): #423 (2021-01-01 12:21:09 - 2021-02-05 20:11:54)\n\n# Data\nSee [collection methodology](/leukipp/reddit-finance-data/metadata), all times in UTC:\n- `author` (*string*): desc\n- `created` (*datetime*): desc\n- `retrieved` (*datetime*): desc\n- `edited` (*datetime*): desc\n- `pinned` (*integer*): desc\n- `archived` (*integer*): desc\n- `locked` (*integer*): desc\n- `removed` (*integer*): desc\n- `deleted` (*integer*): desc\n- `is_self` (*integer*): desc\n- `is_video` (*integer*): desc\n- `is_original_content` (*integer*): desc\n- `title` (*string*): desc\n- `link_flair_text` (*string*): desc\n- `upvote_ratio` (*number*): desc\n- `score` (*integer*): desc\n- `gilded` (*integer*): desc\n- `total_awards_received` (*integer*): desc\n- `num_comments` (*integer*): desc\n- `num_crossposts` (*integer*): desc\n- `selftext` (*string*): desc\n- `thumbnail` (*string*): desc\n- `shortlink` (*string*): desc\n\n# Usage\n- TODO\n\n# Legal\n- *Provided \"as is\" without guarantee of completeness.*\n- *Photo by Lorenzo from Pexels.*\n\n---\n\n**Last update: 2021-02-06 10:27:59 UTC**",
     "resources": [
         {
             "name": "submissions_reddit.csv",
             "path": "finance/submissions_reddit.csv",
-            "description": "[r/finance](https://reddit.com/r/finance): #693 (2021-01-01 02:33:23 - 2021-02-06 05:20:48)",
+            "description": "[r/finance](https://reddit.com/r/finance): #695 (2021-01-01 02:33:23 - 2021-02-06 10:07:00)",
             "schema": {
                 "fields": [
                     {
@@ -154,7 +154,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "finance/submissions_reddit.h5",
-            "description": "[r/finance](https://reddit.com/r/finance): #693 (2021-01-01 02:33:23 - 2021-02-06 05:20:48)",
+            "description": "[r/finance](https://reddit.com/r/finance): #695 (2021-01-01 02:33:23 - 2021-02-06 10:07:00)",
             "schema": {
                 "fields": [
                     {
@@ -301,7 +301,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "financialindependence/submissions_reddit.csv",
-            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #884 (2021-01-01 00:26:15 - 2021-02-06 06:47:30)",
+            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #887 (2021-01-01 00:26:15 - 2021-02-06 10:00:15)",
             "schema": {
                 "fields": [
                     {
@@ -448,7 +448,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "financialindependence/submissions_reddit.h5",
-            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #884 (2021-01-01 00:26:15 - 2021-02-06 06:47:30)",
+            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #887 (2021-01-01 00:26:15 - 2021-02-06 10:00:15)",
             "schema": {
                 "fields": [
                     {
@@ -595,7 +595,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "forex/submissions_reddit.csv",
-            "description": "[r/forex](https://reddit.com/r/forex): #1443 (2021-01-01 00:07:45 - 2021-02-06 07:16:40)",
+            "description": "[r/forex](https://reddit.com/r/forex): #1447 (2021-01-01 00:07:45 - 2021-02-06 10:11:11)",
             "schema": {
                 "fields": [
                     {
@@ -742,7 +742,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "forex/submissions_reddit.h5",
-            "description": "[r/forex](https://reddit.com/r/forex): #1443 (2021-01-01 00:07:45 - 2021-02-06 07:16:40)",
+            "description": "[r/forex](https://reddit.com/r/forex): #1447 (2021-01-01 00:07:45 - 2021-02-06 10:11:11)",
             "schema": {
                 "fields": [
                     {
@@ -889,7 +889,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "investing/submissions_reddit.csv",
-            "description": "[r/investing](https://reddit.com/r/investing): #7740 (2021-01-01 00:18:40 - 2021-02-06 06:48:42)",
+            "description": "[r/investing](https://reddit.com/r/investing): #7749 (2021-01-01 00:18:40 - 2021-02-06 10:02:40)",
             "schema": {
                 "fields": [
                     {
@@ -1036,7 +1036,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "investing/submissions_reddit.h5",
-            "description": "[r/investing](https://reddit.com/r/investing): #7740 (2021-01-01 00:18:40 - 2021-02-06 06:48:42)",
+            "description": "[r/investing](https://reddit.com/r/investing): #7749 (2021-01-01 00:18:40 - 2021-02-06 10:02:40)",
             "schema": {
                 "fields": [
                     {
@@ -1183,7 +1183,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "options/submissions_reddit.csv",
-            "description": "[r/options](https://reddit.com/r/options): #4088 (2021-01-01 01:39:43 - 2021-02-06 06:49:31)",
+            "description": "[r/options](https://reddit.com/r/options): #4094 (2021-01-01 01:39:43 - 2021-02-06 09:52:48)",
             "schema": {
                 "fields": [
                     {
@@ -1330,7 +1330,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "options/submissions_reddit.h5",
-            "description": "[r/options](https://reddit.com/r/options): #4088 (2021-01-01 01:39:43 - 2021-02-06 06:49:31)",
+            "description": "[r/options](https://reddit.com/r/options): #4094 (2021-01-01 01:39:43 - 2021-02-06 09:52:48)",
             "schema": {
                 "fields": [
                     {
@@ -1477,7 +1477,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "pennystocks/submissions_reddit.csv",
-            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #11482 (2021-01-01 00:13:41 - 2021-02-06 07:21:27)",
+            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #11492 (2021-01-01 00:13:41 - 2021-02-06 10:22:41)",
             "schema": {
                 "fields": [
                     {
@@ -1624,7 +1624,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "pennystocks/submissions_reddit.h5",
-            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #11482 (2021-01-01 00:13:41 - 2021-02-06 07:21:27)",
+            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #11492 (2021-01-01 00:13:41 - 2021-02-06 10:22:41)",
             "schema": {
                 "fields": [
                     {
@@ -1771,7 +1771,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "personalfinance/submissions_reddit.csv",
-            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #4620 (2021-01-24 19:30:31 - 2021-02-06 07:01:50)",
+            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #4638 (2021-01-24 19:30:31 - 2021-02-06 10:02:24)",
             "schema": {
                 "fields": [
                     {
@@ -1918,7 +1918,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "personalfinance/submissions_reddit.h5",
-            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #4620 (2021-01-24 19:30:31 - 2021-02-06 07:01:50)",
+            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #4638 (2021-01-24 19:30:31 - 2021-02-06 10:02:24)",
             "schema": {
                 "fields": [
                     {
@@ -2653,7 +2653,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "stockmarket/submissions_reddit.csv",
-            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #7598 (2021-01-01 02:42:42 - 2021-02-06 07:02:50)",
+            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #7611 (2021-01-01 02:42:42 - 2021-02-06 10:06:41)",
             "schema": {
                 "fields": [
                     {
@@ -2800,7 +2800,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "stockmarket/submissions_reddit.h5",
-            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #7598 (2021-01-01 02:42:42 - 2021-02-06 07:02:50)",
+            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #7611 (2021-01-01 02:42:42 - 2021-02-06 10:06:41)",
             "schema": {
                 "fields": [
                     {
@@ -2947,7 +2947,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "stocks/submissions_reddit.csv",
-            "description": "[r/stocks](https://reddit.com/r/stocks): #18089 (2021-01-01 00:05:17 - 2021-02-06 07:19:34)",
+            "description": "[r/stocks](https://reddit.com/r/stocks): #18107 (2021-01-01 00:05:17 - 2021-02-06 10:18:43)",
             "schema": {
                 "fields": [
                     {
@@ -3094,7 +3094,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "stocks/submissions_reddit.h5",
-            "description": "[r/stocks](https://reddit.com/r/stocks): #18089 (2021-01-01 00:05:17 - 2021-02-06 07:19:34)",
+            "description": "[r/stocks](https://reddit.com/r/stocks): #18107 (2021-01-01 00:05:17 - 2021-02-06 10:18:43)",
             "schema": {
                 "fields": [
                     {
@@ -3241,7 +3241,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "wallstreetbets/submissions_reddit.csv",
-            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #366060 (2021-01-01 00:02:06 - 2021-02-06 07:21:55)",
+            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #366192 (2021-01-01 00:02:06 - 2021-02-06 10:24:36)",
             "schema": {
                 "fields": [
                     {
@@ -3388,7 +3388,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "wallstreetbets/submissions_reddit.h5",
-            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #366060 (2021-01-01 00:02:06 - 2021-02-06 07:21:55)",
+            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #366192 (2021-01-01 00:02:06 - 2021-02-06 10:24:36)",
             "schema": {
                 "fields": [
                     {
