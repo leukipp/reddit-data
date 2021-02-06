@@ -22,7 +22,7 @@ conda activate reddit
 ```
 
 ## Usage
-Use the dataset availabe at [Kaggle](https://www.kaggle.com/leukipp/reddit-finance-data) or generate your own one:
+Use the dataset available at [Kaggle](https://www.kaggle.com/leukipp/reddit-finance-data) or generate your own one:
 
 ### Environment
 ```sh
