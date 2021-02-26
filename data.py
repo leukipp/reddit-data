@@ -74,17 +74,23 @@ if __name__ == '__main__':
 
                     # multi run
                     for config in sorted(gb.glob(os.path.join('config', '*.json'))):
-                        if not enabled():
-                            break
-                        args.config = config
-                        main(args)
+                        try:
+                            if not enabled():
+                                break
+                            args.config = config
+                            main(args)
+                        except Exception as e:
+                            print(f'...error {repr(e)}')
 
                     # publish data
-                    seconds = timer.stop(run=False) / 1000
-                    if args.publish and seconds > args.publish:
-                        kaggle.upload(path=os.path.join('data', 'public'))
-                        print('\n---------- PUBLISHED ----------\n')
-                        timer.reset()
+                    try:
+                        seconds = timer.stop(run=False) / 1000
+                        if args.publish and seconds > args.publish:
+                            kaggle.upload(path=os.path.join('data', 'public'))
+                            print('\n---------- PUBLISHED ----------\n')
+                            timer.reset()
+                    except Exception as e:
+                        print(f'...error {repr(e)}')
 
     except KeyboardInterrupt as e:
         print(f'...aborted')
