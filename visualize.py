@@ -7,6 +7,7 @@ import warnings
 import glob as gb
 import numpy as np
 import pandas as pd
+import yfinance as yf
 
 import nltk as nl
 import altair as alt
@@ -124,7 +125,7 @@ st.title('Submissions')
 highlight = st.selectbox('Highlight', flags, index=5)
 
 chart = alt.Chart(df_sampled).mark_bar().encode(
-    alt.X('utcyearmonthdate(created):T', bin=True, axis=alt.Axis(format='%Y-%b-%d',  labelAngle=-90)),
+    alt.X('utcyearmonthdate(created):T', bin=True, axis=alt.Axis(format='%Y-%b-%d', labelAngle=-90)),
     alt.Y('count()'),
     alt.Color(f'{highlight}:N')
 ).properties(
@@ -145,12 +146,12 @@ args = {
     'colormap': 'plasma',
     'min_word_length': 3,
     'max_words': 400,
-    'height': 320,
+    'height': 310,
     'width': 460,
     'scale': 1.5
 }
 
-topwords = 30
+topwords = 50
 stopwords = nl.corpus.stopwords.words('english')
 wordcloud = WordCloud(stopwords=stopwords, **args)
 
@@ -165,10 +166,36 @@ wordcloud.generate_from_frequencies(frequencies)
 words = pd.DataFrame(frequencies.items(), columns=['word', 'count'])
 
 image = wordcloud.to_image()
-layout = go.Layout(margin=go.layout.Margin(l=0, r=0, b=0, t=0))
 treemap = px.treemap(words.head(topwords), path=['word'], values='count')
-treemap.update_layout(margin=dict(t=10, b=10, r=10, l=10))
+treemap.update_layout(margin=dict(t=0, b=0, r=0, l=0))
 
 col_left, col_right = st.beta_columns((1, 1))
-col_left.plotly_chart(treemap)
-col_right.image(image)
+col_left.plotly_chart(treemap, use_container_width=True)
+col_right.image(image, use_container_width=True)
+
+
+# %% ANALYZE STOCKS
+st.title('Stocks')
+
+start, end = created[0].strftime('%Y-%m-%d'), created[1].strftime('%Y-%m-%d')
+
+stocks = ['GME', 'AMC', 'NOK']
+stock = st.selectbox('Stock', stocks, index=0)
+prices = yf.download(stocks, start=start, end=end, interval='1d', prepost=True)
+
+args = {
+    'open': prices['Open'][stock],
+    'low': prices['Low'][stock],
+    'high': prices['High'][stock],
+    'close': prices['Close'][stock]
+}
+
+candlestick = go.Figure(data=[go.Candlestick(x=[x.strftime('%Y-%m-%d %H:%M') for x in prices.index], **args)])
+candlestick.update_layout(
+    height=500,
+    yaxis_title=stock,
+    margin=dict(t=0, b=0, r=0, l=0),
+    annotations=[dict(x=start, y=0.05, xref='x', yref='paper', showarrow=False, xanchor='left', text=' ')]
+)
+
+st.plotly_chart(candlestick, use_container_width=True)
