@@ -26,16 +26,18 @@ def read_dataset(path, file_name):
 
 
 # %% CONFIG
-dataset = None
+dataset, title = '', ''
 with open(os.path.join('data', 'public', 'datapackage.json')) as f:
-    dataset = json.load(f)['id']
+    d = json.load(f)
+    dataset, title = d['id'], d['title']
 
 subreddits = []
 for path in sorted(gb.glob(os.path.join('config', '*.json'))):
     with open(path) as f:
-        subreddits.append(json.load(f)['subreddit'])
+        d = json.load(f)
+        subreddits.append(d['subreddit'])
 
-st.set_page_config(layout='wide', initial_sidebar_state='expanded', page_title=f'Kaggle · {dataset}')
+st.set_page_config(layout='wide', initial_sidebar_state='expanded', page_title=title)
 
 # %% LOAD DATA
 st.sidebar.title('Data')
