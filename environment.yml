@@ -1,6 +1,7 @@
 name: reddit
 channels:
   - defaults
+  - ranaroussi
   - conda-forge
 dependencies:
   - altair=4.1.0
@@ -16,6 +17,7 @@ dependencies:
   - python=3.8.5
   - tqdm=4.56.0
   - wordcloud=1.8.1
+  - yfinance=0.1.54
   - pip:
     - streamlit==0.75.0
     - kaggle==1.5.10
