@@ -7,12 +7,15 @@ dependencies:
   - autopep8=1.5.4
   - lxml=4.6.2
   - matplotlib=3.3.2
+  - nltk=3.4.4
   - pandas=1.2.1
   - pip=20.3.3
+  - plotly=4.14.3
   - praw=7.0.0
   - pytables=3.6.1
   - python=3.8.5
   - tqdm=4.56.0
+  - wordcloud=1.8.1
   - pip:
     - streamlit==0.75.0
     - kaggle==1.5.10
