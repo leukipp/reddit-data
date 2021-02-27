@@ -1,4 +1,4 @@
-# %% IMPORT
+# %% IMPORTS
 import os
 import json
 import tempfile
@@ -8,10 +8,21 @@ import glob as gb
 import numpy as np
 import pandas as pd
 
+import nltk as nl
 import altair as alt
 import streamlit as st
+import plotly.express as px
+import plotly.graph_objs as go
 
+from wordcloud import WordCloud
+from collections import Counter
 from common.kaggle import Kaggle
+from nltk.corpus import stopwords
+
+
+# %% INITIALIZATION
+nl.download(['stopwords'])
+pd.options.plotting.backend = 'plotly'
 
 
 # %% FUNCTIONS
@@ -38,6 +49,7 @@ for path in sorted(gb.glob(os.path.join('config', '*.json'))):
         subreddits.append(d['subreddit'])
 
 st.set_page_config(layout='wide', initial_sidebar_state='expanded', page_title=title)
+
 
 # %% LOAD DATA
 st.sidebar.title('Data')
@@ -120,5 +132,43 @@ chart = alt.Chart(df_sampled).mark_bar().encode(
 ).interactive()
 st.altair_chart(chart, use_container_width=True)
 
-# %% ANALYZE MORE
-st.title('More to come...')
+
+# %% ANALYZE WORDS
+st.title('Words')
+
+text_title = df_sampled['title'].to_string(header=False, index=False)
+text_self = df_sampled['selftext'].to_string(header=False, index=False)
+text_full = f'{text_title} {text_self}'
+
+args = {
+    'background_color': 'white',
+    'colormap': 'plasma',
+    'min_word_length': 3,
+    'max_words': 400,
+    'height': 320,
+    'width': 460,
+    'scale': 1.5
+}
+
+topwords = 30
+stopwords = nl.corpus.stopwords.words('english')
+wordcloud = WordCloud(stopwords=stopwords, **args)
+
+frequencies = wordcloud.process_text(text_full)
+wordcloud.generate_from_frequencies(frequencies)
+words = np.array(sorted(frequencies.items(), key=lambda x: x[1], reverse=True))
+
+stopwords = stopwords + st.multiselect('Exclude', words[:topwords, 0])
+
+frequencies = {k: frequencies[k] for k in words[:, 0] if k not in stopwords}
+wordcloud.generate_from_frequencies(frequencies)
+words = pd.DataFrame(frequencies.items(), columns=['word', 'count'])
+
+image = wordcloud.to_image()
+layout = go.Layout(margin=go.layout.Margin(l=0, r=0, b=0, t=0))
+treemap = px.treemap(words.head(topwords), path=['word'], values='count')
+treemap.update_layout(margin=dict(t=10, b=10, r=10, l=10))
+
+col_left, col_right = st.beta_columns((1, 1))
+col_left.plotly_chart(treemap)
+col_right.image(image)
