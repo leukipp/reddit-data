@@ -2,12 +2,12 @@
     "id": "leukipp/reddit-finance-data",
     "title": "Reddit - Finance Posts (r/wallstreetbets, r/gm...)",
     "subtitle": "r/wallstreetbets, r/gme, r/stocks, r/pennystocks, r/robinhoodpennystocks, r/i...",
-    "description": "# Description\nReddit submissions from Finance/Investment/Stock related posts:\n- [r/wallstreetbets](https://reddit.com/r/wallstreetbets): #438475 (2021-01-01 00:02:06 - 2021-02-27 07:13:29)\n- [r/stocks](https://reddit.com/r/stocks): #26961 (2021-01-01 00:05:17 - 2021-02-27 07:08:56)\n- [r/pennystocks](https://reddit.com/r/pennystocks): #24783 (2021-01-01 00:13:41 - 2021-02-27 06:57:38)\n- [r/personalfinance](https://reddit.com/r/personalfinance): #14817 (2021-01-24 19:30:31 - 2021-02-27 07:12:11)\n- [r/stockmarket](https://reddit.com/r/stockmarket): #12644 (2021-01-01 02:42:42 - 2021-02-27 07:00:24)\n- [r/investing](https://reddit.com/r/investing): #12269 (2021-01-01 00:18:40 - 2021-02-27 04:52:28)\n- [r/options](https://reddit.com/r/options): #7375 (2021-01-01 01:39:43 - 2021-02-27 06:48:29)\n- [r/robinhood](https://reddit.com/r/robinhood): #7071 (2021-01-01 00:22:48 - 2021-02-26 11:00:06)\n- [r/forex](https://reddit.com/r/forex): #2685 (2021-01-01 00:07:45 - 2021-02-27 05:37:03)\n- [r/financialindependence](https://reddit.com/r/financialindependence): #1585 (2021-01-01 00:26:15 - 2021-02-27 06:25:48)\n- [r/finance](https://reddit.com/r/finance): #1133 (2021-01-01 02:33:23 - 2021-02-27 02:06:43)\n- [r/securityanalysis](https://reddit.com/r/securityanalysis): #525 (2021-01-01 12:21:09 - 2021-02-27 00:07:42)\n\n# Data\nSee [collection methodology](/leukipp/reddit-finance-data/metadata), all times in *UTC*:\n- `id` (*string*): The id of the submission.\n- `author` (*string*): The redditors username.\n- `created` (*datetime*): Time the submission was created.\n- `retrieved` (*datetime*): Time the submission was retrieved.\n- `edited` (*datetime*): Time the submission was modified.\n- `pinned` (*integer*): Whether or not the submission is pinned.\n- `archived` (*integer*): Whether or not the submission is archived.\n- `locked` (*integer*): Whether or not the submission is locked.\n- `removed` (*integer*): Whether or not the submission is mod removed.\n- `deleted` (*integer*): Whether or not the submission is user deleted.\n- `is_self` (*integer*): Whether or not the submission is a text.\n- `is_video` (*integer*): Whether or not the submission is a video.\n- `is_original_content` (*integer*): Whether or not the submission has been set as original content.\n- `title` (*string*): The title of the submission.\n- `link_flair_text` (*string*): The submission link flairs text content.\n- `upvote_ratio` (*number*): The percentage of upvotes from all votes on the submission.\n- `score` (*integer*): The number of upvotes for the submission.\n- `gilded` (*integer*): The number of gilded awards on the submission.\n- `total_awards_received` (*integer*): The number of awards on the submission.\n- `num_comments` (*integer*): The number of comments on the submission.\n- `num_crossposts` (*integer*): The number of crossposts on the submission.\n- `selftext` (*string*): The submission selftext on text posts.\n- `thumbnail` (*string*): The submission thumbnail on image posts.\n- `shortlink` (*string*): The submission short url.\n\n# Usage\nSee [getting started](/leukipp/reddit-finance-data-getting-started), data available as *csv* and *hdf*:\n- `submissions_reddit.csv`: Load file using `pandas` or any other framework.\n- `submissions_reddit.h5`: Load file using `pandas >= 1.2.1` and `python >= 3.8.5`.\n\n# Legal\n- *Provided \"as is\" without guarantee of completeness.*\n- *Photo by Lorenzo from Pexels.*\n\n---\n\n**Last update: 2021-02-27 07:27:17 UTC.**\n",
+    "description": "# Description\nReddit submissions from finance/investment/stock related posts:\n- [r/wallstreetbets](https://reddit.com/r/wallstreetbets): #439263 (2021-01-01 00:02:06 - 2021-02-28 18:47:20)\n- [r/gme](https://reddit.com/r/gme): #45177 (2021-01-01 04:08:51 - 2021-02-28 18:45:03)\n- [r/stocks](https://reddit.com/r/stocks): #27110 (2021-01-01 00:05:17 - 2021-02-28 18:44:43)\n- [r/pennystocks](https://reddit.com/r/pennystocks): #24945 (2021-01-01 00:13:41 - 2021-02-28 18:42:17)\n- [r/robinhoodpennystocks](https://reddit.com/r/robinhoodpennystocks): #16012 (2021-01-01 00:27:36 - 2021-02-28 18:44:42)\n- [r/personalfinance](https://reddit.com/r/personalfinance): #15229 (2021-01-24 19:30:31 - 2021-02-28 18:45:20)\n- [r/stockmarket](https://reddit.com/r/stockmarket): #12753 (2021-01-01 02:42:42 - 2021-02-28 18:36:17)\n- [r/investing](https://reddit.com/r/investing): #12315 (2021-01-01 00:18:40 - 2021-02-28 17:26:29)\n- [r/options](https://reddit.com/r/options): #7461 (2021-01-01 01:39:43 - 2021-02-28 18:27:13)\n- [r/robinhood](https://reddit.com/r/robinhood): #7076 (2021-01-01 00:22:48 - 2021-02-27 19:14:41)\n- [r/forex](https://reddit.com/r/forex): #2734 (2021-01-01 00:07:45 - 2021-02-28 18:20:24)\n- [r/financialindependence](https://reddit.com/r/financialindependence): #1617 (2021-01-01 00:26:15 - 2021-02-28 18:33:38)\n- [r/finance](https://reddit.com/r/finance): #1139 (2021-01-01 02:33:23 - 2021-02-28 10:39:52)\n- [r/securityanalysis](https://reddit.com/r/securityanalysis): #533 (2021-01-01 12:21:09 - 2021-02-28 10:42:53)\n\n# Data\nSee [collection methodology](/leukipp/reddit-finance-data/metadata), all times in *UTC*:\n- `id` (*string*): The id of the submission.\n- `author` (*string*): The redditors username.\n- `created` (*datetime*): Time the submission was created.\n- `retrieved` (*datetime*): Time the submission was retrieved.\n- `edited` (*datetime*): Time the submission was modified.\n- `pinned` (*integer*): Whether or not the submission is pinned.\n- `archived` (*integer*): Whether or not the submission is archived.\n- `locked` (*integer*): Whether or not the submission is locked.\n- `removed` (*integer*): Whether or not the submission is mod removed.\n- `deleted` (*integer*): Whether or not the submission is user deleted.\n- `is_self` (*integer*): Whether or not the submission is a text.\n- `is_video` (*integer*): Whether or not the submission is a video.\n- `is_original_content` (*integer*): Whether or not the submission has been set as original content.\n- `title` (*string*): The title of the submission.\n- `link_flair_text` (*string*): The submission link flairs text content.\n- `upvote_ratio` (*number*): The percentage of upvotes from all votes on the submission.\n- `score` (*integer*): The number of upvotes for the submission.\n- `gilded` (*integer*): The number of gilded awards on the submission.\n- `total_awards_received` (*integer*): The number of awards on the submission.\n- `num_comments` (*integer*): The number of comments on the submission.\n- `num_crossposts` (*integer*): The number of crossposts on the submission.\n- `selftext` (*string*): The submission selftext on text posts.\n- `thumbnail` (*string*): The submission thumbnail on image posts.\n- `shortlink` (*string*): The submission short url.\n\n# Usage\nSee [getting started](/leukipp/reddit-finance-data-getting-started), data available as *csv* and *hdf*:\n- `submissions_reddit.csv`: Load file using `pandas` or any other framework.\n- `submissions_reddit.h5`: Load file using `pandas >= 1.2.1` and `python >= 3.8.5`.\n\n# Legal\n- *Provided \"as is\" without guarantee of completeness.*\n- *Photo by Lorenzo from Pexels.*\n\n---\n\n**Last update: 2021-02-28 19:00:57 UTC.**\n",
     "resources": [
         {
             "name": "submissions_reddit.csv",
             "path": "finance/submissions_reddit.csv",
-            "description": "[r/finance](https://reddit.com/r/finance): #1133 (2021-01-01 02:33:23 - 2021-02-27 02:06:43)",
+            "description": "[r/finance](https://reddit.com/r/finance): #1139 (2021-01-01 02:33:23 - 2021-02-28 10:39:52)",
             "schema": {
                 "fields": [
                     {
@@ -160,7 +160,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "finance/submissions_reddit.h5",
-            "description": "[r/finance](https://reddit.com/r/finance): #1133 (2021-01-01 02:33:23 - 2021-02-27 02:06:43)",
+            "description": "[r/finance](https://reddit.com/r/finance): #1139 (2021-01-01 02:33:23 - 2021-02-28 10:39:52)",
             "schema": {
                 "fields": [
                     {
@@ -313,7 +313,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "financialindependence/submissions_reddit.csv",
-            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #1585 (2021-01-01 00:26:15 - 2021-02-27 06:25:48)",
+            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #1617 (2021-01-01 00:26:15 - 2021-02-28 18:33:38)",
             "schema": {
                 "fields": [
                     {
@@ -466,7 +466,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "financialindependence/submissions_reddit.h5",
-            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #1585 (2021-01-01 00:26:15 - 2021-02-27 06:25:48)",
+            "description": "[r/financialindependence](https://reddit.com/r/financialindependence): #1617 (2021-01-01 00:26:15 - 2021-02-28 18:33:38)",
             "schema": {
                 "fields": [
                     {
@@ -619,7 +619,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "forex/submissions_reddit.csv",
-            "description": "[r/forex](https://reddit.com/r/forex): #2685 (2021-01-01 00:07:45 - 2021-02-27 05:37:03)",
+            "description": "[r/forex](https://reddit.com/r/forex): #2734 (2021-01-01 00:07:45 - 2021-02-28 18:20:24)",
             "schema": {
                 "fields": [
                     {
@@ -772,7 +772,313 @@
         {
             "name": "submissions_reddit.h5",
             "path": "forex/submissions_reddit.h5",
-            "description": "[r/forex](https://reddit.com/r/forex): #2685 (2021-01-01 00:07:45 - 2021-02-27 05:37:03)",
+            "description": "[r/forex](https://reddit.com/r/forex): #2734 (2021-01-01 00:07:45 - 2021-02-28 18:20:24)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "id",
+                        "title": "id",
+                        "description": "The id of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "author",
+                        "title": "author",
+                        "description": "The redditors username.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "created",
+                        "description": "Time the submission was created.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "retrieved",
+                        "description": "Time the submission was retrieved.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "edited",
+                        "description": "Time the submission was modified.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "pinned",
+                        "description": "Whether or not the submission is pinned.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "archived",
+                        "description": "Whether or not the submission is archived.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "locked",
+                        "description": "Whether or not the submission is locked.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "removed",
+                        "description": "Whether or not the submission is mod removed.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "deleted",
+                        "description": "Whether or not the submission is user deleted.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "is_self",
+                        "description": "Whether or not the submission is a text.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "is_video",
+                        "description": "Whether or not the submission is a video.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "is_original_content",
+                        "description": "Whether or not the submission has been set as original content.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title",
+                        "description": "The title of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "link_flair_text",
+                        "description": "The submission link flairs text content.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "upvote_ratio",
+                        "description": "The percentage of upvotes from all votes on the submission.",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "score",
+                        "description": "The number of upvotes for the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "gilded",
+                        "description": "The number of gilded awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "total_awards_received",
+                        "description": "The number of awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "num_comments",
+                        "description": "The number of comments on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "num_crossposts",
+                        "description": "The number of crossposts on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "selftext",
+                        "description": "The submission selftext on text posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "thumbnail",
+                        "description": "The submission thumbnail on image posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "shortlink",
+                        "description": "The submission short url.",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "gme/submissions_reddit.csv",
+            "description": "[r/gme](https://reddit.com/r/gme): #45177 (2021-01-01 04:08:51 - 2021-02-28 18:45:03)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "id",
+                        "title": "id",
+                        "description": "The id of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "author",
+                        "title": "author",
+                        "description": "The redditors username.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "created",
+                        "description": "Time the submission was created.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "retrieved",
+                        "description": "Time the submission was retrieved.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "edited",
+                        "description": "Time the submission was modified.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "pinned",
+                        "description": "Whether or not the submission is pinned.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "archived",
+                        "description": "Whether or not the submission is archived.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "locked",
+                        "description": "Whether or not the submission is locked.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "removed",
+                        "description": "Whether or not the submission is mod removed.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "deleted",
+                        "description": "Whether or not the submission is user deleted.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "is_self",
+                        "description": "Whether or not the submission is a text.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "is_video",
+                        "description": "Whether or not the submission is a video.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "is_original_content",
+                        "description": "Whether or not the submission has been set as original content.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title",
+                        "description": "The title of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "link_flair_text",
+                        "description": "The submission link flairs text content.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "upvote_ratio",
+                        "description": "The percentage of upvotes from all votes on the submission.",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "score",
+                        "description": "The number of upvotes for the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "gilded",
+                        "description": "The number of gilded awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "total_awards_received",
+                        "description": "The number of awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "num_comments",
+                        "description": "The number of comments on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "num_crossposts",
+                        "description": "The number of crossposts on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "selftext",
+                        "description": "The submission selftext on text posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "thumbnail",
+                        "description": "The submission thumbnail on image posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "shortlink",
+                        "description": "The submission short url.",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "gme/submissions_reddit.h5",
+            "description": "[r/gme](https://reddit.com/r/gme): #45177 (2021-01-01 04:08:51 - 2021-02-28 18:45:03)",
             "schema": {
                 "fields": [
                     {
@@ -925,7 +1231,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "investing/submissions_reddit.csv",
-            "description": "[r/investing](https://reddit.com/r/investing): #12269 (2021-01-01 00:18:40 - 2021-02-27 04:52:28)",
+            "description": "[r/investing](https://reddit.com/r/investing): #12315 (2021-01-01 00:18:40 - 2021-02-28 17:26:29)",
             "schema": {
                 "fields": [
                     {
@@ -1078,7 +1384,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "investing/submissions_reddit.h5",
-            "description": "[r/investing](https://reddit.com/r/investing): #12269 (2021-01-01 00:18:40 - 2021-02-27 04:52:28)",
+            "description": "[r/investing](https://reddit.com/r/investing): #12315 (2021-01-01 00:18:40 - 2021-02-28 17:26:29)",
             "schema": {
                 "fields": [
                     {
@@ -1231,7 +1537,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "options/submissions_reddit.csv",
-            "description": "[r/options](https://reddit.com/r/options): #7375 (2021-01-01 01:39:43 - 2021-02-27 06:48:29)",
+            "description": "[r/options](https://reddit.com/r/options): #7461 (2021-01-01 01:39:43 - 2021-02-28 18:27:13)",
             "schema": {
                 "fields": [
                     {
@@ -1384,7 +1690,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "options/submissions_reddit.h5",
-            "description": "[r/options](https://reddit.com/r/options): #7375 (2021-01-01 01:39:43 - 2021-02-27 06:48:29)",
+            "description": "[r/options](https://reddit.com/r/options): #7461 (2021-01-01 01:39:43 - 2021-02-28 18:27:13)",
             "schema": {
                 "fields": [
                     {
@@ -1537,7 +1843,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "pennystocks/submissions_reddit.csv",
-            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #24783 (2021-01-01 00:13:41 - 2021-02-27 06:57:38)",
+            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #24945 (2021-01-01 00:13:41 - 2021-02-28 18:42:17)",
             "schema": {
                 "fields": [
                     {
@@ -1690,7 +1996,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "pennystocks/submissions_reddit.h5",
-            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #24783 (2021-01-01 00:13:41 - 2021-02-27 06:57:38)",
+            "description": "[r/pennystocks](https://reddit.com/r/pennystocks): #24945 (2021-01-01 00:13:41 - 2021-02-28 18:42:17)",
             "schema": {
                 "fields": [
                     {
@@ -1843,7 +2149,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "personalfinance/submissions_reddit.csv",
-            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #14817 (2021-01-24 19:30:31 - 2021-02-27 07:12:11)",
+            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #15229 (2021-01-24 19:30:31 - 2021-02-28 18:45:20)",
             "schema": {
                 "fields": [
                     {
@@ -1996,7 +2302,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "personalfinance/submissions_reddit.h5",
-            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #14817 (2021-01-24 19:30:31 - 2021-02-27 07:12:11)",
+            "description": "[r/personalfinance](https://reddit.com/r/personalfinance): #15229 (2021-01-24 19:30:31 - 2021-02-28 18:45:20)",
             "schema": {
                 "fields": [
                     {
@@ -2149,7 +2455,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "robinhood/submissions_reddit.csv",
-            "description": "[r/robinhood](https://reddit.com/r/robinhood): #7071 (2021-01-01 00:22:48 - 2021-02-26 11:00:06)",
+            "description": "[r/robinhood](https://reddit.com/r/robinhood): #7076 (2021-01-01 00:22:48 - 2021-02-27 19:14:41)",
             "schema": {
                 "fields": [
                     {
@@ -2302,7 +2608,313 @@
         {
             "name": "submissions_reddit.h5",
             "path": "robinhood/submissions_reddit.h5",
-            "description": "[r/robinhood](https://reddit.com/r/robinhood): #7071 (2021-01-01 00:22:48 - 2021-02-26 11:00:06)",
+            "description": "[r/robinhood](https://reddit.com/r/robinhood): #7076 (2021-01-01 00:22:48 - 2021-02-27 19:14:41)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "id",
+                        "title": "id",
+                        "description": "The id of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "author",
+                        "title": "author",
+                        "description": "The redditors username.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "created",
+                        "description": "Time the submission was created.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "retrieved",
+                        "description": "Time the submission was retrieved.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "edited",
+                        "description": "Time the submission was modified.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "pinned",
+                        "description": "Whether or not the submission is pinned.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "archived",
+                        "description": "Whether or not the submission is archived.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "locked",
+                        "description": "Whether or not the submission is locked.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "removed",
+                        "description": "Whether or not the submission is mod removed.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "deleted",
+                        "description": "Whether or not the submission is user deleted.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "is_self",
+                        "description": "Whether or not the submission is a text.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "is_video",
+                        "description": "Whether or not the submission is a video.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "is_original_content",
+                        "description": "Whether or not the submission has been set as original content.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title",
+                        "description": "The title of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "link_flair_text",
+                        "description": "The submission link flairs text content.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "upvote_ratio",
+                        "description": "The percentage of upvotes from all votes on the submission.",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "score",
+                        "description": "The number of upvotes for the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "gilded",
+                        "description": "The number of gilded awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "total_awards_received",
+                        "description": "The number of awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "num_comments",
+                        "description": "The number of comments on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "num_crossposts",
+                        "description": "The number of crossposts on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "selftext",
+                        "description": "The submission selftext on text posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "thumbnail",
+                        "description": "The submission thumbnail on image posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "shortlink",
+                        "description": "The submission short url.",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.csv",
+            "path": "robinhoodpennystocks/submissions_reddit.csv",
+            "description": "[r/robinhoodpennystocks](https://reddit.com/r/robinhoodpennystocks): #16012 (2021-01-01 00:27:36 - 2021-02-28 18:44:42)",
+            "schema": {
+                "fields": [
+                    {
+                        "name": "id",
+                        "title": "id",
+                        "description": "The id of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "author",
+                        "title": "author",
+                        "description": "The redditors username.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "created",
+                        "title": "created",
+                        "description": "Time the submission was created.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "retrieved",
+                        "title": "retrieved",
+                        "description": "Time the submission was retrieved.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "edited",
+                        "title": "edited",
+                        "description": "Time the submission was modified.",
+                        "type": "datetime"
+                    },
+                    {
+                        "name": "pinned",
+                        "title": "pinned",
+                        "description": "Whether or not the submission is pinned.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "archived",
+                        "title": "archived",
+                        "description": "Whether or not the submission is archived.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "locked",
+                        "title": "locked",
+                        "description": "Whether or not the submission is locked.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "removed",
+                        "title": "removed",
+                        "description": "Whether or not the submission is mod removed.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "deleted",
+                        "title": "deleted",
+                        "description": "Whether or not the submission is user deleted.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_self",
+                        "title": "is_self",
+                        "description": "Whether or not the submission is a text.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_video",
+                        "title": "is_video",
+                        "description": "Whether or not the submission is a video.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "is_original_content",
+                        "title": "is_original_content",
+                        "description": "Whether or not the submission has been set as original content.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "title",
+                        "title": "title",
+                        "description": "The title of the submission.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "link_flair_text",
+                        "title": "link_flair_text",
+                        "description": "The submission link flairs text content.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "upvote_ratio",
+                        "title": "upvote_ratio",
+                        "description": "The percentage of upvotes from all votes on the submission.",
+                        "type": "number"
+                    },
+                    {
+                        "name": "score",
+                        "title": "score",
+                        "description": "The number of upvotes for the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "gilded",
+                        "title": "gilded",
+                        "description": "The number of gilded awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "total_awards_received",
+                        "title": "total_awards_received",
+                        "description": "The number of awards on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_comments",
+                        "title": "num_comments",
+                        "description": "The number of comments on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "num_crossposts",
+                        "title": "num_crossposts",
+                        "description": "The number of crossposts on the submission.",
+                        "type": "integer"
+                    },
+                    {
+                        "name": "selftext",
+                        "title": "selftext",
+                        "description": "The submission selftext on text posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "thumbnail",
+                        "title": "thumbnail",
+                        "description": "The submission thumbnail on image posts.",
+                        "type": "string"
+                    },
+                    {
+                        "name": "shortlink",
+                        "title": "shortlink",
+                        "description": "The submission short url.",
+                        "type": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "name": "submissions_reddit.h5",
+            "path": "robinhoodpennystocks/submissions_reddit.h5",
+            "description": "[r/robinhoodpennystocks](https://reddit.com/r/robinhoodpennystocks): #16012 (2021-01-01 00:27:36 - 2021-02-28 18:44:42)",
             "schema": {
                 "fields": [
                     {
@@ -2455,7 +3067,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "securityanalysis/submissions_reddit.csv",
-            "description": "[r/securityanalysis](https://reddit.com/r/securityanalysis): #525 (2021-01-01 12:21:09 - 2021-02-27 00:07:42)",
+            "description": "[r/securityanalysis](https://reddit.com/r/securityanalysis): #533 (2021-01-01 12:21:09 - 2021-02-28 10:42:53)",
             "schema": {
                 "fields": [
                     {
@@ -2608,7 +3220,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "securityanalysis/submissions_reddit.h5",
-            "description": "[r/securityanalysis](https://reddit.com/r/securityanalysis): #525 (2021-01-01 12:21:09 - 2021-02-27 00:07:42)",
+            "description": "[r/securityanalysis](https://reddit.com/r/securityanalysis): #533 (2021-01-01 12:21:09 - 2021-02-28 10:42:53)",
             "schema": {
                 "fields": [
                     {
@@ -2761,7 +3373,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "stockmarket/submissions_reddit.csv",
-            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #12644 (2021-01-01 02:42:42 - 2021-02-27 07:00:24)",
+            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #12753 (2021-01-01 02:42:42 - 2021-02-28 18:36:17)",
             "schema": {
                 "fields": [
                     {
@@ -2914,7 +3526,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "stockmarket/submissions_reddit.h5",
-            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #12644 (2021-01-01 02:42:42 - 2021-02-27 07:00:24)",
+            "description": "[r/stockmarket](https://reddit.com/r/stockmarket): #12753 (2021-01-01 02:42:42 - 2021-02-28 18:36:17)",
             "schema": {
                 "fields": [
                     {
@@ -3067,7 +3679,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "stocks/submissions_reddit.csv",
-            "description": "[r/stocks](https://reddit.com/r/stocks): #26961 (2021-01-01 00:05:17 - 2021-02-27 07:08:56)",
+            "description": "[r/stocks](https://reddit.com/r/stocks): #27110 (2021-01-01 00:05:17 - 2021-02-28 18:44:43)",
             "schema": {
                 "fields": [
                     {
@@ -3220,7 +3832,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "stocks/submissions_reddit.h5",
-            "description": "[r/stocks](https://reddit.com/r/stocks): #26961 (2021-01-01 00:05:17 - 2021-02-27 07:08:56)",
+            "description": "[r/stocks](https://reddit.com/r/stocks): #27110 (2021-01-01 00:05:17 - 2021-02-28 18:44:43)",
             "schema": {
                 "fields": [
                     {
@@ -3373,7 +3985,7 @@
         {
             "name": "submissions_reddit.csv",
             "path": "wallstreetbets/submissions_reddit.csv",
-            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #438475 (2021-01-01 00:02:06 - 2021-02-27 07:13:29)",
+            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #439263 (2021-01-01 00:02:06 - 2021-02-28 18:47:20)",
             "schema": {
                 "fields": [
                     {
@@ -3526,7 +4138,7 @@
         {
             "name": "submissions_reddit.h5",
             "path": "wallstreetbets/submissions_reddit.h5",
-            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #438475 (2021-01-01 00:02:06 - 2021-02-27 07:13:29)",
+            "description": "[r/wallstreetbets](https://reddit.com/r/wallstreetbets): #439263 (2021-01-01 00:02:06 - 2021-02-28 18:47:20)",
             "schema": {
                 "fields": [
                     {
