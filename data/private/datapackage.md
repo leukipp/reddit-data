@@ -1,5 +1,5 @@
 # Description
-Reddit submissions from Finance/Investment/Stock related posts:
+Reddit submissions from finance/investment/stock related posts:
 {0}
 
 # Data
