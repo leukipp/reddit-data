@@ -1,8 +1,10 @@
 # Reddit - Finance Posts
-Reddit submissions from Finance/Investment/Stock related posts:
+Reddit submissions from finance/investment/stock related posts:
 - [r/wallstreetbets](https://reddit.com/r/wallstreetbets)
+- [r/gme](https://reddit.com/r/gme)
 - [r/stocks](https://reddit.com/r/stocks)
 - [r/pennystocks](https://reddit.com/r/pennystocks)
+- [r/robinhoodpennystocks](https://reddit.com/r/robinhoodpennystocks)
 - [r/investing](https://reddit.com/r/investing)
 - [r/stockmarket](https://reddit.com/r/stockmarket)
 - [r/robinhood](https://reddit.com/r/robinhood)
