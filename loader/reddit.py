@@ -128,10 +128,10 @@ class Reddit(Loader):
             if df_metadata.empty:
                 continue
 
-            # update last 12 hours
+            # update last 6 hours
             df_metadata_exists = df_metadata[df_metadata.index.isin(df.index)]
             last_time = df_metadata_exists.iloc[-1]['created'] if not df_metadata_exists.empty else df_metadata.iloc[0]['created']
-            update_time = last_time - (60 * 60 * 12)
+            update_time = last_time - (60 * 60 * 6)
             df_metadata_update = df_metadata[df_metadata['created'] >= update_time]
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {file_path_metadata}')
