@@ -9,7 +9,7 @@ from lxml import html
 from datetime import datetime, timezone
 
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
-sys.path.insert(0, root)  # nopep8
+sys.path.insert(0, root)                                               # nopep8
 
 from common.sleep import Sleep
 from common.loader import Loader
@@ -22,8 +22,6 @@ class Crawler(Loader):
         self.root = root
         self.global_config = os.path.join(self.root, global_config)
         self.crawler_config = os.path.join(self.root, crawler_config)
-
-        now = int(datetime.now(timezone.utc).timestamp())
 
         # load global config
         with open(self.global_config) as f:
@@ -85,7 +83,6 @@ class Crawler(Loader):
 
     def download(self, file_type, file_path):
         exists = os.path.exists(file_path)
-        now = int(datetime.now(timezone.utc).timestamp())
 
         self.log(f'download {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")} to {file_path}')
         with open(file_path, 'a+', newline='') as f:
@@ -133,7 +130,7 @@ class Crawler(Loader):
                 return [x for x in data if x[2] > self.last_run[file_type]]
 
             # request data
-            response = requests.get(url, headers={'User-Agent': 'python:https://github.com/leukipp/RedditFinanceData:v0.0.1 (by /u/leukipp)'}).content
+            response = requests.get(url, headers={'User-Agent': os.environ['USER_AGENT']}).content
             content = html.fromstring(response)
 
             # parse submissions

@@ -16,7 +16,7 @@ from tqdm import tqdm
 from datetime import datetime, timezone
 
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
-sys.path.insert(0, root)  # nopep8
+sys.path.insert(0, root)                                               # nopep8
 
 from common.sleep import Sleep
 from common.loader import Loader
@@ -44,7 +44,7 @@ class Reddit(Loader):
             config = self.read_config()
 
         # reddit client
-        self.reddit = praw.Reddit(**{**config, **{'user_agent': 'python:https://github.com/leukipp/RedditFinanceData:v0.0.1 (by /u/leukipp)'}})
+        self.reddit = praw.Reddit(**{**config, **{'user_agent': os.environ['USER_AGENT']}})
 
     def read_config(self):
         try:
