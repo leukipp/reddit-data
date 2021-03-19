@@ -1,6 +1,7 @@
-from common.sleep import Sleep
-
 from threading import Thread, Event
+from datetime import datetime, timezone
+
+from common.sleep import Sleep
 
 
 class Loader(Thread):
@@ -12,8 +13,11 @@ class Loader(Thread):
         self._stopevent = Event()
         self._time = Sleep(10, immediate=False)
 
+    def _log(self):
+        return f'{datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S")} | {self._name.ljust(9)} | '
+
     def log(self, msg):
-        print(f'{self._name.ljust(9)} | {msg}')
+        print(self._log() + msg)
 
     def background(self):
         return self.isAlive()

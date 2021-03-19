@@ -59,8 +59,8 @@ class Reddit(Loader):
 
     def write_config(self):
         self.log('update reddit config')
-        client_id = input(f'{self._name.ljust(9)} | enter client_id: ').strip()
-        client_secret = getpass.getpass(f'{self._name.ljust(9)} | enter client_secret: ').strip()
+        client_id = input(self._log() + 'enter client_id: ').strip()
+        client_secret = getpass.getpass(self._log() + 'enter client_secret: ').strip()
 
         # write config
         os.makedirs(os.path.dirname(self.reddit_config), exist_ok=True)
@@ -179,7 +179,7 @@ class Reddit(Loader):
 
         # chunk ids into lists with size 100
         self.log(f'download {len(ids)} {file_type}s')
-        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=f'{self._name.ljust(9)} | fetching', unit_scale=100):
+        for fullnames in tqdm([ids[i:i + 100] for i in range(0, len(ids), 100)], desc=self._log() + 'fetching', unit_scale=100):
             now = datetime.now(timezone.utc).timestamp()
 
             # process submissions
