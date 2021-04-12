@@ -3,8 +3,6 @@
         "**/__pycache__": true
     },
     "terminal.integrated.env.linux": {
-        "VSCODE_WORKSPACE": "${workspaceFolder}",
-        "KAGGLE_CONFIG_DIR": "${workspaceFolder}/config/.kaggle/",
-        "USER_AGENT": "python:https://github.com/leukipp/RedditFinanceData:v1.0.0 (by /u/leukipp)"
+        "VSCODE_WORKSPACE": "${workspaceFolder}"
     }
 }
