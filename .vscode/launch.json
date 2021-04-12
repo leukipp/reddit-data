@@ -22,7 +22,7 @@
                 "run",
                 "visualize.py",
                 "--server.port",
-                "8080"
+                "8000"
             ]
         }
     ]
