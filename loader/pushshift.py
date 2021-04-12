@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
 sys.path.insert(0, root)                                               # nopep8
 
+from common.env import Env
 from common.sleep import Sleep
 from common.loader import Loader
 
@@ -168,7 +169,7 @@ class Pushshift(Loader):
     def fetch(self, url):
         try:
             # request data
-            result = requests.get(url, headers={'User-Agent': os.environ['USER_AGENT']}).json()
+            result = requests.get(url, headers={'User-Agent': Env.USER_AGENT()}).json()
 
             # validate result
             if 'data' not in result or not len(result['data']):
