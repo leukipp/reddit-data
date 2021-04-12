@@ -23,9 +23,6 @@ conda env create -f environment.yml
 conda activate reddit
 ```
 
-## Usage
-Use the dataset available at [Kaggle](https://www.kaggle.com/leukipp/reddit-finance-data) or generate your own one:
-
 ### Environment
 Create file `.streamlit/secrets.toml` and set environment variables.
 ```sh
@@ -33,6 +30,9 @@ KAGGLE_USERNAME="KAGGLE_USERNAME"
 KAGGLE_KEY="KAGGLE_KEY"
 USER_AGENT="USER_AGENT"
 ```
+
+## Data
+Use the dataset available at [Kaggle](https://www.kaggle.com/leukipp/reddit-finance-data), or generate your own:
 
 ### Generate
 ```sh
@@ -44,14 +44,14 @@ python loader/pushshift.py --config config/wallstreetbets.json
 python loader/crawler.py --config config/wallstreetbets.json
 python loader/reddit.py --config config/wallstreetbets.json
 ```
+Stop background tasks with `touch .disabled` and reset with `rm .disabled`.
 
-### Stop
-```sh
-touch .disabled
-```
+## Visualize
+Use the application available at [Streamlit](https://share.streamlit.io/leukipp/redditfinancedata/visualize.py), or run your own:
 
+### Run
 ```sh
-rm .disabled
+streamlit run visualize.py
 ```
 
 ## License

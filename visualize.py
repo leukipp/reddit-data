@@ -100,7 +100,7 @@ if not df_sampled.shape[0]:
 # %% INTRO
 st.title(f'Reddit - r/{subreddit}')
 
-st.markdown(f'Reddit submissions from Finance/Investment/Stock related posts: https://www.kaggle.com/{dataset}')
+st.markdown(f'Reddit submissions from finance/investment/stock related posts: https://www.kaggle.com/{dataset}')
 
 
 # %% VISUALIZE DATA
