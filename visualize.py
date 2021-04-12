@@ -25,19 +25,19 @@ pd.options.plotting.backend = 'plotly'
 
 
 # %% FUNCTIONS
-@st.cache(ttl=60*60)
+@st.cache(ttl=60*60*1)
 def download_nltk(data):
     download_dir = tempfile.mkdtemp()
     nl.download(data, download_dir=download_dir)
     return download_dir
 
 
-@st.cache(ttl=60*60)
+@st.cache(ttl=60*60*1)
 def download_dataset(dataset):
     return Kaggle().download(dataset, local=False)
 
 
-@st.cache(ttl=60*60)
+@st.cache(ttl=60*60*1)
 def read_dataset(path, file_name):
     return pd.read_hdf(os.path.join(path, file_name))
 
@@ -184,7 +184,7 @@ treemap.update_layout(margin=dict(t=0, b=0, r=0, l=0))
 
 col_left, col_right = st.beta_columns((1, 1))
 col_left.plotly_chart(treemap, use_container_width=True)
-col_right.image(image, use_container_width=True)
+col_right.image(image, use_column_width=True)
 
 
 # %% ANALYZE STOCKS
