@@ -5,6 +5,8 @@ import tempfile
 import glob as gb
 import pandas as pd
 
+from common.env import Env
+
 from datetime import datetime, timezone
 from kaggle.api.kaggle_api_extended import KaggleApi
 
@@ -13,6 +15,7 @@ class Kaggle(object):
     def __init__(self):
         self.kaggle = KaggleApi()
         self.kaggle.authenticate()
+
         self.descriptions = {
             'id': 'The id of the submission.',
             'author': 'The redditors username.',
@@ -39,6 +42,7 @@ class Kaggle(object):
             'thumbnail': 'The submission thumbnail on image posts.',
             'shortlink': 'The submission short url.'
         }
+
         self.types = {
             'object': 'string',
             'int64': 'integer',
@@ -96,8 +100,9 @@ class Kaggle(object):
         return 'update data'
 
     def download(self, dataset, local=False):
-        if local and 'VSCODE_WORKSPACE' in os.environ:
-            return os.path.join(os.environ['VSCODE_WORKSPACE'], 'data', 'public')
+        workspace = Env.VSCODE_WORKSPACE()
+        if local and workspace:
+            return os.path.join(workspace, 'data', 'public')
         path = tempfile.mkdtemp()
         self.kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
         return path

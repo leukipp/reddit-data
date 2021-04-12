@@ -4,6 +4,7 @@ import argparse
 
 import glob as gb
 
+from common.env import Env
 from common.sleep import Sleep
 from common.timer import Timer
 from common.kaggle import Kaggle
@@ -61,6 +62,9 @@ if __name__ == '__main__':
 
     try:
         if enabled():
+            print('\n----------------------------------- ENVIRONMENT -----------------------------------\n')
+            print(Env.init())
+            print('\n----------------------------------- STARTED -----------------------------------\n')
 
             # kaggle client
             kaggle = Kaggle()
@@ -91,6 +95,7 @@ if __name__ == '__main__':
                             timer.reset()
                     except Exception as e:
                         print(f'...error {repr(e)}')
+
     except KeyboardInterrupt as e:
         print(f'...aborted')
     except Exception as e:
