@@ -27,8 +27,11 @@ conda activate reddit
 Use the dataset available at [Kaggle](https://www.kaggle.com/leukipp/reddit-finance-data) or generate your own one:
 
 ### Environment
+Create file `.streamlit/secrets.toml` and set environment variables:
 ```sh
-export $(xargs < .env)
+KAGGLE_USERNAME="..."
+KAGGLE_KEY="..."
+USER_AGENT="..."
 ```
 
 ### Generate
