@@ -1,8 +1,9 @@
-.git
-.disabled
+.git/
+.streamlit/
+__pycache__/
 *.py[cod]
-__pycache__
-config/*/*
+.disabled
 data/private/*/*
 data/public/*/*
+config/*/*
 docs/*
