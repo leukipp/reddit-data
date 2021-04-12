@@ -50,10 +50,23 @@ class Kaggle(object):
             'datetime64[ns]': 'datetime'
         }
 
-    def _update(self, root):
+    def download(self, dataset, local=False):
+        # use local folder instead of download
+        if local and Env.VSCODE_WORKSPACE():
+            return os.path.join(Env.VSCODE_WORKSPACE(), 'data', 'public')
+
+        # download dataset into temporary folder
+        path = tempfile.mkdtemp()
+        self.kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
+
+        # return dataset path
+        return path
+
+    def update(self, root):
         summary = {}
         resources = []
 
+        # read metadata from dataset
         for f in sorted(gb.glob(os.path.join(root, '**', '*.*'))):
             df = pd.read_hdf(f.replace('.csv', '.h5')).reset_index()
             name = os.path.basename(f)
@@ -99,14 +112,9 @@ class Kaggle(object):
         # return update message
         return 'update data'
 
-    def download(self, dataset, local=False):
-        workspace = Env.VSCODE_WORKSPACE()
-        if local and workspace:
-            return os.path.join(workspace, 'data', 'public')
-        path = tempfile.mkdtemp()
-        self.kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
-        return path
-
     def upload(self, path):
-        self._update(root=path)
-        return self.kaggle.dataset_create_version(path, version_notes=self._update(root=path), dir_mode='zip')
+        # update datapackage
+        self.update(root=path)
+
+        # upload dataset
+        return self.kaggle.dataset_create_version(path, version_notes=self.update(root=path), dir_mode='zip')
