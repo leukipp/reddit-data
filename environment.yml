@@ -19,5 +19,5 @@ dependencies:
   - wordcloud=1.8.1
   - yfinance=0.1.54
   - pip:
-    - streamlit==0.75.0
-    - kaggle==1.5.10
+    - kaggle==1.5.12
+    - streamlit==0.80.0
