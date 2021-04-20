@@ -1,8 +1,8 @@
 .git/
-.streamlit/
 __pycache__/
 *.py[cod]
 .disabled
+secrets.toml
 data/private/*/*
 data/public/*/*
 config/*/*
