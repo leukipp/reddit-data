@@ -21,8 +21,8 @@
             "args": [
                 "run",
                 "visualize.py",
-                "--server.port",
-                "8000"
+                "--server.headless",
+                "false"
             ]
         }
     ]

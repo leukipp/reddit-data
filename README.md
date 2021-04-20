@@ -51,7 +51,7 @@ Use the application available at [Streamlit](https://share.streamlit.io/leukipp/
 
 ### Run
 ```sh
-streamlit run visualize.py
+streamlit run visualize.py --server.headless false
 ```
 
 ## License
