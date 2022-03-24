@@ -8,21 +8,9 @@
             "program": "data.py",
             "console": "integratedTerminal",
             "args": [
-                "--background",
-                "--config",
-                "config/wallstreetbets.json"
-            ]
-        },
-        {
-            "name": "visualize",
-            "type": "python",
-            "request": "launch",
-            "module": "streamlit.cli",
-            "args": [
-                "run",
-                "visualize.py",
-                "--server.headless",
-                "false"
+                "reddit",
+                "-pause",
+                "10"
             ]
         }
     ]

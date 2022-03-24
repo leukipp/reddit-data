@@ -16,6 +16,18 @@ class Env(object):
         raise KeyError(f'{key} not found in environment variables')
 
     @staticmethod
+    def USER_AGENT():
+        return Env.get(st.secrets, 'USER_AGENT')
+
+    @staticmethod
+    def REDDIT_CLIENT_ID():
+        return Env.get(st.secrets, 'REDDIT_CLIENT_ID')
+
+    @staticmethod
+    def REDDIT_CLIENT_SECRET():
+        return Env.get(st.secrets, 'REDDIT_CLIENT_SECRET')
+
+    @staticmethod
     def KAGGLE_USERNAME():
         return Env.get(st.secrets, 'KAGGLE_USERNAME')
 
@@ -24,12 +36,9 @@ class Env(object):
         return Env.get(st.secrets, 'KAGGLE_KEY')
 
     @staticmethod
-    def USER_AGENT():
-        return Env.get(st.secrets, 'USER_AGENT')
-
-    @staticmethod
     def VSCODE_WORKSPACE():
         return Env.get(os.environ, 'VSCODE_WORKSPACE')
 
 
+# init on import
 Env.init()

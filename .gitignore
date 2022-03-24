@@ -1,9 +1,6 @@
 .git/
 __pycache__/
 *.py[cod]
-.disabled
 secrets.toml
-data/private/*/*
-data/public/*/*
-config/*/*
-docs/*
+kaggle.json
+data/

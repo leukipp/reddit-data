@@ -1,0 +1,23 @@
+{
+    "crawler": {
+        "types": [
+            "submission"
+        ],
+        "start_time": 1640995200,
+        "periode": 300
+    },
+    "pushshift": {
+        "types": [
+            "submission"
+        ],
+        "start_time": 1640995200,
+        "periode": 1800
+    },
+    "praw": {
+        "types": [
+            "submission"
+        ],
+        "retrospect_time": 12,
+        "periode": 3600
+    }
+}
