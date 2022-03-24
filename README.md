@@ -29,7 +29,8 @@ The data is exported as `.csv` file, all times in *UTC*:
 | `thumbnail`             | The submission thumbnail on image posts                        | *string* |
 | `shortlink`             | The submission short url                                       | *string* |
 
-## Requirements
+## Install
+Install `python3` and `pip3`, you will also need `git`.
 
 ### Packages
 ```bash
@@ -38,6 +39,14 @@ sudo apt install libsnappy-dev
 
 ```bash
 pip3 install -r requirements.txt
+```
+
+### Source
+```bash
+git clone https://github.com/leukipp/reddit-data
+```
+```bash
+cd reddit-data
 ```
 
 ### Environment
@@ -55,11 +64,11 @@ KAGGLE_USERNAME="[...]"
 KAGGLE_KEY="[...]"
 ```
 
-Kaggle is only needed if you want to upload your dataset periodically. In that case, you need to create a `config/kaggle.json` file, similar to the [dataset-metadata.json](https://github.com/Kaggle/kaggle-api/wiki/Dataset-Metadata) file.
+Kaggle is only required if you want to upload the dataset on a regular basis. In that case, you will need to create a `config/kaggle.json` file, similar to the [dataset-metadata.json](https://github.com/Kaggle/kaggle-api/wiki/Dataset-Metadata) file.
 
 ## Run
 
-Adjust the start time (unix timestamp) in `config/loader.json` and run:
+Adapt the start time (unix timestamp) in `config/loader.json` and run:
 ```bash
 python3 data.py <subreddit1> <subreddit2> <subreddit3> ...
 ```
