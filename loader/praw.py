@@ -102,18 +102,22 @@ class Praw(Loader):
         df = self.read_data(file_type)
         if df.empty:
             df = pd.DataFrame(columns=columns).set_index(file_type)
+        df = df.sort_values(by=['created', 'retrieved'])
+        idxs = list(df.index)
 
         # load metadata
         for store in stores:
             df_store = store.read_data(file_type)
+            df_store = df_store.sort_values(by=['created', 'retrieved'])
 
             # validate dataset
             if df_store.empty:
                 continue
-            df_store_existing = df_store[df_store.index.isin(df.index)]
+            df_store_existing = df_store[df_store.index.isin(idxs)]
+            df_store_existing = df_store_existing.sort_values(by=['created', 'retrieved'])
 
             # update last x hours based on retrospect time sliding window
-            last_time = df_store_existing.iloc[-1]['created'] if not df_store_existing.empty else df_store.iloc[0]['created']
+            last_time = df_store.iloc[0]['created'] if df_store_existing.empty else df_store_existing.iloc[-1]['created']
             update_time = last_time - (60 * 60 * self.retrospect_time)
 
             self.log(f'update data after {datetime.fromtimestamp(update_time)} from {store.name}')
@@ -140,8 +144,9 @@ class Praw(Loader):
                 # updated data
                 self.log(f'updated {df_update.shape[0]} {file_type}s')
 
-        # convert datatypes and sort
-        df = df.convert_dtypes().sort_values(by=['created', 'retrieved'])
+        # convert datatypes
+        df = df.convert_dtypes()
+        df = df.sort_values(by=['created', 'retrieved'])
 
         # write data
         self.write_data(file_type, df, overwrite=True, last_run=self.last_run[file_type])
