@@ -157,7 +157,7 @@ class Pushshift(Loader):
             self.log(f'fetched {len(data)} {file_type}s after {datetime.fromtimestamp(self.last_run[file_type]).strftime("%Y-%m-%d %H:%M:%S")}')
             return data
 
-        except json.decoder.JSONDecodeError as e:
+        except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
             Sleep(1)
 
