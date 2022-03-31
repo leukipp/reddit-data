@@ -44,7 +44,7 @@ class Store(object):
         return pd.DataFrame()
 
     def write_data(self, name, data, overwrite, **kwargs):
-        if self.exists_data(name) or overwrite:
+        if overwrite or not self.exists_data(name):
             self.collection.write(name, data, overwrite=True, metadata=kwargs)
         else:
             self.collection.append(name, data)
