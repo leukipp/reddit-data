@@ -65,12 +65,12 @@ def publish(interval, kaggle):
 
     path = os.path.join('data', 'export')
     try:
-        # update datapackage
-        kaggle.update(path)
-
         # upload disabled
         if not interval:
             return
+
+        # update datapackage
+        kaggle.update(path)
 
         # start upload
         elapsed = kaggle.timer.stop(run=False) / 1000
@@ -115,20 +115,22 @@ if __name__ == '__main__':
         # start background tasks
         while not terminated:
 
-            # fetch data
             for subreddit in args.subreddits:
-                if terminated:
-                    break
+                # fetch data
                 fetch(config, subreddit)
 
+                # pause requests
                 if args.pause:
                     logger.log(f'\n{"-"*45}{"PAUSING":^15}{"-"*45}\n')
                     Sleep(args.pause)
                 else:
                     logger.log(f'\n{"-"*105}\n')
 
-            # publish data
-            if not terminated:
+                # check termination
+                if terminated:
+                    break
+            else:
+                # publish data
                 publish(args.publish, kaggle)
 
     except KeyboardInterrupt as e:
