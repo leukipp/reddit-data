@@ -1,7 +1,6 @@
 import os
 import json
 import signal
-import numexpr
 import argparse
 
 from helper.env import Env
@@ -10,6 +9,7 @@ from common.kaggle import Kaggle
 from common.logger import Logger
 
 from loader.praw import Praw
+from loader.search import Search
 from loader.crawler import Crawler
 from loader.pushshift import Pushshift
 
@@ -28,17 +28,25 @@ def fetch(config, subreddit):
 
     loaders = []
     try:
-        # pushshift
-        pushshift = Pushshift(root, config, subreddit)
-        loaders.append(pushshift)
+        # search
+        if 'search' in config:
+            search = Search(root, config, subreddit)
+            loaders.append(search)
 
         # crawler
-        crawler = Crawler(root, config, subreddit)
-        loaders.append(crawler)
+        if 'crawler' in config:
+            crawler = Crawler(root, config, subreddit)
+            loaders.append(crawler)
+
+        # pushshift
+        if 'pushshift' in config:
+            pushshift = Pushshift(root, config, subreddit)
+            loaders.append(pushshift)
 
         # praw
-        praw = Praw(root, config, subreddit)
-        loaders.append(praw)
+        if 'praw' in config:
+            praw = Praw(root, config, subreddit)
+            loaders.append(praw)
 
         # start loader threads
         background = False  # TODO thread implementation

@@ -27,9 +27,10 @@ class Logger(object):
 
     def color(self):
         return {
-            'pushshift': self.colors['GREEN'],
+            'search': self.colors['MAGENTA'],
             'crawler': self.colors['CYAN'],
-            'praw': self.colors['MAGENTA'],
+            'pushshift': self.colors['GREEN'],
+            'praw': self.colors['BLUE'],
             'main': self.colors['YELLOW']
         }[self.name]
 
