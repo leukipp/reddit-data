@@ -1,0 +1,12 @@
+version: "3.9"
+services:
+  data:
+    build:
+      context: "."
+      dockerfile: "./dockerfile"
+    env_file:
+      - docker.env
+    volumes:
+      - type: bind
+        source: "./data"
+        target: "/tmp/data"

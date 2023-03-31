@@ -1,0 +1,8 @@
+.git
+.vscode
+.gitignore
+.dockerignore
+docker-compose.yaml
+docker.env
+dockerfile
+data/

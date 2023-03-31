@@ -6,12 +6,7 @@
             "type": "python",
             "request": "launch",
             "program": "data.py",
-            "console": "integratedTerminal",
-            "args": [
-                "reddit",
-                "-pause",
-                "10"
-            ]
+            "console": "integratedTerminal"
         }
     ]
 }

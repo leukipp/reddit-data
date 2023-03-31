@@ -14,8 +14,9 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 
 
 class Kaggle(object):
-    def __init__(self, config):
+    def __init__(self, config, root):
         self.config = config
+        self.root = root
 
         self.kaggle = KaggleApi()
         self.kaggle.authenticate()
@@ -75,12 +76,12 @@ class Kaggle(object):
         # return dataset path
         return path
 
-    def update(self, root):
+    def update(self):
         summary = {}
         resources = []
 
         # read metadata from files
-        for file_path in sorted(gb.glob(os.path.join(root, '**', '*.csv'))):
+        for file_path in sorted(gb.glob(os.path.join(self.root, '**', '*.csv'))):
             df = pd.read_csv(file_path, doublequote=True, quoting=csv.QUOTE_NONNUMERIC, sep=',', encoding='utf-8')
 
             count = df.shape[0]
@@ -128,17 +129,17 @@ class Kaggle(object):
 
         # export readme file
         readme = md.format('\n'.join(md_description), '\n'.join(md_data), md_date)
-        with open(os.path.join(root, 'README.md'), 'w') as f:
+        with open(os.path.join(self.root, 'README.md'), 'w') as f:
             f.write(readme)
 
         # export datapackage file
         template['description'] = readme
         template['resources'] = resources
-        with open(os.path.join(root, 'datapackage.json'), 'w') as f:
+        with open(os.path.join(self.root, 'datapackage.json'), 'w') as f:
             json.dump(template, f, indent=4)
 
         # update message
         return f'{md_date} - {sum([x for x in summary.values()])}'
 
-    def upload(self, path):
-        return self.kaggle.dataset_create_version(path, version_notes=self.update(root=path), dir_mode='zip')
+    def upload(self):
+        return self.kaggle.dataset_create_version(self.root, version_notes=self.update(), dir_mode='zip')

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os
 import json
 import signal
@@ -17,17 +19,12 @@ from loader.pushshift import Pushshift
 terminated = False
 
 
-def terminate(sig, frm):
-    global terminated
-    terminated = True
-    logger.log(f'\n{"-"*45}{"TERMINATED":^15}{"-"*45}\n')
-
-
-def fetch(config, subreddit):
+def fetch(root, config, subreddit):
     logger = Logger('main', 'fetch', plain=True)
-
     loaders = []
+
     try:
+
         # search
         if 'search' in config:
             search = Search(root, config, subreddit)
@@ -64,6 +61,7 @@ def fetch(config, subreddit):
         for loader in loaders:
             loader.stop(1)
         raise KeyboardInterrupt()
+
     except Exception as e:
         logger.log(f'...fetch error {repr(e)}')
 
@@ -71,20 +69,20 @@ def fetch(config, subreddit):
 def publish(interval, kaggle):
     logger = Logger('main', 'publish', plain=True)
 
-    path = os.path.join('data', 'export')
     try:
+
         # upload disabled
         if not interval:
             return
 
         # update datapackage
-        kaggle.update(path)
+        kaggle.update()
 
         # start upload
         elapsed = kaggle.timer.stop(run=False) / 1000
         if elapsed > interval:
             logger.log(f'\n{"-"*45}{"UPLOADING":^15}{"-"*45}\n')
-            kaggle.upload(path)
+            kaggle.upload()
             logger.log(f'\n{"-"*45}{"PUBLISHED":^15}{"-"*45}\n')
             kaggle.timer.reset()
 
@@ -92,25 +90,21 @@ def publish(interval, kaggle):
         logger.log(f'...publish error {repr(e)}')
 
 
-if __name__ == '__main__':
+def terminate(sig, frm):
+    logger = Logger('main', 'terminate', plain=True)
+    logger.log(f'\n{"-"*45}{"TERMINATED":^15}{"-"*45}\n')
+
+    # global termination
+    global terminated
+    terminated = True
+
+
+def main(args):
     logger = Logger('main', 'main', plain=True)
-
-    # parse console arguments
-    argp = argparse.ArgumentParser()
-    argp.add_argument('subreddits', type=str, nargs='+', help='subreddits to fetch data from')
-    argp.add_argument('-config', type=str, default=os.path.join('config', 'loader.json'), help='file path of global config file')
-    argp.add_argument('-background', action='store_true', default=False, help='run loaders periodically in background')
-    argp.add_argument('-publish', type=int, default=None, help='publish datasets to kaggle every x seconds')
-    argp.add_argument('-pause', type=int, default=None, help='pause x seconds after fetching a subreddit')
-    args = argp.parse_args()
-
-    # handle process termination
-    signal.signal(signal.SIGTERM, terminate)
+    logger.log(f'\n{"-"*45}{"ENVIRONMENT":^15}{"-"*45}\n\n{Env()}')
+    logger.log(f'\n{"-"*45}{"STARTED":^15}{"-"*45}\n')
 
     try:
-        logger.log(f'\n{"-"*45}{"ENVIRONMENT":^15}{"-"*45}\n')
-        logger.log(Env.init())
-        logger.log(f'\n{"-"*45}{"STARTED":^15}{"-"*45}\n')
 
         # load config
         root = os.path.abspath(os.path.dirname(__file__))
@@ -118,14 +112,16 @@ if __name__ == '__main__':
             config = json.load(f)
 
         # kaggle client
-        kaggle = Kaggle(config=os.path.join('config', 'kaggle.json'))
+        kaggle_path = os.path.join('data', 'export')
+        kaggle_config = os.path.join('config', 'kaggle.json')
+        kaggle = Kaggle(kaggle_config, kaggle_path)
 
         # start background tasks
-        while not terminated:
-
+        while len(args.subreddits) and not terminated:
             for subreddit in args.subreddits:
+
                 # fetch data
-                fetch(config, subreddit)
+                fetch(root, config, subreddit)
 
                 # pause requests
                 if args.pause:
@@ -142,8 +138,31 @@ if __name__ == '__main__':
                 publish(args.publish, kaggle)
 
     except KeyboardInterrupt as e:
-        logger.log(f'...aborted')
+        logger.log(f'\n...aborted')
+
     except Exception as e:
         logger.log(f'...error {repr(e)}')
+
     finally:
         logger.log(f'\n{"-"*45}{"STOPPED":^15}{"-"*45}\n')
+
+
+if __name__ == '__main__':
+
+    # parse console arguments
+    argp = argparse.ArgumentParser()
+    if not Env.SUBREDDITS():
+        argp.add_argument('subreddits', type=str, nargs='+', help='subreddits to fetch data from')
+    else:
+        argp.add_argument('-subreddits', type=str, nargs='+', default=Env.SUBREDDITS().split(), help='subreddits to fetch data from')
+    argp.add_argument('-config', type=str, default=os.path.join('config', 'loader.json'), help='file path of global config file')
+    argp.add_argument('-background', action='store_true', default=False, help='run loaders periodically in background')
+    argp.add_argument('-publish', type=int, default=Env.PUBLISH(), help='publish datasets to kaggle every x seconds')
+    argp.add_argument('-pause', type=int, default=Env.PAUSE(), help='pause x seconds after fetching a subreddit')
+    args = argp.parse_args()
+
+    # handle process termination
+    signal.signal(signal.SIGTERM, terminate)
+
+    # start main procedure
+    main(args)
