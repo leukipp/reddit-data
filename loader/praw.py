@@ -32,7 +32,8 @@ class Praw(Loader):
 
         # config parameters
         self.types = self.config['praw']['types']
-        self.periode = self.config['praw']['periode']
+        self.snapshot = self.config['praw']['snapshot']
+        self.idle_periode = self.config['praw']['idle_periode']
         self.retrospect_time = self.config['praw']['retrospect_time']
 
         # initial run variables
@@ -53,6 +54,7 @@ class Praw(Loader):
             # download reddit data
             while not self.stopped():
                 stores = [
+                    Store('search', self.root, self.config, self.subreddit),
                     Store('crawler', self.root, self.config, self.subreddit),
                     Store('pushshift', self.root, self.config, self.subreddit)
                 ]
@@ -61,8 +63,8 @@ class Praw(Loader):
 
                 # periodic run
                 if self.alive():
-                    self.log(f'sleep for {self.periode} seconds')
-                    self.time.sleep(self.periode)
+                    self.log(f'sleep for {self.idle_periode} seconds')
+                    self.time.sleep(self.idle_periode)
                 else:
                     break
 
@@ -151,7 +153,7 @@ class Praw(Loader):
         df = df.sort_values(by=['created', 'retrieved'])
 
         # write data
-        self.write_data(file_type, df, overwrite=True, last_run=self.last_run[file_type])
+        self.write_data(file_type, df, overwrite=True, snapshot=self.snapshot, last_run=self.last_run[file_type])
         self.log(f'exported {df.shape[0]} {file_type}s')
 
         # export data
@@ -177,7 +179,7 @@ class Praw(Loader):
 
                     # parse submissions
                     data += [[
-                        str(x.id), str(self.subreddit), str(x.author.name if x.author else '[deleted]'),
+                        str(x.id), str(x.subreddit).lower(), str(x.author.name if x.author else '[deleted]'),
                         int(x.created_utc), int(now), int(x.edited),
                         int(x.pinned), int(x.archived), int(x.locked),
                         int(x.selftext == '[removed]' or x.removed_by_category != None), int(x.selftext == '[deleted]'),
@@ -194,7 +196,7 @@ class Praw(Loader):
 
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
-            Sleep(1)
+            Sleep(10)
 
         return []
 

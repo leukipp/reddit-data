@@ -4,6 +4,8 @@ import glob as gb
 import pandas as pd
 import pystore as db
 
+from datetime import datetime, timezone
+
 
 class Store(object):
     def __init__(self, name, root, config, subreddit):
@@ -43,9 +45,16 @@ class Store(object):
             return self.collection.item(name).to_pandas(parse_dates=False)
         return pd.DataFrame()
 
-    def write_data(self, name, data, overwrite, **kwargs):
+    def write_data(self, name, data, overwrite, snapshot, **kwargs):
         if overwrite or not self.exists_data(name):
             self.collection.write(name, data, overwrite=True, metadata=kwargs)
         else:
             self.collection.append(name, data)
             self.write_meta(name, **kwargs)
+        if snapshot:
+            self.create_snapshot(name)
+
+    def create_snapshot(self, name):
+        now = int(datetime.now(timezone.utc).timestamp())
+        if self.exists_data(name):
+            return self.collection.create_snapshot(f'{name}_{now}')

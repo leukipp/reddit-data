@@ -25,7 +25,8 @@ class Crawler(Loader):
 
         # config parameters
         self.types = self.config['crawler']['types']
-        self.periode = self.config['crawler']['periode']
+        self.snapshot = self.config['crawler']['snapshot']
+        self.idle_periode = self.config['crawler']['idle_periode']
 
         # initial run variables
         self.last_run = {}
@@ -49,8 +50,8 @@ class Crawler(Loader):
 
                 # periodic run
                 if self.alive():
-                    self.log(f'sleep for {self.periode} seconds')
-                    self.time.sleep(self.periode)
+                    self.log(f'sleep for {self.idle_periode} seconds')
+                    self.time.sleep(self.idle_periode)
                 else:
                     break
 
@@ -88,7 +89,7 @@ class Crawler(Loader):
         self.last_run[file_type] = int(df.iloc[-1]['created'])
 
         # append data
-        self.write_data(file_type, df, overwrite=False, last_run=self.last_run[file_type])
+        self.write_data(file_type, df, overwrite=False, snapshot=self.snapshot, last_run=self.last_run[file_type])
         self.log(f'exported {df.shape[0]} {file_type}s')
 
     def fetch(self, url, file_type, data=[]):
@@ -128,7 +129,7 @@ class Crawler(Loader):
 
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
-            Sleep(1)
+            Sleep(10)
 
         return [x for x in data if x[3] > self.last_run[file_type]]
 

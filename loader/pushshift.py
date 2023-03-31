@@ -20,11 +20,12 @@ class Pushshift(Loader):
     def __init__(self, root, config, subreddit):
         Loader.__init__(self, 'pushshift', root, config, subreddit)
 
-        self.endpoint = 'https://api.pushshift.io/reddit/{}/search?limit=100&sort=desc&subreddit={}&after={}&before={}'
+        self.endpoint = 'https://api.pushshift.io/reddit/{}/search?limit=100&sort=created_utc&subreddit={}&after={}&before={}'
 
         # config parameters
         self.types = self.config['pushshift']['types']
-        self.periode = self.config['pushshift']['periode']
+        self.snapshot = self.config['pushshift']['snapshot']
+        self.idle_periode = self.config['pushshift']['idle_periode']
 
         # initial run variables
         self.last_run = {}
@@ -52,8 +53,8 @@ class Pushshift(Loader):
 
                 # periodic run
                 if self.alive():
-                    self.log(f'sleep for {self.periode} seconds')
-                    self.time.sleep(self.periode)
+                    self.log(f'sleep for {self.idle_periode} seconds')
+                    self.time.sleep(self.idle_periode)
                 else:
                     break
 
@@ -102,7 +103,7 @@ class Pushshift(Loader):
                 count += df.shape[0]
 
                 # append data
-                self.write_data(file_type, df, overwrite=False, last_run=self.last_run[file_type], end_run=self.end_run[file_type])
+                self.write_data(file_type, df, overwrite=False, snapshot=self.snapshot, last_run=self.last_run[file_type], end_run=self.end_run[file_type])
                 self.log(f'exported {df.shape[0]} {file_type}s')
 
             # wait for next request
@@ -140,7 +141,7 @@ class Pushshift(Loader):
                         self.subreddit,
                         x['author'],
                         x['created_utc'],
-                        x['retrieved_on']
+                        x['retrieved_utc']
                     ]]
                 elif file_type == 'comment' and 'body' in x:
                     # parse comments
@@ -150,7 +151,7 @@ class Pushshift(Loader):
                         self.subreddit,
                         x['author'],
                         x['created_utc'],
-                        x['retrieved_on']
+                        x['retrieved_utc']
                     ]]
 
             # fetched data
@@ -159,7 +160,7 @@ class Pushshift(Loader):
 
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
-            Sleep(1)
+            Sleep(10)
 
         return []
 
