@@ -25,29 +25,20 @@ def fetch(root, config, subreddit):
 
     try:
 
-        # search
+        # add loaders
         if 'search' in config:
-            search = Search(root, config, subreddit)
-            loaders.append(search)
-
-        # crawler
+            loaders.append(Search(root, config, subreddit))
         if 'crawler' in config:
-            crawler = Crawler(root, config, subreddit)
-            loaders.append(crawler)
-
-        # pushshift
+            loaders.append(Crawler(root, config, subreddit))
         if 'pushshift' in config:
-            pushshift = Pushshift(root, config, subreddit)
-            loaders.append(pushshift)
-
-        # praw
+            loaders.append(Pushshift(root, config, subreddit))
         if 'praw' in config:
-            praw = Praw(root, config, subreddit)
-            loaders.append(praw)
+            loaders.append(Praw(root, config, subreddit))
 
         # start loader threads
-        background = False  # TODO thread implementation
+        background = False
         for loader in loaders:
+            # TODO thread implementation
             if background:
                 loader.start()
             else:

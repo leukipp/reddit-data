@@ -64,7 +64,6 @@ class Pushshift(Loader):
         self.runevent.clear()
 
     def download(self, file_type):
-        count = 0
         now = int(datetime.now(timezone.utc).timestamp())
 
         # set last run from now
@@ -79,7 +78,9 @@ class Pushshift(Loader):
             'comment': ['submission', 'comment', 'subreddit', 'author', 'created', 'retrieved']  # TODO fetch comments
         }[file_type]
 
-        while True:
+        count = 0
+        abort = False
+        while not abort:
 
             # fetch data
             url = self.endpoint.format(file_type, self.subreddit, str(self.end_run[file_type]), str(self.last_run[file_type]))
@@ -90,6 +91,9 @@ class Pushshift(Loader):
                 if count == 0:
                     self.log(f'exported 0 {file_type}s')
                 break
+
+            # check errors
+            abort = self.errors >= 12
 
             # build dataframe and sort
             df = pd.DataFrame(data, columns=columns).set_index(file_type)
@@ -105,6 +109,10 @@ class Pushshift(Loader):
 
             # wait for next request
             Sleep(0.35)
+
+        # abort on errors
+        if abort:
+            return
 
         # set last run and end run from now
         self.last_run[file_type] = now
@@ -157,6 +165,7 @@ class Pushshift(Loader):
 
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
+            self.errors += 1
             Sleep(10)
 
         return []

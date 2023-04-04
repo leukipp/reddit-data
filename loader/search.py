@@ -121,6 +121,7 @@ class Search(Loader):
 
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
+            self.errors += 1
             Sleep(10)
 
         return [x for x in data if x[3] > self.last_run[file_type]]

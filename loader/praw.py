@@ -50,11 +50,14 @@ class Praw(Loader):
         try:
             # download reddit data
             while not self.stopped():
-                stores = [
-                    Store('search', self.root, self.config, self.subreddit),
-                    Store('crawler', self.root, self.config, self.subreddit),
-                    Store('pushshift', self.root, self.config, self.subreddit)
-                ]
+                stores = []
+                if 'search' in self.config:
+                    stores.append(Store('search', self.root, self.config, self.subreddit))
+                if 'crawler' in self.config:
+                    stores.append(Store('crawler', self.root, self.config, self.subreddit))
+                if 'pushshift' in self.config:
+                    stores.append(Store('pushshift', self.root, self.config, self.subreddit))
+
                 for file_type in self.types:
                     self.download(file_type, stores)
 
@@ -193,6 +196,7 @@ class Praw(Loader):
 
         except Exception as e:
             self.log(f'...request error {repr(e)}, retry')
+            self.errors += 1
             Sleep(10)
 
         return []

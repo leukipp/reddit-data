@@ -12,6 +12,7 @@ class Loader(Thread, Logger, Store):
         Store.__init__(self, name=name, root=root, config=config, subreddit=subreddit.lower())
 
         # thread events
+        self.errors = 0
         self.runevent = Event()
         self.stopevent = Event()
 
