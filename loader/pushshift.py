@@ -135,7 +135,7 @@ class Pushshift(Loader):
                 # set last run from current item
                 self.last_run[file_type] = x['created_utc'] - 1
 
-                if file_type == 'submission' and 'selftext' in x:
+                if file_type == 'submission' and 'selftext' in x and x['subreddit_type'] == 'public':
                     # parse submissions
                     data += [[
                         x['id'],
