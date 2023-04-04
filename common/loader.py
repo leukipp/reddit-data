@@ -8,8 +8,8 @@ from common.logger import Logger
 class Loader(Thread, Logger, Store):
     def __init__(self, name, root, config, subreddit):
         Thread.__init__(self, name=name)
-        Logger.__init__(self, name=name, context=f'r/{subreddit}', plain=False)
-        Store.__init__(self, name=name, root=root, config=config, subreddit=subreddit)
+        Logger.__init__(self, name=name, context=f'r/{subreddit.lower()}', plain=False)
+        Store.__init__(self, name=name, root=root, config=config, subreddit=subreddit.lower())
 
         # thread events
         self.runevent = Event()

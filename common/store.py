@@ -15,7 +15,7 @@ class Store(object):
         self.subreddit = subreddit
 
         # datastore
-        db.set_path(os.path.join(self.root, 'data', 'store'))
+        db.set_path(os.path.join(self.root, 'store'))
         self.datastore = db.store(self.subreddit, 'fastparquet')
 
         # collection

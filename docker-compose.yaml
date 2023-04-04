@@ -4,8 +4,9 @@ services:
     build:
       context: "."
       dockerfile: "./dockerfile"
-    env_file:
-      - docker.env
+    environment:
+      - DATA=data
+      - SUBREDDITS=subreddit1 subreddit2
     volumes:
       - type: bind
         source: "./data"

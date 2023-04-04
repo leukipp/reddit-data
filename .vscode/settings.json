@@ -1,8 +1,5 @@
 {
     "files.exclude": {
         "**/__pycache__": true
-    },
-    "terminal.integrated.env.linux": {
-        "VSCODE_WORKSPACE": "${workspaceFolder}"
     }
 }

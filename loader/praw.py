@@ -10,9 +10,6 @@ from tqdm import tqdm
 from praw import Reddit
 from datetime import datetime, timezone
 
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
-sys.path.insert(0, root)                                               # nopep8
-
 from helper.env import Env
 from helper.sleep import Sleep
 from common.store import Store
@@ -157,7 +154,7 @@ class Praw(Loader):
         self.log(f'exported {df.shape[0]} {file_type}s')
 
         # export data
-        file_path = os.path.join(self.root, 'data', 'export', self.subreddit, f'{file_type}.csv')
+        file_path = os.path.join(self.root, 'export', self.subreddit, f'{file_type}.csv')
         os.makedirs(os.path.dirname(file_path), exist_ok=True)
         df.to_csv(file_path, header=True, index=True, doublequote=True, quoting=csv.QUOTE_NONNUMERIC, sep=',', encoding='utf-8')
 
@@ -199,22 +196,3 @@ class Praw(Loader):
             Sleep(10)
 
         return []
-
-
-if __name__ == '__main__':
-    argp = argparse.ArgumentParser()
-    argp.add_argument('subreddit', type=str, help='subreddit to fetch data from')
-    argp.add_argument('-config', type=str, default=os.path.join('config', 'loader.json'), help='file path of global config file')
-    argp.add_argument('-background', action='store_true', default=False, help='run loaders periodically in background')
-    args = argp.parse_args()
-
-    # load config
-    with open(os.path.join(root, args.config)) as f:
-        config = json.load(f)
-
-    # start praw
-    praw = Praw(root, config, args.subreddit)
-    if args.background:
-        praw.start()
-    else:
-        praw.run()

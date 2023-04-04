@@ -10,9 +10,6 @@ from praw import Reddit
 from praw.models import Subreddit
 from datetime import datetime, timezone
 
-root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))  # nopep8
-sys.path.insert(0, root)                                               # nopep8
-
 from helper.env import Env
 from helper.sleep import Sleep
 from common.loader import Loader
@@ -127,22 +124,3 @@ class Search(Loader):
             Sleep(10)
 
         return [x for x in data if x[3] > self.last_run[file_type]]
-
-
-if __name__ == '__main__':
-    argp = argparse.ArgumentParser()
-    argp.add_argument('subreddit', type=str, help='subreddit to fetch data from')
-    argp.add_argument('-config', type=str, default=os.path.join('config', 'loader.json'), help='file path of global config file')
-    argp.add_argument('-background', action='store_true', default=False, help='run loaders periodically in background')
-    args = argp.parse_args()
-
-    # load config
-    with open(os.path.join(root, args.config)) as f:
-        config = json.load(f)
-
-    # start search
-    search = Search(root, config, args.subreddit)
-    if args.background:
-        search.start()
-    else:
-        search.run()

@@ -38,16 +38,28 @@ class Env(object):
         return Env._get(os.environ, 'SUBREDDITS')
 
     @staticmethod
+    def DATA():
+        return Env._get(os.environ, 'DATA') or os.path.join('data')
+
+    @staticmethod
+    def LOADER():
+        return Env._get(os.environ, 'LOADER') or os.path.join('config', 'loader.json')
+
+    @staticmethod
+    def KAGGLE():
+        return Env._get(os.environ, 'KAGGLE') or os.path.join('config', 'kaggle.json')
+
+    @staticmethod
+    def BACKGROUND():
+        return Env._get(os.environ, 'BACKGROUND') or False
+
+    @staticmethod
     def PUBLISH():
-        return Env._get(os.environ, 'PUBLISH')
+        return Env._get(os.environ, 'PUBLISH') or False
 
     @staticmethod
     def PAUSE():
-        return Env._get(os.environ, 'PAUSE')
-
-    @staticmethod
-    def VSCODE_WORKSPACE():
-        return Env._get(os.environ, 'VSCODE_WORKSPACE')
+        return Env._get(os.environ, 'PAUSE') or 0
 
     def __repr__(self):
         return '\n'.join([f'{x} = {getattr(Env, x)()}' for x in dir(Env) if callable(getattr(Env, x)) and not x.startswith('_')])

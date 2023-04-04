@@ -65,10 +65,6 @@ class Kaggle(object):
 
     def download(self, dataset, local=False):
 
-        # use local folder
-        if local and Env.VSCODE_WORKSPACE():
-            return os.path.join(Env.VSCODE_WORKSPACE(), 'data', 'export')
-
         # download dataset
         path = tempfile.mkdtemp()
         self.kaggle.dataset_download_files(dataset, path=path, quiet=False, force=True, unzip=True)
@@ -87,7 +83,7 @@ class Kaggle(object):
             count = df.shape[0]
             name = os.path.basename(file_path)
             path = os.path.join(*(file_path.split(os.path.sep)[2:]))
-            link = f'r/{os.path.dirname(path)}'
+            link = f'r/{df["subreddit"].head(1).item()}'
 
             # ignore empty files
             if count == 0:

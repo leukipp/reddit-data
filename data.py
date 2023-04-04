@@ -102,26 +102,25 @@ def terminate(sig, frm):
 def main(args):
     logger = Logger('main', 'main', plain=True)
     logger.log(f'\n{"-"*45}{"ENVIRONMENT":^15}{"-"*45}\n\n{Env()}')
+    logger.log(f'\n{"-"*45}{"ARGUMENTS":^15}{"-"*45}\n\n{chr(10).join(f"{k} = {v}" for k, v in vars(args).items())}')
     logger.log(f'\n{"-"*45}{"STARTED":^15}{"-"*45}\n')
 
     try:
 
         # load config
         root = os.path.abspath(os.path.dirname(__file__))
-        with open(os.path.join(root, args.config)) as f:
+        with open(os.path.join(root, args.loader)) as f:
             config = json.load(f)
 
         # kaggle client
-        kaggle_path = os.path.join('data', 'export')
-        kaggle_config = os.path.join('config', 'kaggle.json')
-        kaggle = Kaggle(kaggle_config, kaggle_path)
+        kaggle = Kaggle(os.path.join(root, args.kaggle), os.path.join(args.data, 'export'))
 
         # start background tasks
         while len(args.subreddits) and not terminated:
             for subreddit in args.subreddits:
 
                 # fetch data
-                fetch(root, config, subreddit)
+                fetch(args.data, config, subreddit)
 
                 # pause requests
                 if args.pause:
@@ -149,14 +148,16 @@ def main(args):
 
 if __name__ == '__main__':
 
-    # parse console arguments
+    # parse console/environment arguments
     argp = argparse.ArgumentParser()
     if not Env.SUBREDDITS():
         argp.add_argument('subreddits', type=str, nargs='+', help='subreddits to fetch data from')
     else:
         argp.add_argument('-subreddits', type=str, nargs='+', default=Env.SUBREDDITS().split(), help='subreddits to fetch data from')
-    argp.add_argument('-config', type=str, default=os.path.join('config', 'loader.json'), help='file path of global config file')
-    argp.add_argument('-background', action='store_true', default=False, help='run loaders periodically in background')
+    argp.add_argument('-data', type=str, default=Env.DATA(), help='root directory of export files')
+    argp.add_argument('-loader', type=str, default=Env.LOADER(), help='file path of loader config file')
+    argp.add_argument('-kaggle', type=str, default=Env.KAGGLE(), help='file path of kaggle config file')
+    argp.add_argument('-background', action='store_true', default=Env.BACKGROUND(), help='run loaders periodically in background')
     argp.add_argument('-publish', type=int, default=Env.PUBLISH(), help='publish datasets to kaggle every x seconds')
     argp.add_argument('-pause', type=int, default=Env.PAUSE(), help='pause x seconds after fetching a subreddit')
     args = argp.parse_args()
