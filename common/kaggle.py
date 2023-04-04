@@ -6,7 +6,6 @@ import tempfile
 import glob as gb
 import pandas as pd
 
-from helper.env import Env
 from helper.timer import Timer
 
 from datetime import datetime, timezone
