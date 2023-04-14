@@ -128,8 +128,8 @@ class Praw(Loader):
                 'submission': 't3_',
                 'comment': 't1_'
             }
-            df_store_update = df_store[df_store['created'] >= update_time]
-            ids = list(prefix[file_type] + df_store_update.index)
+            df_store_create_or_update = df_store[~df_store.index.isin(idxs) | (df_store['created'] >= update_time)]
+            ids = list(prefix[file_type] + df_store_create_or_update.index)
 
             # process submissions
             if file_type == 'submission':
