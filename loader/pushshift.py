@@ -89,7 +89,7 @@ class Pushshift(Loader):
                 break
 
             # check errors
-            abort = self.errors >= 12
+            abort = self.errors >= 3
 
             # build dataframe and sort
             df = pd.DataFrame(data, columns=columns).set_index(file_type)
